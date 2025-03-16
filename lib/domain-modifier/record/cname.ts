@@ -5,14 +5,14 @@ import { Duration } from "../../types/duration";
 
 const DNS_CONTROL_CNAME_RECORD_SYMBOL = Symbol.for("DnscontrolCnameRecord");
 
-export interface DnsControlCnameRecordProps {
+export interface DnscontrolCnameRecordProps {
   readonly label: string;
   readonly target: string;
   readonly ttl?: Duration;
 }
 
-export class DnsControlCnameRecord extends DnscontrolRecord {
-  constructor(scope: Construct, id: string, props: DnsControlCnameRecordProps) {
+export class DnscontrolCnameRecord extends DnscontrolRecord {
+  constructor(scope: Construct, id: string, props: DnscontrolCnameRecordProps) {
     super(scope, id, {
       recordType: "CNAME",
       label: props.label,
@@ -20,9 +20,9 @@ export class DnsControlCnameRecord extends DnscontrolRecord {
       ttl: props.ttl,
     });
   }
-  public static isDnsControlCnameRecord(
+  public static isDnscontrolCnameRecord(
     x: unknown,
-  ): x is DnsControlCnameRecord {
+  ): x is DnscontrolCnameRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_CNAME_RECORD_SYMBOL in x
     );

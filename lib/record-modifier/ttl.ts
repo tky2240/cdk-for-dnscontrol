@@ -14,7 +14,7 @@ export class DnscontrolTtl extends DnscontrolRecordModifier {
     super(scope, id);
     this.ttl = props.ttl;
   }
-  public static isDnsControlTtl(x: unknown): x is DnscontrolTtl {
+  public static isDnscontrolTtl(x: unknown): x is DnscontrolTtl {
     return x != null && typeof x === "object" && DNS_CONTROL_TTL_SYMBOL in x;
   }
 }

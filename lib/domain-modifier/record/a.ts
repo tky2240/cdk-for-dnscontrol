@@ -6,15 +6,15 @@ import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_A_RECORD_SYMBOL = Symbol.for("DnscontrolARecord");
 
-export interface DnsControlARecordProps {
+export interface DnscontrolARecordProps {
   readonly label: string;
   readonly ip: IPv4;
   readonly ttl?: Duration;
 }
 
-export class DnsControlARecord extends DnscontrolRecord {
+export class DnscontrolARecord extends DnscontrolRecord {
   public readonly ip: IPv4;
-  constructor(scope: Construct, id: string, props: DnsControlARecordProps) {
+  constructor(scope: Construct, id: string, props: DnscontrolARecordProps) {
     super(scope, id, {
       recordType: "A",
       label: props.label,
@@ -23,7 +23,7 @@ export class DnsControlARecord extends DnscontrolRecord {
     });
     this.ip = props.ip;
   }
-  public static isDnsControlARecord(x: unknown): x is DnsControlARecord {
+  public static isDnscontrolARecord(x: unknown): x is DnscontrolARecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_A_RECORD_SYMBOL in x
     );

@@ -6,16 +6,16 @@ import { Duration } from "../../types/duration";
 
 const DNS_CONTROL_MX_RECORD_SYMBOL = Symbol.for("DnscontrolMxRecord");
 
-export interface DnsControlMxRecordProps {
+export interface DnscontrolMxRecordProps {
   readonly label: string;
   readonly mxPreference: MxPreference;
   readonly target: string;
   readonly ttl?: Duration;
 }
 
-export class DnsControlMxRecord extends DnscontrolRecord {
+export class DnscontrolMxRecord extends DnscontrolRecord {
   public readonly mxPreference: MxPreference;
-  constructor(scope: Construct, id: string, props: DnsControlMxRecordProps) {
+  constructor(scope: Construct, id: string, props: DnscontrolMxRecordProps) {
     super(scope, id, {
       recordType: "MX",
       label: props.label,
@@ -24,7 +24,7 @@ export class DnsControlMxRecord extends DnscontrolRecord {
     });
     this.mxPreference = props.mxPreference;
   }
-  public static isDnsControlMxRecord(x: unknown): x is DnsControlMxRecord {
+  public static isDnscontrolMxRecord(x: unknown): x is DnscontrolMxRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_MX_RECORD_SYMBOL in x
     );
