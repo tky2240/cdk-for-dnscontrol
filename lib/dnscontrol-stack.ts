@@ -75,7 +75,7 @@ function getDomainConfig(
   if (DnscontrolDomainProvider.isDnscontrolDomainProvider(node)) {
     domainConfig.dnsProviders = {
       ...domainConfig.dnsProviders,
-      [node.domainProviderName]: node.namesapceCount,
+      [node.domainProviderName]: node.nameserverCount,
     };
   }
   if (DnscontrolRecord.isDnscontrolRecord(node)) {
