@@ -1,5 +1,5 @@
-import { DnscontrolStack } from "../lib/dnscontrol-stack";
 import { App } from "../lib/app";
+import { DnscontrolStack } from "../lib/dnscontrol-stack";
 
 const app = new App();
 

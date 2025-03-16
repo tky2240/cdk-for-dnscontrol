@@ -35,7 +35,7 @@ export abstract class DnscontrolDomain extends Construct {
         providerProps.domainProviderName,
         providerProps,
       );
-    };
+    }
   }
 
   public static isDnscontrolDomain(x: unknown): x is DnscontrolDomain {

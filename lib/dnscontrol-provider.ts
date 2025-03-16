@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 
 export interface DnscontrolProviderProps {
   readonly providerName: string;
-  readonly providerType: string;
+  readonly providerType?: string;
   readonly providerMetadata?: Record<string, string>;
 }
 
@@ -16,7 +16,7 @@ export class DnscontrolProvider extends Construct {
     super(scope, id);
     Object.defineProperty(this, DNS_CONTROL_PROVIDER_SYMBOL, { value: true });
     this.providerName = props.providerName;
-    this.providerType = props.providerType;
+    this.providerType = props.providerType ?? props.providerName.toUpperCase();
     this.providerMetadata = props.providerMetadata;
   }
   public static isDnscontrolProvider(x: unknown): x is DnscontrolProvider {

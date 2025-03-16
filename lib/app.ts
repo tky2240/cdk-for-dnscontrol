@@ -2,18 +2,18 @@ import { Construct, IConstruct } from "constructs";
 import { DnscontrolStack } from "./dnscontrol-stack";
 
 export interface AppConfig {
-  outDir?: string
+  outDir?: string;
 }
 
 export class App extends Construct {
   public readonly outDir: string;
   constructor(config: AppConfig = {}) {
     super(undefined as any, "");
-    this.outDir = config.outDir ?? "cdk.out"
+    this.outDir = config.outDir ?? "cdk.out";
   }
   public synth(): void {
     const stacks = getStacks(this);
-    for(const stack of stacks) {
+    for (const stack of stacks) {
       stack.synth(this.outDir);
     }
   }

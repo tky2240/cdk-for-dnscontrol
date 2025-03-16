@@ -5,21 +5,17 @@ import { DnscontrolProvider } from "../lib/dnscontrol-provider";
 import { DnscontrolRegistrar } from "../lib/dnscontrol-registrar";
 import { DnscontrolStack } from "../lib/dnscontrol-stack";
 import { DnsControlARecord } from "../lib/domain-modifier/record/a";
-import { DnsControlAAAARecord } from "../lib/domain-modifier/record/aaaa";
 import { asIPv4 } from "../lib/types/ipv4";
-import { asIPv6 } from "../lib/types/ipv6";
 
 export class TestStack extends DnscontrolStack {
   constructor(scope: Construct, id: string) {
     super(scope, id, {});
 
     const provider = new DnscontrolProvider(this, "MyProvider", {
-      providerName: "my-provider",
-      providerType: "my-provider-type",
+      providerName: "bind",
     });
     const registrar = new DnscontrolRegistrar(this, "MyRegistrar", {
-      registrarName: "my-registrar",
-      registrarType: "my-registrar-type",
+      registrarName: "none",
     });
 
     new ExampleDomain(this, "MyDomain", {
@@ -48,12 +44,8 @@ export class ExampleDomain extends DnscontrolDomain {
       providerPropsList: props.domainProviderPropsList,
     });
     new DnsControlARecord(this, "MyARecord", {
-      label: "hoge",
-      ip: asIPv4("192.168.1.1"),
-    });
-    new DnsControlAAAARecord(this, "MyAAAARecord", {
-      label: "hoge",
-      ip: asIPv6("2001:db8::1"),
+      label: "@",
+      ip: asIPv4("1.2.3.4"),
     });
   }
 }

@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 
 export interface DnscontrolRegistrarProps {
   readonly registrarName: string;
-  readonly registrarType: string;
+  readonly registrarType?: string;
   readonly registrarMetadata?: Record<string, string>;
 }
 
@@ -16,7 +16,8 @@ export class DnscontrolRegistrar extends Construct {
     super(scope, id);
     Object.defineProperty(this, DNS_CONTROL_REGISTRAR_SYMBOL, { value: true });
     this.registrarName = props.registrarName;
-    this.registrarType = props.registrarType;
+    this.registrarType =
+      props.registrarType ?? props.registrarName.toUpperCase();
     this.registrarMetadata = props?.registrarMetadata;
   }
   public static isDnscontrolRegistrar(x: unknown): x is DnscontrolRegistrar {

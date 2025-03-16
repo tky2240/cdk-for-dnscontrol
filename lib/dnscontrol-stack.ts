@@ -47,7 +47,7 @@ export abstract class DnscontrolStack extends Construct {
     const filePath = path.join(outdir, this.stackMetadataPath);
     const dirPath = path.dirname(filePath);
     if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true});
+      fs.mkdirSync(dirPath, { recursive: true });
     }
     fs.writeFileSync(filePath, jsonContent);
     return;
