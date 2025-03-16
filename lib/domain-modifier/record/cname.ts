@@ -10,7 +10,6 @@ export interface DnsControlCnameRecordProps {
 }
 
 export class DnsControlCnameRecord extends DnscontrolRecord {
-  public readonly ip: IPv4;
   constructor(scope: Construct, id: string, props: DnsControlCnameRecordProps) {
     super(scope, id, {
       recordType: "CNAME",
