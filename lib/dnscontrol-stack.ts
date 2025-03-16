@@ -79,12 +79,9 @@ function getDomainConfig(
     };
   }
   if (DnscontrolRecord.isDnscontrolRecord(node)) {
-    domainConfig.records.push({
-      name: node.name,
-      type: node.type,
-      ttl: node.ttl?.toSeconds() ?? defaultTtl.toSeconds(),
-      target: node.target,
-    });
+    const recordConfig = node.getRecordConfig()
+    recordConfig.ttl = recordConfig?.ttl ?? defaultTtl.toSeconds()
+    domainConfig.records.push(recordConfig);
   }
   for (const child of node.node.children) {
     getDomainConfig(child, domainConfig, defaultTtl);

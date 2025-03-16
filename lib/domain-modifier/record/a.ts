@@ -1,4 +1,5 @@
 import { Construct } from "constructs";
+import { DnscontrolRecordConfig } from "../../types/dnscontrol-record-config";
 import { Duration } from "../../types/duration";
 import { IPv4 } from "../../types/ipv4";
 import { DnscontrolRecord } from "./dnscontrol-record";
@@ -26,5 +27,13 @@ export class DnsControlARecord extends DnscontrolRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_A_RECORD_SYMBOL in x
     );
+  }
+  public getRecordConfig(): DnscontrolRecordConfig {
+    return {
+      name: this.name,
+      target: this.target,
+      type: this.recordType,
+      ttl: this.ttl?.toSeconds(),
+    };
   }
 }
