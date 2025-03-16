@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 
 export interface DnscontrolDomainProviderProps {
   readonly domainProviderName: string;
-  readonly namesapceCount?: number;
+  readonly nameserverCount?: number;
 }
 
 const DNS_CONTROL_DOMAIN_PROVIDER_SYMBOL = Symbol.for(
@@ -11,7 +11,7 @@ const DNS_CONTROL_DOMAIN_PROVIDER_SYMBOL = Symbol.for(
 
 export class DnscontrolDomainProvider extends Construct {
   public readonly domainProviderName: string;
-  public readonly namesapceCount: number;
+  public readonly nameserverCount: number;
   constructor(
     scope: Construct,
     id: string,
@@ -22,7 +22,7 @@ export class DnscontrolDomainProvider extends Construct {
       value: true,
     });
     this.domainProviderName = props.domainProviderName;
-    this.namesapceCount = props.namesapceCount ?? -1;
+    this.nameserverCount = props.nameserverCount ?? -1;
   }
   public static isDnscontrolDomainProvider(
     x: unknown,
