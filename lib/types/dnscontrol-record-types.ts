@@ -1,0 +1,25 @@
+const recordTypeStrings = [
+  "A",
+  "AAAA",
+  "ALIAS",
+  "CAA",
+  "CNAME",
+  "DHCID",
+  "DNAME",
+  "DNSKEY",
+  "DS",
+  "HTTPS",
+  "LOC",
+  "MX",
+  "NAPTR",
+  "NS",
+  "PTR",
+  "SOA",
+  "SRV",
+  "SSHFP",
+  "SVCB",
+  "TLSA",
+  "TXT",
+] as const;
+
+export type DnscontrolRecordType = (typeof recordTypeStrings)[number];
