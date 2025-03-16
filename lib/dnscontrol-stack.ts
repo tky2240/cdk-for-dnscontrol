@@ -119,14 +119,3 @@ function getDnsConfig(
   }
   return dnsConfig;
 }
-
-//  The  DnscontrolStack  class extends  cdk.Stack  and is the main entry point for defining the resources in your stack.
-//  The  constructor  method is the entry point for defining the resources in your stack.
-//  The  super  method calls the constructor of the parent class,  cdk.Stack .
-//  The  props  parameter is an optional object that contains properties for the stack.
-//  The  id  parameter is a string that represents the logical ID of the stack.
-//  The  scope  parameter is the parent construct of the stack.
-
-//  Add a DNS zone to the stack
-//  In this step, you add a DNS zone to the stack.
-//  Add the following code to the  DnscontrolStack  class in the  lib/dnscontrol-stack.ts  file:
