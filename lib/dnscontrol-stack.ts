@@ -9,6 +9,7 @@ import { DnscontrolRecord } from "./domain-modifier/record/dnscontrol-record";
 import { DnscontrolDnsConfig } from "./types/dnscontrol-dns-config";
 import { DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
 import { Duration } from "./types/duration";
+import { DnscontrolRawRecord } from "./domain-modifier/record/dnscontrol-raw-record";
 
 export interface DnscontrolStackProps {
   stackMetadataPath?: string;
@@ -35,6 +36,7 @@ export abstract class DnscontrolStack extends Construct {
         registrar: domain.registrarName,
         dnsProviders: {},
         records: [],
+        rawrecords: [],
       } satisfies DnscontrolDomainConfig;
       const domainConfig = getDomainConfig(
         domain,
@@ -82,6 +84,10 @@ function getDomainConfig(
     const recordConfig = node.getRecordConfig()
     recordConfig.ttl = recordConfig?.ttl ?? defaultTtl.toSeconds()
     domainConfig.records.push(recordConfig);
+  }
+  if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
+    const rawRecordConfig = node.getRawRecordConfig();
+    domainConfig.rawrecords?.push(rawRecordConfig);
   }
   for (const child of node.node.children) {
     getDomainConfig(child, domainConfig, defaultTtl);

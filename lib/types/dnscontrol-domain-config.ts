@@ -1,5 +1,7 @@
 import { DnscontrolNamesever } from "./dnscontrol-namesever";
+import { DnscontrolRawRecordConfig } from "./dnscontrol-raw-record-config";
 import { DnscontrolRecordConfig } from "./dnscontrol-record-config";
+import { UnmanagedConfig } from "./dnscontrol-unmanaged-config";
 
 export type DnscontrolDomainConfig = {
   name: string;
@@ -8,6 +10,9 @@ export type DnscontrolDomainConfig = {
   meta?: Record<string, string> | undefined;
   records: DnscontrolRecordConfig[];
   nameservers?: DnscontrolNamesever[] | undefined;
+  recordabsent?: DnscontrolDomainConfig[] | undefined;
   keepunknown?: boolean | undefined;
-  ignored_labels?: string[] | undefined;
+  unmanaged?: UnmanagedConfig | undefined;
+  auto_dnssec?: string | undefined;
+  rawrecords?: DnscontrolRawRecordConfig[] | undefined;
 };

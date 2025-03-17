@@ -12,6 +12,7 @@ import { DnscontrolCnameRecord } from "../lib/domain-modifier/record/cname";
 import { Duration } from "../lib/types/duration";
 import { DnscontrolMxRecord } from "../lib/domain-modifier/record/mx";
 import { asMxPreference } from "../lib/types/mx-preference";
+import { DnscontrolCfSingleRedirectRawRecord } from "../lib/domain-modifier/record/cf-single-redirect";
 
 export class TestStack extends DnscontrolStack {
   constructor(scope: Construct, id: string) {
@@ -72,6 +73,12 @@ export class ExampleDomain extends DnscontrolDomain {
       label: "@",
       target: "mx1",
       mxPreference: asMxPreference(20),
+    })
+    new DnscontrolCfSingleRedirectRawRecord(this, "MyCfSingleRedirectRawRecord", {
+      name: "name", 
+      code: 301,
+      when: "when",
+      then: "then",
     })
   }
 }

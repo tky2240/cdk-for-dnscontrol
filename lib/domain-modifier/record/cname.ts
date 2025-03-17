@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { DnscontrolRecordConfig } from "../../types/dnscontrol-record-config";
+import { DnscontrolCnameRecordConfig } from "../../types/dnscontrol-record-config";
 import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
 
@@ -27,7 +27,7 @@ export class DnscontrolCnameRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_CNAME_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolRecordConfig {
+  public getRecordConfig(): DnscontrolCnameRecordConfig {
     return {
       name: this.name,
       target: this.target,

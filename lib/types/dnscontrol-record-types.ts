@@ -8,6 +8,7 @@ const recordTypeStrings = [
   "DNAME",
   "DNSKEY",
   "DS",
+  "FRAME",
   "HTTPS",
   "LOC",
   "MX",
@@ -20,6 +21,12 @@ const recordTypeStrings = [
   "SVCB",
   "TLSA",
   "TXT",
+  "URL",
+  "URL301",
+  "AKAMAICDN",
+  "R53_ALIAS",
+  "AZURE_ALIAS",
+  "CLOUDNS_WR",
 ] as const;
 
 export type DnscontrolRecordType = (typeof recordTypeStrings)[number];
