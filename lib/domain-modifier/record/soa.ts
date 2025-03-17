@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { DnscontrolSoaRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_SOA_RECORD_SYMBOL = Symbol.for("DnscontrolSoaRecord");
 
@@ -35,9 +35,7 @@ export class DnscontrolSoaRecord extends DnscontrolRecord {
     this.expire = props.expire;
     this.minttl = props.minttl;
   }
-  public static isDnscontrolSoaRecord(
-    x: unknown,
-  ): x is DnscontrolSoaRecord {
+  public static isDnscontrolSoaRecord(x: unknown): x is DnscontrolSoaRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_SOA_RECORD_SYMBOL in x
     );

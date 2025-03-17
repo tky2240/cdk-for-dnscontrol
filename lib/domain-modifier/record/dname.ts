@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { DnscontrolDnameRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_DNAME_RECORD_SYMBOL = Symbol.for("DnscontrolDnameRecord");
 

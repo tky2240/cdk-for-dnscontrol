@@ -5,8 +5,8 @@ import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_CAA_RECORD_SYMBOL = Symbol.for("DnscontrolCaaRecord");
 
-const caaTagStrings = [ "issue", "issuewild", "iodef" ] as const;
-export type CaaTag = typeof caaTagStrings[number]
+const caaTagStrings = ["issue", "issuewild", "iodef"] as const;
+export type CaaTag = (typeof caaTagStrings)[number];
 
 export interface DnscontrolCaaRecordProps {
   readonly label: string;

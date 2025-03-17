@@ -5,11 +5,11 @@ import { DnscontrolDomain } from "./dnscontrol-domain";
 import { DnscontrolDomainProvider } from "./dnscontrol-domain-provider";
 import { DnscontrolProvider } from "./dnscontrol-provider";
 import { DnscontrolRegistrar } from "./dnscontrol-registrar";
+import { DnscontrolRawRecord } from "./domain-modifier/record/dnscontrol-raw-record";
 import { DnscontrolRecord } from "./domain-modifier/record/dnscontrol-record";
 import { DnscontrolDnsConfig } from "./types/dnscontrol-dns-config";
 import { DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
 import { Duration } from "./types/duration";
-import { DnscontrolRawRecord } from "./domain-modifier/record/dnscontrol-raw-record";
 
 export interface DnscontrolStackProps {
   stackMetadataPath?: string;
@@ -81,8 +81,8 @@ function getDomainConfig(
     };
   }
   if (DnscontrolRecord.isDnscontrolRecord(node)) {
-    const recordConfig = node.getRecordConfig()
-    recordConfig.ttl = recordConfig?.ttl ?? defaultTtl.toSeconds()
+    const recordConfig = node.getRecordConfig();
+    recordConfig.ttl = recordConfig?.ttl ?? defaultTtl.toSeconds();
     domainConfig.records.push(recordConfig);
   }
   if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {

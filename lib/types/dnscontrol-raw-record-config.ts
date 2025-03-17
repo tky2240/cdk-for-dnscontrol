@@ -3,10 +3,10 @@ export type DnscontrolRawRecordConfigBase = {
   args?: any[] | undefined;
   ttl?: number | undefined;
   metas?: Record<string, any> | undefined;
-}
+};
 
-export type DnscontrolCfSingleRedirectRawRecordConfig = DnscontrolRawRecordConfigBase;
+export type DnscontrolCfSingleRedirectRawRecordConfig =
+  DnscontrolRawRecordConfigBase;
 
-export type DnscontrolRawRecordConfig = 
+export type DnscontrolRawRecordConfig =
   DnscontrolCfSingleRedirectRawRecordConfig;
-  

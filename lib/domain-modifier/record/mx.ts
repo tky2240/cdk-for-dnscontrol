@@ -1,8 +1,8 @@
 import { Construct } from "constructs";
 import { DnscontrolMxRecordConfig } from "../../types/dnscontrol-record-config";
+import { Duration } from "../../types/duration";
 import { MxPreference } from "../../types/mx-preference";
 import { DnscontrolRecord } from "./dnscontrol-record";
-import { Duration } from "../../types/duration";
 
 const DNS_CONTROL_MX_RECORD_SYMBOL = Symbol.for("DnscontrolMxRecord");
 

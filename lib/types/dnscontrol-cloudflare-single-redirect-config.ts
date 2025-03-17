@@ -11,4 +11,4 @@ export type DnscontrolCloudflareSingleRedirectConfig = {
   sr_rulesetid?: string | undefined;
   sr_rulesetruleid?: string | undefined;
   sr_display?: string | undefined;
-}
+};

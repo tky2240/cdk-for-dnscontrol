@@ -1,15 +1,15 @@
 import { Construct } from "constructs";
 import { DnscontrolSshfpRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_SSHFP_RECORD_SYMBOL = Symbol.for("DnscontrolSshfpRecord");
 
 const sshfpAlgorithm = {
-  "RSA": 1,
-  "DSA": 2,
-  "SCDSA": 3,
-  "ED25519": 4,
+  RSA: 1,
+  DSA: 2,
+  SCDSA: 3,
+  ED25519: 4,
 } as const;
 
 export type SshfpAlgorithm = keyof typeof sshfpAlgorithm;

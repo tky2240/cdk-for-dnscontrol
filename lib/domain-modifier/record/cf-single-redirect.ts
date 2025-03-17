@@ -1,12 +1,14 @@
 import { Construct } from "constructs";
 import { DnscontrolCfSingleRedirectRawRecordConfig } from "../../types/dnscontrol-raw-record-config";
-import { DnscontrolRawRecord } from "./dnscontrol-raw-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRawRecord } from "./dnscontrol-raw-record";
 
-const DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL = Symbol.for("DnscontrolCfSingleRedirectRawRecord");
+const DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL = Symbol.for(
+  "DnscontrolCfSingleRedirectRawRecord",
+);
 
-const redirectCodes = [ 301, 302 ] as const;
-type RedirectCode = typeof redirectCodes[number]; 
+const redirectCodes = [301, 302] as const;
+type RedirectCode = (typeof redirectCodes)[number];
 
 export interface DnscontrolCfSingleRedirectRecordProps {
   readonly name: string;
@@ -21,7 +23,11 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
   public readonly code: RedirectCode;
   public readonly when: string;
   public readonly then: string;
-  constructor(scope: Construct, id: string, props: DnscontrolCfSingleRedirectRecordProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: DnscontrolCfSingleRedirectRecordProps,
+  ) {
     super(scope, id, {
       rawRecordType: "CLOUDFLAREAPI_SINGLE_REDIRECT",
       ttl: props.ttl,
@@ -35,19 +41,16 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
     x: unknown,
   ): x is DnscontrolCfSingleRedirectRawRecord {
     return (
-      x != null && typeof x === "object" && DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL in x
+      x != null &&
+      typeof x === "object" &&
+      DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL in x
     );
   }
   public getRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig {
     return {
       type: this.rawRecordType,
       ttl: this.ttl?.toSeconds(),
-      args: [
-        this.name,
-        this.code,
-        this.when,
-        this.then,
-      ]
+      args: [this.name, this.code, this.when, this.then],
     };
   }
 }

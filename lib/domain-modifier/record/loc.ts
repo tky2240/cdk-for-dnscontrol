@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { DnscontrolLocRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_LOC_RECORD_SYMBOL = Symbol.for("DnscontrolLocRecord");
 
@@ -19,11 +19,9 @@ export class DnscontrolLocRecord extends DnscontrolRecord {
       target: props.target,
       ttl: props.ttl,
     });
-    throw new Error("Not implemented yet")
+    throw new Error("Not implemented yet");
   }
-  public static isDnscontrolLocRecord(
-    x: unknown,
-  ): x is DnscontrolLocRecord {
+  public static isDnscontrolLocRecord(x: unknown): x is DnscontrolLocRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_LOC_RECORD_SYMBOL in x
     );

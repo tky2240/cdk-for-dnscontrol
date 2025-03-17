@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { DnscontrolSrvRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_SRV_RECORD_SYMBOL = Symbol.for("DnscontrolSrvRecord");
 
@@ -29,9 +29,7 @@ export class DnscontrolSrvRecord extends DnscontrolRecord {
     this.weight = props.weight;
     this.port = props.port;
   }
-  public static isDnscontrolSrvRecord(
-    x: unknown,
-  ): x is DnscontrolSrvRecord {
+  public static isDnscontrolSrvRecord(x: unknown): x is DnscontrolSrvRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_SRV_RECORD_SYMBOL in x
     );

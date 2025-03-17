@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { DnscontrolPtrRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_PTR_RECORD_SYMBOL = Symbol.for("DnscontrolPtrRecord");
 
@@ -20,9 +20,7 @@ export class DnscontrolPtrRecord extends DnscontrolRecord {
       ttl: props.ttl,
     });
   }
-  public static isDnscontrolPtrRecord(
-    x: unknown,
-  ): x is DnscontrolPtrRecord {
+  public static isDnscontrolPtrRecord(x: unknown): x is DnscontrolPtrRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_PTR_RECORD_SYMBOL in x
     );

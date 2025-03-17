@@ -1,9 +1,11 @@
 import { Construct } from "constructs";
 import { DnscontrolCloudnsWrRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
-const DNS_CONTROL_CLOUDNS_WR_RECORD_SYMBOL = Symbol.for("DnscontrolCloudnsWrRecord");
+const DNS_CONTROL_CLOUDNS_WR_RECORD_SYMBOL = Symbol.for(
+  "DnscontrolCloudnsWrRecord",
+);
 
 export interface DnscontrolCloudnsWrRecordProps {
   readonly label: string;
@@ -12,7 +14,11 @@ export interface DnscontrolCloudnsWrRecordProps {
 }
 
 export class DnscontrolCloudnsWrRecord extends DnscontrolRecord {
-  constructor(scope: Construct, id: string, props: DnscontrolCloudnsWrRecordProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: DnscontrolCloudnsWrRecordProps,
+  ) {
     super(scope, id, {
       recordType: "CLOUDNS_WR",
       label: props.label,
@@ -24,7 +30,9 @@ export class DnscontrolCloudnsWrRecord extends DnscontrolRecord {
     x: unknown,
   ): x is DnscontrolCloudnsWrRecord {
     return (
-      x != null && typeof x === "object" && DNS_CONTROL_CLOUDNS_WR_RECORD_SYMBOL in x
+      x != null &&
+      typeof x === "object" &&
+      DNS_CONTROL_CLOUDNS_WR_RECORD_SYMBOL in x
     );
   }
   public getRecordConfig(): DnscontrolCloudnsWrRecordConfig {

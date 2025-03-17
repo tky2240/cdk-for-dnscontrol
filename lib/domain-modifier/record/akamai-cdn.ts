@@ -1,9 +1,11 @@
 import { Construct } from "constructs";
 import { DnscontrolAkamaiCdnRecordConfig } from "../../types/dnscontrol-record-config";
-import { DnscontrolRecord } from "./dnscontrol-record";
 import { Duration } from "../../types/duration";
+import { DnscontrolRecord } from "./dnscontrol-record";
 
-const DNS_CONTROL_AKAMAICDN_RECORD_SYMBOL = Symbol.for("DnscontrolAkamaiCdnRecord");
+const DNS_CONTROL_AKAMAICDN_RECORD_SYMBOL = Symbol.for(
+  "DnscontrolAkamaiCdnRecord",
+);
 
 export interface DnscontrolAkamaiCdnRecordProps {
   readonly label: string;
@@ -12,7 +14,11 @@ export interface DnscontrolAkamaiCdnRecordProps {
 }
 
 export class DnscontrolAkamaiCdnRecord extends DnscontrolRecord {
-  constructor(scope: Construct, id: string, props: DnscontrolAkamaiCdnRecordProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: DnscontrolAkamaiCdnRecordProps,
+  ) {
     super(scope, id, {
       recordType: "AKAMAICDN",
       label: props.label,
@@ -24,7 +30,9 @@ export class DnscontrolAkamaiCdnRecord extends DnscontrolRecord {
     x: unknown,
   ): x is DnscontrolAkamaiCdnRecord {
     return (
-      x != null && typeof x === "object" && DNS_CONTROL_AKAMAICDN_RECORD_SYMBOL in x
+      x != null &&
+      typeof x === "object" &&
+      DNS_CONTROL_AKAMAICDN_RECORD_SYMBOL in x
     );
   }
   public getRecordConfig(): DnscontrolAkamaiCdnRecordConfig {

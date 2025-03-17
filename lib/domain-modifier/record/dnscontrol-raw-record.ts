@@ -21,7 +21,9 @@ export abstract class DnscontrolRawRecord extends DnscontrolDomainModifier {
     this.ttl = props.ttl;
   }
   public static isDnscontrolRawRecord(x: unknown): x is DnscontrolRawRecord {
-    return x != null && typeof x === "object" && DNS_CONTROL_RAW_RECORD_SYMBOL in x;
+    return (
+      x != null && typeof x === "object" && DNS_CONTROL_RAW_RECORD_SYMBOL in x
+    );
   }
   public abstract getRawRecordConfig(): DnscontrolRawRecordConfig;
 }

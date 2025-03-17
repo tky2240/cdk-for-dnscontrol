@@ -5,14 +5,14 @@ import { DnscontrolProvider } from "../lib/dnscontrol-provider";
 import { DnscontrolRegistrar } from "../lib/dnscontrol-registrar";
 import { DnscontrolStack } from "../lib/dnscontrol-stack";
 import { DnscontrolARecord } from "../lib/domain-modifier/record/a";
-import { asIPv4 } from "../lib/types/ipv4";
 import { DnscontrolAAAARecord } from "../lib/domain-modifier/record/aaaa";
-import { asIPv6 } from "../lib/types/ipv6";
-import { DnscontrolCnameRecord } from "../lib/domain-modifier/record/cname";
-import { Duration } from "../lib/types/duration";
-import { DnscontrolMxRecord } from "../lib/domain-modifier/record/mx";
-import { asMxPreference } from "../lib/types/mx-preference";
 import { DnscontrolCfSingleRedirectRawRecord } from "../lib/domain-modifier/record/cf-single-redirect";
+import { DnscontrolCnameRecord } from "../lib/domain-modifier/record/cname";
+import { DnscontrolMxRecord } from "../lib/domain-modifier/record/mx";
+import { Duration } from "../lib/types/duration";
+import { asIPv4 } from "../lib/types/ipv4";
+import { asIPv6 } from "../lib/types/ipv6";
+import { asMxPreference } from "../lib/types/mx-preference";
 
 export class TestStack extends DnscontrolStack {
   constructor(scope: Construct, id: string) {
@@ -57,28 +57,32 @@ export class ExampleDomain extends DnscontrolDomain {
     new DnscontrolAAAARecord(this, "MyAAAARecord", {
       label: "@",
       ip: asIPv6("2001:db8::1"),
-      ttl: new Duration("1h")
-    })
+      ttl: new Duration("1h"),
+    });
     new DnscontrolCnameRecord(this, "MyCNAMERecord", {
       label: "test",
       target: "hoge",
       ttl: new Duration("1d"),
-    })
+    });
     new DnscontrolMxRecord(this, "MyMXRecord1", {
       label: "@",
       target: "mx1",
       mxPreference: asMxPreference(10),
-    })
+    });
     new DnscontrolMxRecord(this, "MyMXRecord2", {
       label: "@",
       target: "mx1",
       mxPreference: asMxPreference(20),
-    })
-    new DnscontrolCfSingleRedirectRawRecord(this, "MyCfSingleRedirectRawRecord", {
-      name: "name", 
-      code: 301,
-      when: "when",
-      then: "then",
-    })
+    });
+    new DnscontrolCfSingleRedirectRawRecord(
+      this,
+      "MyCfSingleRedirectRawRecord",
+      {
+        name: "name",
+        code: 301,
+        when: "when",
+        then: "then",
+      },
+    );
   }
 }
