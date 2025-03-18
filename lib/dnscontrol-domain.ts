@@ -4,6 +4,7 @@ import {
   DnscontrolDomainProviderProps,
 } from "./dnscontrol-domain-provider";
 import { DnscontrolStack } from "./dnscontrol-stack";
+import { DnscontrolIgnore } from "./domain-modifier/management/ignore";
 import { DnscontrolRawRecord } from "./domain-modifier/raw-record/dnscontrol-raw-record";
 import { DnscontrolRecord } from "./domain-modifier/record/dnscontrol-record";
 import { DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
@@ -18,6 +19,7 @@ export interface DnscontrolDomainProps {
   readonly defaultTtl?: Duration;
   readonly isEnabledAutoDnssec?: boolean;
   readonly isDisabledIgnoreSafetyCheck?: boolean;
+  readonly shouldKeepExistingRecord?: boolean;
 }
 
 export abstract class DnscontrolDomain extends Construct {
@@ -26,6 +28,7 @@ export abstract class DnscontrolDomain extends Construct {
   public readonly defaultTtl: Duration;
   public readonly isEnabledAutoDnssec?: boolean | undefined;
   public readonly isDisabledIgnoreSafetyCheck?: boolean | undefined;
+  public readonly shouldKeepExistingRecord?: boolean | undefined;
   constructor(
     scope: DnscontrolStack,
     id: string,
@@ -38,6 +41,7 @@ export abstract class DnscontrolDomain extends Construct {
     this.defaultTtl = props.defaultTtl ?? new Duration(300);
     this.isEnabledAutoDnssec = props.isEnabledAutoDnssec;
     this.isDisabledIgnoreSafetyCheck = props.isDisabledIgnoreSafetyCheck;
+    this.shouldKeepExistingRecord = props.shouldKeepExistingRecord;
     for (const providerProps of props.providerPropsList) {
       new DnscontrolDomainProvider(
         this,
@@ -76,6 +80,8 @@ export abstract class DnscontrolDomain extends Construct {
       rawrecords: [],
       auto_dnssec: autoDnssec,
       unmanaged_disable_safety_check: this.isDisabledIgnoreSafetyCheck,
+      keepunknown: this.shouldKeepExistingRecord,
+      unmanaged: [],
     } satisfies DnscontrolDomainConfig;
 
     return this._getDomainConfig(this, initialDomainConfig);
@@ -97,7 +103,11 @@ export abstract class DnscontrolDomain extends Construct {
     }
     if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
       const rawRecordConfig = node.getRawRecordConfig();
-      domainConfig.rawrecords?.push(rawRecordConfig);
+      domainConfig.rawrecords.push(rawRecordConfig);
+    }
+    if (DnscontrolIgnore.isDnscontrolIgnore(node)) {
+      const unmanagedConfig = node.getUnmanagedConfig();
+      domainConfig.unmanaged.push(unmanagedConfig);
     }
     for (const child of node.node.children) {
       this._getDomainConfig(child, domainConfig);
