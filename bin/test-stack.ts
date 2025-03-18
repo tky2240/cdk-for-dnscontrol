@@ -7,7 +7,7 @@ import { DnscontrolStack } from "../lib/dnscontrol-stack";
 import { DnscontrolARecord } from "../lib/domain-modifier/record/a";
 import { DnscontrolAAAARecord } from "../lib/domain-modifier/record/aaaa";
 import { DnscontrolCfRedirectRecord } from "../lib/domain-modifier/record/cf-redirect";
-import { DnscontrolCfSingleRedirectRawRecord } from "../lib/domain-modifier/record/cf-single-redirect";
+import { DnscontrolCfSingleRedirectRawRecord } from "../lib/domain-modifier/raw-record/cf-single-redirect";
 import { DnscontrolCnameRecord } from "../lib/domain-modifier/record/cname";
 import { DnscontrolMxRecord } from "../lib/domain-modifier/record/mx";
 import { Duration } from "../lib/types/duration";
