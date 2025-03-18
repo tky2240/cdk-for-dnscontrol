@@ -53,6 +53,7 @@ export class DnscontrolNaptrRecord extends DnscontrolRecord {
       naptrflags: this.flags,
       naptrservice: this.service,
       naptrregexp: this.regexp,
+      meta: {},
     };
   }
 }

@@ -41,6 +41,7 @@ export class DnscontrolHttpsRecord extends DnscontrolRecord {
       ttl: this.ttl?.toSeconds(),
       svcpriority: this.priority,
       svcparams: this.params,
+      meta: {},
     };
   }
 }

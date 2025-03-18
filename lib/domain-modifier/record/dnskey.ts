@@ -90,6 +90,7 @@ export class DnscontrolDnskeyRecord extends DnscontrolRecord {
       dnskeyflags: dnskeyFlag[this.flag],
       dnskeyprotocol: dnskeyProtocol[this.protcol],
       dnskeypublickey: this.publickey,
+      meta: {},
     };
   }
 }

@@ -2,14 +2,9 @@ import { Construct, IConstruct } from "constructs";
 import * as fs from "fs";
 import path from "path";
 import { DnscontrolDomain } from "./dnscontrol-domain";
-import { DnscontrolDomainProvider } from "./dnscontrol-domain-provider";
 import { DnscontrolProvider } from "./dnscontrol-provider";
 import { DnscontrolRegistrar } from "./dnscontrol-registrar";
-import { DnscontrolRawRecord } from "./domain-modifier/record/dnscontrol-raw-record";
-import { DnscontrolRecord } from "./domain-modifier/record/dnscontrol-record";
 import { DnscontrolDnsConfig } from "./types/dnscontrol-dns-config";
-import { DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
-import { Duration } from "./types/duration";
 
 export interface DnscontrolStackProps {
   stackMetadataPath?: string;
@@ -29,22 +24,6 @@ export abstract class DnscontrolStack extends Construct {
   }
   public synth(outdir: string) {
     const dnsConfig = getDnsConfig(this);
-    const domains = getDomains(this);
-    for (const domain of domains) {
-      const initialDomainConfig = {
-        name: domain.domainName,
-        registrar: domain.registrarName,
-        dnsProviders: {},
-        records: [],
-        rawrecords: [],
-      } satisfies DnscontrolDomainConfig;
-      const domainConfig = getDomainConfig(
-        domain,
-        initialDomainConfig,
-        domain.defaultTtl,
-      );
-      dnsConfig.domains.push(domainConfig);
-    }
     const jsonContent = JSON.stringify(dnsConfig);
     const filePath = path.join(outdir, this.stackMetadataPath);
     const dirPath = path.dirname(filePath);
@@ -54,45 +33,6 @@ export abstract class DnscontrolStack extends Construct {
     fs.writeFileSync(filePath, jsonContent);
     return;
   }
-}
-
-function getDomains(
-  node: IConstruct,
-  domains: DnscontrolDomain[] = [],
-): DnscontrolDomain[] {
-  if (DnscontrolDomain.isDnscontrolDomain(node)) {
-    domains.push(node);
-  }
-  for (const child of node.node.children) {
-    getDomains(child, domains);
-  }
-  return domains;
-}
-
-function getDomainConfig(
-  node: IConstruct,
-  domainConfig: DnscontrolDomainConfig,
-  defaultTtl: Duration,
-): DnscontrolDomainConfig {
-  if (DnscontrolDomainProvider.isDnscontrolDomainProvider(node)) {
-    domainConfig.dnsProviders = {
-      ...domainConfig.dnsProviders,
-      [node.domainProviderName]: node.nameserverCount,
-    };
-  }
-  if (DnscontrolRecord.isDnscontrolRecord(node)) {
-    const recordConfig = node.getRecordConfig();
-    recordConfig.ttl = recordConfig?.ttl ?? defaultTtl.toSeconds();
-    domainConfig.records.push(recordConfig);
-  }
-  if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
-    const rawRecordConfig = node.getRawRecordConfig();
-    domainConfig.rawrecords?.push(rawRecordConfig);
-  }
-  for (const child of node.node.children) {
-    getDomainConfig(child, domainConfig, defaultTtl);
-  }
-  return domainConfig;
 }
 
 function getDnsConfig(
@@ -116,6 +56,11 @@ function getDnsConfig(
       type: node.providerType,
       meta: node.providerMetadata,
     });
+  }
+  if (DnscontrolDomain.isDnscontrolDomain(node)) {
+    const domainConfig = node.getDomainConfig();
+    domainConfig.meta = domainConfig.meta ?? {};
+    dnsConfig.domains.push(domainConfig);
   }
   for (const child of node.node.children) {
     getDnsConfig(child, dnsConfig);

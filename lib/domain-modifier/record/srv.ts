@@ -43,6 +43,7 @@ export class DnscontrolSrvRecord extends DnscontrolRecord {
       srvpriority: this.priority,
       srvweight: this.weight,
       srvport: this.port,
+      meta: {},
     };
   }
 }

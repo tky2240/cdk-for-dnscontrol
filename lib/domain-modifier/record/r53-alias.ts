@@ -78,6 +78,7 @@ export class DnscontrolR53AliasRecord extends DnscontrolRecord {
         zone_id: this.zoneId,
         evaluate_target_health: evaluateTargetHealth,
       },
+      meta: {},
     };
   }
 }

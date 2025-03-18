@@ -34,6 +34,7 @@ export class DnscontrolARecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
+      meta: {},
     };
   }
 }

@@ -86,7 +86,7 @@ export class ExampleDomain extends DnscontrolDomain {
       },
     );
     new DnscontrolCfRedirectRecord(this, "MyCfRedirectRecord", {
-      source: "hoge,",
+      source: "hoge",
       destination: "fuga",
     });
   }

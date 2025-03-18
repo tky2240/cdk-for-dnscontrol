@@ -51,6 +51,7 @@ export class DnscontrolAzureAliasRecord extends DnscontrolRecord {
       azure_alias: {
         type: this.azureAliasType,
       },
+      meta: {},
     };
   }
 }

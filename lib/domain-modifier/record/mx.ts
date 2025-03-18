@@ -36,6 +36,7 @@ export class DnscontrolMxRecord extends DnscontrolRecord {
       type: this.recordType,
       mxpreference: this.mxPreference,
       ttl: this.ttl?.toSeconds(),
+      meta: {},
     };
   }
 }

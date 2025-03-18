@@ -51,6 +51,7 @@ export class DnscontrolSoaRecord extends DnscontrolRecord {
       soaretry: this.retry,
       soaexpire: this.expire,
       soaminttl: this.minttl,
+      meta: {},
     };
   }
 }

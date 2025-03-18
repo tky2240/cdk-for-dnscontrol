@@ -43,6 +43,7 @@ export class DnscontrolTlsaRecord extends DnscontrolRecord {
       tlsausage: this.usage,
       tlsselector: this.selector,
       tlsmatchingtype: this.matchingType,
+      meta: {},
     };
   }
 }

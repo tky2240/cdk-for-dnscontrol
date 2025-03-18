@@ -6,7 +6,7 @@ export type DnscontrolRecordConfigBase = {
   subdomain?: string | undefined;
   target: string;
   ttl?: number | undefined;
-  meta?: Record<string, string> | undefined;
+  meta: Record<string, string>;
 };
 
 export type DnscontrolARecordConfig = DnscontrolRecordConfigBase;
