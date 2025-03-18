@@ -65,7 +65,7 @@ export abstract class DnscontrolDomain extends Construct {
         case true:
           return "on";
         case false:
-          return "false";
+          return "off";
         default:
           throw new Error(
             `Invalid auto dessec, got ${this.isEnabledAutoDnssec}`,
