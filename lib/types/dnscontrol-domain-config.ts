@@ -13,6 +13,7 @@ export type DnscontrolDomainConfig = {
   recordabsent?: DnscontrolDomainConfig[] | undefined;
   keepunknown?: boolean | undefined;
   unmanaged?: UnmanagedConfig | undefined;
+  unmanaged_disable_safety_check?: boolean | undefined;
   auto_dnssec?: string | undefined;
   rawrecords?: DnscontrolRawRecordConfig[] | undefined;
 };

@@ -4,7 +4,7 @@ import {
   DnscontrolDomainProviderProps,
 } from "./dnscontrol-domain-provider";
 import { DnscontrolStack } from "./dnscontrol-stack";
-import { DnscontrolRawRecord } from "./domain-modifier/record/dnscontrol-raw-record";
+import { DnscontrolRawRecord } from "./domain-modifier/raw-record/dnscontrol-raw-record";
 import { DnscontrolRecord } from "./domain-modifier/record/dnscontrol-record";
 import { DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
 import { Duration } from "./types/duration";
@@ -17,6 +17,7 @@ export interface DnscontrolDomainProps {
   readonly providerPropsList: readonly DnscontrolDomainProviderProps[];
   readonly defaultTtl?: Duration;
   readonly isEnabledAutoDnssec?: boolean;
+  readonly isDisabledIgnoreSafetyCheck?: boolean;
 }
 
 export abstract class DnscontrolDomain extends Construct {
@@ -24,6 +25,7 @@ export abstract class DnscontrolDomain extends Construct {
   public readonly registrarName: string;
   public readonly defaultTtl: Duration;
   public readonly isEnabledAutoDnssec?: boolean | undefined;
+  public readonly isDisabledIgnoreSafetyCheck?: boolean | undefined;
   constructor(
     scope: DnscontrolStack,
     id: string,
@@ -35,6 +37,7 @@ export abstract class DnscontrolDomain extends Construct {
     this.registrarName = props.registrarName;
     this.defaultTtl = props.defaultTtl ?? new Duration(300);
     this.isEnabledAutoDnssec = props.isEnabledAutoDnssec;
+    this.isDisabledIgnoreSafetyCheck = props.isDisabledIgnoreSafetyCheck;
     for (const providerProps of props.providerPropsList) {
       new DnscontrolDomainProvider(
         this,
@@ -72,7 +75,8 @@ export abstract class DnscontrolDomain extends Construct {
       records: [],
       rawrecords: [],
       auto_dnssec: autoDnssec,
-    };
+      unmanaged_disable_safety_check: this.isDisabledIgnoreSafetyCheck,
+    } satisfies DnscontrolDomainConfig;
 
     return this._getDomainConfig(this, initialDomainConfig);
   }
