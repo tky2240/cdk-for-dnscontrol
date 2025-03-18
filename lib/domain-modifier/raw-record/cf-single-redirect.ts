@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { DnscontrolCfSingleRedirectRawRecordConfig } from "../../types/dnscontrol-raw-record-config";
 import { Duration } from "../../types/duration";
-import { DnscontrolRawRecord } from "./dnscontrol-raw-record";
+import { DnscontrolRawRecord } from "../raw-record/dnscontrol-raw-record";
 
 const DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL = Symbol.for(
   "DnscontrolCfSingleRedirectRawRecord",
