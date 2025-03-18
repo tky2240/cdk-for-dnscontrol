@@ -30,6 +30,8 @@ const recordTypeStrings = [
   "CF_REDIRECT",
   "CF_TEMP_REDIRECT",
   "CF_WORKER_ROUTE",
+  "PORKBUN_URLFWD",
+  "BUNNY_DNS_RDR",
 ] as const;
 
 export type DnscontrolRecordType = (typeof recordTypeStrings)[number];

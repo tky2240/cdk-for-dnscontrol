@@ -138,6 +138,10 @@ export type DnscontrolCfWorkerRouteRecordConfig = DnscontrolRecordConfigBase;
 
 export type DnscontrolCloudnsWrRecordConfig = DnscontrolRecordConfigBase;
 
+export type DnscontrolPorkbunUrlfwdRecordConfig = DnscontrolRecordConfigBase;
+
+export type DnscontrolBunnyDnsRdrRecordConfig = DnscontrolRecordConfigBase;
+
 export type DnscontrolCloudflareRecordConfig = DnscontrolRecordConfigBase & {
   cloudflareapi_redirect?: DnscontrolCloudflareSingleRedirectConfig | undefined;
 };
@@ -172,3 +176,5 @@ export type DnscontrolRecordConfig =
   | DnscontrolCloudnsWrRecordConfig
   | DnscontrolCfRedirectRecordConfig
   | DnscontrolCfTmpRedirectRecordConfig
+  | DnscontrolPorkbunUrlfwdRecordConfig
+  | DnscontrolBunnyDnsRdrRecordConfig;
