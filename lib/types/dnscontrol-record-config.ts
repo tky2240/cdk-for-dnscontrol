@@ -130,12 +130,11 @@ export type DnscontrolAzureAliasRecordConfig = DnscontrolRecordConfigBase & {
   azure_alias: AzureAliasConfig;
 };
 
-export type DnscontrolCfSingleRedirectRecordConfig =
-  DnscontrolRecordConfigBase & {
-    cloudflareapi_redirect?:
-      | DnscontrolCloudflareSingleRedirectConfig
-      | undefined;
-  };
+export type DnscontrolCfRedirectRecordConfig = DnscontrolRecordConfigBase;
+
+export type DnscontrolCfTmpRedirectRecordConfig = DnscontrolRecordConfigBase;
+
+export type DnscontrolCfWorkerRouteRecordConfig = DnscontrolRecordConfigBase;
 
 export type DnscontrolCloudnsWrRecordConfig = DnscontrolRecordConfigBase;
 
@@ -170,4 +169,6 @@ export type DnscontrolRecordConfig =
   | DnscontrolTxtRecordConfig
   | DnscontrolUrlRecordConfig
   | DnscontrolUrl301RecordConfig
-  | DnscontrolCloudnsWrRecordConfig;
+  | DnscontrolCloudnsWrRecordConfig
+  | DnscontrolCfRedirectRecordConfig
+  | DnscontrolCfTmpRedirectRecordConfig

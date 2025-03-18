@@ -27,6 +27,9 @@ const recordTypeStrings = [
   "R53_ALIAS",
   "AZURE_ALIAS",
   "CLOUDNS_WR",
+  "CF_REDIRECT",
+  "CF_TEMP_REDIRECT",
+  "CF_WORKER_ROUTE",
 ] as const;
 
 export type DnscontrolRecordType = (typeof recordTypeStrings)[number];
