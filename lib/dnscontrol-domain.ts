@@ -20,6 +20,8 @@ export interface DnscontrolDomainProps {
   readonly isEnabledAutoDnssec?: boolean;
   readonly isDisabledIgnoreSafetyCheck?: boolean;
   readonly shouldKeepExistingRecord?: boolean;
+  readonly parentNameservers?: readonly string[];
+  readonly parentNameserverTtl?: Duration;
 }
 
 export abstract class DnscontrolDomain extends Construct {
@@ -29,6 +31,8 @@ export abstract class DnscontrolDomain extends Construct {
   public readonly isEnabledAutoDnssec?: boolean | undefined;
   public readonly isDisabledIgnoreSafetyCheck?: boolean | undefined;
   public readonly shouldKeepExistingRecord?: boolean | undefined;
+  public readonly parentNameservers?: readonly string[] | undefined;
+  public readonly parentNameserverTtl?: Duration | undefined;
   constructor(
     scope: DnscontrolStack,
     id: string,
@@ -42,6 +46,8 @@ export abstract class DnscontrolDomain extends Construct {
     this.isEnabledAutoDnssec = props.isEnabledAutoDnssec;
     this.isDisabledIgnoreSafetyCheck = props.isDisabledIgnoreSafetyCheck;
     this.shouldKeepExistingRecord = props.shouldKeepExistingRecord;
+    this.parentNameservers = props.parentNameservers;
+    this.parentNameserverTtl = props.parentNameserverTtl;
     for (const providerProps of props.providerPropsList) {
       new DnscontrolDomainProvider(
         this,
@@ -82,6 +88,13 @@ export abstract class DnscontrolDomain extends Construct {
       unmanaged_disable_safety_check: this.isDisabledIgnoreSafetyCheck,
       keepunknown: this.shouldKeepExistingRecord,
       unmanaged: [],
+      nameservers: this.parentNameservers?.map((nameserver) => ({
+        name: nameserver,
+      })),
+      meta:
+        this.parentNameserverTtl == null
+          ? {}
+          : { ns_ttl: this.parentNameserverTtl.toSeconds().toString() },
     } satisfies DnscontrolDomainConfig;
 
     return this._getDomainConfig(this, initialDomainConfig);
