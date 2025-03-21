@@ -11,8 +11,8 @@ import { DnscontrolCfRedirectRecord } from "../lib/domain-modifier/record/cf-red
 import { DnscontrolCnameRecord } from "../lib/domain-modifier/record/cname";
 import { DnscontrolMxRecord } from "../lib/domain-modifier/record/mx";
 import { Duration } from "../lib/types/duration";
-import { asIPv4 } from "../lib/types/ipv4";
-import { asIPv6 } from "../lib/types/ipv6";
+import { asIPv4Address } from "../lib/types/ipv4";
+import { asIPv6Address } from "../lib/types/ipv6";
 import { asMxPreference } from "../lib/types/mx-preference";
 
 export class TestStack extends DnscontrolStack {
@@ -53,11 +53,11 @@ export class ExampleDomain extends DnscontrolDomain {
     });
     new DnscontrolARecord(this, "MyARecord", {
       label: "@",
-      ip: asIPv4("1.2.3.4"),
+      ip: asIPv4Address("1.2.3.4"),
     });
     new DnscontrolAAAARecord(this, "MyAAAARecord", {
       label: "@",
-      ip: asIPv6("2001:db8::1"),
+      ip: asIPv6Address("2001:db8::1"),
       ttl: new Duration("1h"),
     });
     new DnscontrolCnameRecord(this, "MyCNAMERecord", {
