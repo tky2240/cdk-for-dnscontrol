@@ -51,6 +51,9 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
       type: this.rawRecordType,
       ttl: this.ttl?.toSeconds(),
       args: [this.name, this.code, this.when, this.then],
+      metas: [
+        {orig_custom_type: "CLOUDFLAREAPI_SINGLE_REDIRECT"}
+      ]
     };
   }
 }
