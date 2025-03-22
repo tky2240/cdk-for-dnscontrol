@@ -175,3 +175,4 @@ dist/
 
 # cdk for dnscontol
 cdk-dnscontrol-cli/cdk-dnscontrol-cli
+/bin

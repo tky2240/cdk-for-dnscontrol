@@ -3,6 +3,10 @@
     "@tsconfig/strictest/tsconfig.json",
     "@tsconfig/node22/tsconfig.json"
   ],
-  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "rootDir": "./lib"
+    
+  },
+  "include": ["./lib/**/*.ts"],
   "exclude": ["cdk.out"]
 }

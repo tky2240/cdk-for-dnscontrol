@@ -1,13 +1,12 @@
 {
   "name": "cdk-for-dnscontrol",
   "version": "0.0.1",
-  "main": "index.js",
   "bin": {
-    "dnscontrol": "bin/dnscontrol.js"
+    "cdk-for-dnscontrol": "bundle/bin/cdk-for-dnscontrol"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "build": "tsc --project tsconfig.build.json",
+    "watch": "tsc -w --project tsconfig.build.json",
     "test": "jest",
     "test:verbose": "jest --silent=false --verbose",
     "cdk": "cdk",
