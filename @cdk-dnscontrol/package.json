@@ -1,12 +1,10 @@
 {
   "name": "@tky2240/cdk-for-dnscontrol",
   "version": "0.0.1",
-  "bin": {
-    "cdk-for-dnscontrol": "bundle/bin/cdk-for-dnscontrol"
-  },
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:tky2240/cdk-for-dnscontrol.git"
+    "url": "git+ssh://git@github.com/tky2240/cdk-for-dnscontrol.git"
   },
   "private": "false",
   "scripts": {

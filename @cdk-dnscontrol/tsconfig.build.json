@@ -5,7 +5,6 @@
   ],
   "compilerOptions": {
     "rootDir": "./lib"
-    
   },
   "include": ["./lib/**/*.ts"],
   "exclude": ["cdk.out"]
