@@ -137,3 +137,41 @@ dist
 
 # cdk
 cdk.out
+
+# from dnscontrol
+/tmp
+/commands/types/dnscontrol.d.ts
+dnscontrol-Darwin
+dnscontrol-Linux
+dnscontrol.exe
+dnscontrol
+/dnsconfig.js
+/creds.json
+ExternalDNS
+powershell.log
+integrationTest/env.sh
+integrationTest/.env
+/integrationTest/zones/*.zone
+/integrationTest/config/*.yaml
+/integrationTest/.hedns-session
+/pkg/js/parse_tests/*.ACTUAL
+env.sh
+certs/
+spfcache*
+adzonedump.*
+/zones/
+stack.sh
+.idea/
+*.nupkg
+.DS_Store
+.vscode
+.jekyll-cache
+types-dnscontrol.d.ts
+
+dist/
+
+// Test artifact:
+*.ACTUAL
+
+# cdk for dnscontol
+cdk-dnscontrol-cli/cdk-dnscontrol-cli
