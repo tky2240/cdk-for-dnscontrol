@@ -36,6 +36,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "@tky2240:registry": "https://npm.pkg.github.com/"
   }
 }
