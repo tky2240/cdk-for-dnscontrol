@@ -16,7 +16,7 @@ export class DnscontrolProvider extends Construct {
     super(scope, id);
     Object.defineProperty(this, DNS_CONTROL_PROVIDER_SYMBOL, { value: true });
     this.providerName = props.providerName;
-    this.providerType = props.providerType ?? props.providerName.toUpperCase();
+    this.providerType = props.providerType ?? "-";
     this.providerMetadata = props.providerMetadata;
   }
   public static isDnscontrolProvider(x: unknown): x is DnscontrolProvider {
