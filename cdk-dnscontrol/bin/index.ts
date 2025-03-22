@@ -1,5 +1,5 @@
 import { App } from "../lib/app";
-import { TestStack } from "./test-stack";
+import { TestStack } from "../test/stacks/test-stack";
 
 const app = new App();
 

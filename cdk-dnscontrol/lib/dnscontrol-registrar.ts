@@ -16,8 +16,7 @@ export class DnscontrolRegistrar extends Construct {
     super(scope, id);
     Object.defineProperty(this, DNS_CONTROL_REGISTRAR_SYMBOL, { value: true });
     this.registrarName = props.registrarName;
-    this.registrarType =
-      props.registrarType ?? "-";
+    this.registrarType = props.registrarType ?? "-";
     this.registrarMetadata = props?.registrarMetadata;
   }
   public static isDnscontrolRegistrar(x: unknown): x is DnscontrolRegistrar {

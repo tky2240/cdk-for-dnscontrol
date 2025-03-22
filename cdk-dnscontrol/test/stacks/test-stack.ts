@@ -1,19 +1,19 @@
 import { Construct } from "constructs";
-import { DnscontrolDomain } from "../lib/dnscontrol-domain";
-import { DnscontrolDomainProviderProps } from "../lib/dnscontrol-domain-provider";
-import { DnscontrolProvider } from "../lib/dnscontrol-provider";
-import { DnscontrolRegistrar } from "../lib/dnscontrol-registrar";
-import { DnscontrolStack } from "../lib/dnscontrol-stack";
-import { DnscontrolCfSingleRedirectRawRecord } from "../lib/domain-modifier/raw-record/cf-single-redirect";
-import { DnscontrolARecord } from "../lib/domain-modifier/record/a";
-import { DnscontrolAAAARecord } from "../lib/domain-modifier/record/aaaa";
-import { DnscontrolCfRedirectRecord } from "../lib/domain-modifier/record/cf-redirect";
-import { DnscontrolCnameRecord } from "../lib/domain-modifier/record/cname";
-import { DnscontrolMxRecord } from "../lib/domain-modifier/record/mx";
-import { Duration } from "../lib/types/duration";
-import { asIPv4Address } from "../lib/types/ipv4";
-import { asIPv6Address } from "../lib/types/ipv6";
-import { asMxPreference } from "../lib/types/mx-preference";
+import { DnscontrolDomain } from "../../lib/dnscontrol-domain";
+import { DnscontrolDomainProviderProps } from "../../lib/dnscontrol-domain-provider";
+import { DnscontrolProvider } from "../../lib/dnscontrol-provider";
+import { DnscontrolRegistrar } from "../../lib/dnscontrol-registrar";
+import { DnscontrolStack } from "../../lib/dnscontrol-stack";
+import { DnscontrolCfSingleRedirectRawRecord } from "../../lib/domain-modifier/raw-record/cf-single-redirect";
+import { DnscontrolARecord } from "../../lib/domain-modifier/record/a";
+import { DnscontrolAAAARecord } from "../../lib/domain-modifier/record/aaaa";
+import { DnscontrolCfRedirectRecord } from "../../lib/domain-modifier/record/cf-redirect";
+import { DnscontrolCnameRecord } from "../../lib/domain-modifier/record/cname";
+import { DnscontrolMxRecord } from "../../lib/domain-modifier/record/mx";
+import { Duration } from "../../lib/types/duration";
+import { asIPv4Address } from "../../lib/types/ipv4";
+import { asIPv6Address } from "../../lib/types/ipv6";
+import { asMxPreference } from "../../lib/types/mx-preference";
 
 export class TestStack extends DnscontrolStack {
   constructor(scope: Construct, id: string) {

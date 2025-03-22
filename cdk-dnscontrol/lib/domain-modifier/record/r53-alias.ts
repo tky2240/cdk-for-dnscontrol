@@ -79,7 +79,7 @@ export class DnscontrolR53AliasRecord extends DnscontrolRecord {
         evaluate_target_health: evaluateTargetHealth,
       },
       meta: {
-        orig_custom_type: "R53_ALIAS"
+        orig_custom_type: "R53_ALIAS",
       },
     };
   }

@@ -52,7 +52,7 @@ export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
       meta: {
-        orig_custom_type: "CF_TEMP_REDIRECT"
+        orig_custom_type: "CF_TEMP_REDIRECT",
       },
     };
   }

@@ -52,7 +52,7 @@ export class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
       meta: {
-        orig_custom_type: "CF_WORKER_ROUTE"
+        orig_custom_type: "CF_WORKER_ROUTE",
       },
     };
   }
