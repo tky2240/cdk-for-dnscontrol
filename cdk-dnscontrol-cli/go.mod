@@ -3,6 +3,11 @@ module github.com/tky2240/cdk-for-dnscontrol/cdk-dnscontrol-cli
 go 1.23.0
 
 require (
+	github.com/StackExchange/dnscontrol/v4 v4.17.0
+	github.com/urfave/cli/v2 v2.27.6
+)
+
+require (
 	cloud.google.com/go/auth v0.15.0 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.7 // indirect
 	cloud.google.com/go/compute/metadata v0.6.0 // indirect
@@ -17,7 +22,6 @@ require (
 	github.com/DisposaBoy/JsonConfigReader v0.0.0-20201129172854-99cf318d67e7 // indirect
 	github.com/G-Core/gcore-dns-sdk-go v0.2.9 // indirect
 	github.com/PuerkitoBio/goquery v1.10.2 // indirect
-	github.com/StackExchange/dnscontrol/v4 v4.17.0 // indirect
 	github.com/TomOnTime/utfutil v1.0.0 // indirect
 	github.com/akamai/AkamaiOPEN-edgegrid-golang v1.2.2 // indirect
 	github.com/andybalholm/cascadia v1.3.3 // indirect
@@ -118,7 +122,6 @@ require (
 	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/tjfoc/gmsm v1.4.1 // indirect
 	github.com/transip/gotransip/v6 v6.26.0 // indirect
-	github.com/urfave/cli/v2 v2.27.6 // indirect
 	github.com/vultr/govultr/v2 v2.17.2 // indirect
 	github.com/xddxdd/ottoext v0.0.0-20221109171055-210517fa4419 // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
