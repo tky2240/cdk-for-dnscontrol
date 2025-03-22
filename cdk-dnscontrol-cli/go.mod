@@ -1,4 +1,4 @@
-module github.com/tky2240/cdk-dnscontrol-cli
+module github.com/tky2240/cdk-for-dnscontrol/cdk-dnscontrol-cli
 
 go 1.23.0
 
