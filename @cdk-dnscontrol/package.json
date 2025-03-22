@@ -1,9 +1,14 @@
 {
-  "name": "cdk-for-dnscontrol",
+  "name": "@tky2240/cdk-for-dnscontrol",
   "version": "0.0.1",
   "bin": {
     "cdk-for-dnscontrol": "bundle/bin/cdk-for-dnscontrol"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tky2240/cdk-for-dnscontrol.git"
+  },
+  "private": "false",
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "watch": "tsc -w --project tsconfig.build.json",
@@ -30,5 +35,9 @@
   },
   "dependencies": {
     "constructs": "^10.4.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
   }
 }
