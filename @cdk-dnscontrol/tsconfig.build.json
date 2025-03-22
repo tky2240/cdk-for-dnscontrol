@@ -4,7 +4,8 @@
     "@tsconfig/node22/tsconfig.json"
   ],
   "compilerOptions": {
-    "rootDir": "./lib"
+    "rootDir": "./lib",
+    "declaration": true
   },
   "include": ["./lib/**/*.ts"],
   "exclude": ["cdk.out"]

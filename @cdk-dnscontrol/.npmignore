@@ -1,0 +1,16 @@
+*.ts
+
+!*.d.ts
+!*.js
+
+test
+dist
+.eslintignore
+.gitignore
+.prettierrc.js
+package.sh
+tsconfig.json
+tsconfig.build.json
+jest.config.js
+
+cdk.out
