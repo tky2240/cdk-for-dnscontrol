@@ -6,7 +6,6 @@
     "type": "git",
     "url": "git+ssh://git@github.com/tky2240/cdk-for-dnscontrol.git"
   },
-  "private": "false",
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "watch": "tsc -w --project tsconfig.build.json",
