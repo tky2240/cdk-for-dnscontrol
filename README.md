@@ -63,7 +63,7 @@ export class ExampleStack extends DnscontrolStack {
   }
 }
 
-interface ExampleDomainProps {
+interface ExampleDomainProps extends DnscontrolDomainProps {
   readonly domainName: string;
   readonly registrar: DnscontrolRegistrar;
   readonly domainProviderPropsList: readonly DnscontrolDomainProviderProps[];
@@ -71,11 +71,7 @@ interface ExampleDomainProps {
 
 export class ExampleDomain extends DnscontrolDomain {
   constructor(scope: DnscontrolStack, id: string, props: ExampleDomainProps) {
-    super(scope, id, {
-      domainName: props.domainName,
-      registrarName: props.registrar.registrarName,
-      providerPropsList: props.domainProviderPropsList,
-    });
+    super(scope, id, props);
     new DnscontrolARecord(this, "MyARecord", {
       label: "@",
       ip: asIPv4Address("1.2.3.4"),
