@@ -1,6 +1,6 @@
 # CDK for dnscontrol
 
-CDK for [dnscontrol](https://github.com/StackExchange/dnscontrol) simplifies DNS management using AWS CDK.
+CDK for [dnscontrol](https://github.com/StackExchange/dnscontrol) simplifies DNS management using CDK.
 
 ## Requirements
 
