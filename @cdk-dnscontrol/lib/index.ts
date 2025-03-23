@@ -1,5 +1,8 @@
 export { App } from "./app";
-export { DnscontrolDomain } from "./dnscontrol-domain";
+export {
+  DnscontrolDomain,
+  type DnscontrolDomainProps,
+} from "./dnscontrol-domain";
 export {
   DnscontrolDomainProvider,
   type DnscontrolDomainProviderProps,

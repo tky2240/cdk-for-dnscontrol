@@ -1,5 +1,8 @@
 import { Construct } from "constructs";
-import { DnscontrolDomain } from "../../lib/dnscontrol-domain";
+import {
+  DnscontrolDomain,
+  DnscontrolDomainProps,
+} from "../../lib/dnscontrol-domain";
 import { DnscontrolDomainProviderProps } from "../../lib/dnscontrol-domain-provider";
 import { DnscontrolProvider } from "../../lib/dnscontrol-provider";
 import { DnscontrolRegistrar } from "../../lib/dnscontrol-registrar";
@@ -38,7 +41,7 @@ export class TestStack extends DnscontrolStack {
   }
 }
 
-interface ExampleDomainProps {
+interface ExampleDomainProps extends DnscontrolDomainProps {
   readonly domainName: string;
   readonly registrar: DnscontrolRegistrar;
   readonly domainProviderPropsList: readonly DnscontrolDomainProviderProps[];
@@ -46,11 +49,7 @@ interface ExampleDomainProps {
 
 export class ExampleDomain extends DnscontrolDomain {
   constructor(scope: DnscontrolStack, id: string, props: ExampleDomainProps) {
-    super(scope, id, {
-      domainName: "example.com",
-      registrarName: props.registrar.registrarName,
-      providerPropsList: props.domainProviderPropsList,
-    });
+    super(scope, id, props);
     new DnscontrolARecord(this, "MyARecord", {
       label: "@",
       ip: asIPv4Address("1.2.3.4"),
