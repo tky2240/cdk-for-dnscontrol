@@ -3,12 +3,18 @@ import { DnscontrolBunnyDnsRdrRecordConfig } from "../../types/dnscontrol-record
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolBunnyDnsRdrRecordProps {
-    readonly label: string;
-    readonly target: string;
-    readonly ttl?: Duration;
+  readonly label: string;
+  readonly target: string;
+  readonly ttl?: Duration;
 }
 export declare class DnscontrolBunnyDnsRdrRecord extends DnscontrolRecord {
-    constructor(scope: Construct, id: string, props: DnscontrolBunnyDnsRdrRecordProps);
-    static isDnscontrolBunnyDnsRdrRecord(x: unknown): x is DnscontrolBunnyDnsRdrRecord;
-    getRecordConfig(): DnscontrolBunnyDnsRdrRecordConfig;
+  constructor(
+    scope: Construct,
+    id: string,
+    props: DnscontrolBunnyDnsRdrRecordProps,
+  );
+  static isDnscontrolBunnyDnsRdrRecord(
+    x: unknown,
+  ): x is DnscontrolBunnyDnsRdrRecord;
+  getRecordConfig(): DnscontrolBunnyDnsRdrRecordConfig;
 }

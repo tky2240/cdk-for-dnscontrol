@@ -1,6 +1,9 @@
 export { App } from "./app";
 export { DnscontrolDomain } from "./dnscontrol-domain";
-export { DnscontrolDomainProvider, type DnscontrolDomainProviderProps } from "./dnscontrol-domain-provider";
+export {
+  DnscontrolDomainProvider,
+  type DnscontrolDomainProviderProps,
+} from "./dnscontrol-domain-provider";
 export { DnscontrolProvider } from "./dnscontrol-provider";
 export { DnscontrolRegistrar } from "./dnscontrol-registrar";
 export { DnscontrolStack } from "./dnscontrol-stack";

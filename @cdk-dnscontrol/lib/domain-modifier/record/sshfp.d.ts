@@ -3,29 +3,29 @@ import { DnscontrolSshfpRecordConfig } from "../../types/dnscontrol-record-confi
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 declare const sshfpAlgorithm: {
-    readonly RSA: 1;
-    readonly DSA: 2;
-    readonly SCDSA: 3;
-    readonly ED25519: 4;
+  readonly RSA: 1;
+  readonly DSA: 2;
+  readonly SCDSA: 3;
+  readonly ED25519: 4;
 };
 export type SshfpAlgorithm = keyof typeof sshfpAlgorithm;
 declare const sshfpFingerprintFormat: {
-    readonly "SHA-1": 1;
-    readonly "SHA-256": 2;
+  readonly "SHA-1": 1;
+  readonly "SHA-256": 2;
 };
 export type SshfpFingerprintFormat = keyof typeof sshfpFingerprintFormat;
 export interface DnscontrolSshfpRecordProps {
-    readonly label: string;
-    readonly target: string;
-    readonly algorithm: SshfpAlgorithm;
-    readonly fingerprintFormat: SshfpFingerprintFormat;
-    readonly ttl?: Duration;
+  readonly label: string;
+  readonly target: string;
+  readonly algorithm: SshfpAlgorithm;
+  readonly fingerprintFormat: SshfpFingerprintFormat;
+  readonly ttl?: Duration;
 }
 export declare class DnscontrolSshfpRecord extends DnscontrolRecord {
-    readonly algorithm: SshfpAlgorithm;
-    readonly fingerprintFormat: SshfpFingerprintFormat;
-    constructor(scope: Construct, id: string, props: DnscontrolSshfpRecordProps);
-    static isDnscontrolSshfpRecord(x: unknown): x is DnscontrolSshfpRecord;
-    getRecordConfig(): DnscontrolSshfpRecordConfig;
+  readonly algorithm: SshfpAlgorithm;
+  readonly fingerprintFormat: SshfpFingerprintFormat;
+  constructor(scope: Construct, id: string, props: DnscontrolSshfpRecordProps);
+  static isDnscontrolSshfpRecord(x: unknown): x is DnscontrolSshfpRecord;
+  getRecordConfig(): DnscontrolSshfpRecordConfig;
 }
 export {};

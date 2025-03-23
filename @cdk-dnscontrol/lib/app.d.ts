@@ -1,9 +1,9 @@
 import { Construct } from "constructs";
 export interface AppConfig {
-    outDir?: string;
+  outDir?: string;
 }
 export declare class App extends Construct {
-    readonly outDir: string;
-    constructor(config?: AppConfig);
-    synth(): void;
+  readonly outDir: string;
+  constructor(config?: AppConfig);
+  synth(): void;
 }

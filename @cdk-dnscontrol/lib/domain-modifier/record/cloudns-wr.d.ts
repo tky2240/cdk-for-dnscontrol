@@ -3,12 +3,18 @@ import { DnscontrolCloudnsWrRecordConfig } from "../../types/dnscontrol-record-c
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolCloudnsWrRecordProps {
-    readonly label: string;
-    readonly target: string;
-    readonly ttl?: Duration;
+  readonly label: string;
+  readonly target: string;
+  readonly ttl?: Duration;
 }
 export declare class DnscontrolCloudnsWrRecord extends DnscontrolRecord {
-    constructor(scope: Construct, id: string, props: DnscontrolCloudnsWrRecordProps);
-    static isDnscontrolCloudnsWrRecord(x: unknown): x is DnscontrolCloudnsWrRecord;
-    getRecordConfig(): DnscontrolCloudnsWrRecordConfig;
+  constructor(
+    scope: Construct,
+    id: string,
+    props: DnscontrolCloudnsWrRecordProps,
+  );
+  static isDnscontrolCloudnsWrRecord(
+    x: unknown,
+  ): x is DnscontrolCloudnsWrRecord;
+  getRecordConfig(): DnscontrolCloudnsWrRecordConfig;
 }

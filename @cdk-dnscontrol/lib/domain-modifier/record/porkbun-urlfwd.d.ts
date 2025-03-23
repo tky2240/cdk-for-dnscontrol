@@ -3,12 +3,18 @@ import { DnscontrolPorkbunUrlfwdRecordConfig } from "../../types/dnscontrol-reco
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolPorkbunUrlfwdRecordProps {
-    readonly label: string;
-    readonly target: string;
-    readonly ttl?: Duration;
+  readonly label: string;
+  readonly target: string;
+  readonly ttl?: Duration;
 }
 export declare class DnscontrolPorkbunUrlfwdRecord extends DnscontrolRecord {
-    constructor(scope: Construct, id: string, props: DnscontrolPorkbunUrlfwdRecordProps);
-    static isDnscontrolPorkbunUrlfwdRecord(x: unknown): x is DnscontrolPorkbunUrlfwdRecord;
-    getRecordConfig(): DnscontrolPorkbunUrlfwdRecordConfig;
+  constructor(
+    scope: Construct,
+    id: string,
+    props: DnscontrolPorkbunUrlfwdRecordProps,
+  );
+  static isDnscontrolPorkbunUrlfwdRecord(
+    x: unknown,
+  ): x is DnscontrolPorkbunUrlfwdRecord;
+  getRecordConfig(): DnscontrolPorkbunUrlfwdRecordConfig;
 }

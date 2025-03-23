@@ -3,12 +3,12 @@ import { DnscontrolUrl301RecordConfig } from "../../types/dnscontrol-record-conf
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolUrl301RecordProps {
-    readonly label: string;
-    readonly target: string;
-    readonly ttl?: Duration;
+  readonly label: string;
+  readonly target: string;
+  readonly ttl?: Duration;
 }
 export declare class DnscontrolUrl301Record extends DnscontrolRecord {
-    constructor(scope: Construct, id: string, props: DnscontrolUrl301RecordProps);
-    static isDnscontrolUrl301Record(x: unknown): x is DnscontrolUrl301Record;
-    getRecordConfig(): DnscontrolUrl301RecordConfig;
+  constructor(scope: Construct, id: string, props: DnscontrolUrl301RecordProps);
+  static isDnscontrolUrl301Record(x: unknown): x is DnscontrolUrl301Record;
+  getRecordConfig(): DnscontrolUrl301RecordConfig;
 }

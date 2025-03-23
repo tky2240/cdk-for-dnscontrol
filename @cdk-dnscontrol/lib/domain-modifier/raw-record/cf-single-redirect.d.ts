@@ -5,19 +5,25 @@ import { DnscontrolRawRecord } from "../raw-record/dnscontrol-raw-record";
 declare const redirectCodes: readonly [301, 302];
 type RedirectCode = (typeof redirectCodes)[number];
 export interface DnscontrolCfSingleRedirectRecordProps {
-    readonly name: string;
-    readonly code: RedirectCode;
-    readonly when: string;
-    readonly then: string;
-    readonly ttl?: Duration;
+  readonly name: string;
+  readonly code: RedirectCode;
+  readonly when: string;
+  readonly then: string;
+  readonly ttl?: Duration;
 }
 export declare class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
-    readonly name: string;
-    readonly code: RedirectCode;
-    readonly when: string;
-    readonly then: string;
-    constructor(scope: Construct, id: string, props: DnscontrolCfSingleRedirectRecordProps);
-    static isDnscontrolCfSingleRedirectRecord(x: unknown): x is DnscontrolCfSingleRedirectRawRecord;
-    getRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig;
+  readonly name: string;
+  readonly code: RedirectCode;
+  readonly when: string;
+  readonly then: string;
+  constructor(
+    scope: Construct,
+    id: string,
+    props: DnscontrolCfSingleRedirectRecordProps,
+  );
+  static isDnscontrolCfSingleRedirectRecord(
+    x: unknown,
+  ): x is DnscontrolCfSingleRedirectRawRecord;
+  getRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig;
 }
 export {};
