@@ -32,6 +32,7 @@ Create `lib/example-stack.ts`:
 import { Construct } from "constructs";
 import {
   DnscontrolDomain,
+  DnscontrolDomainProps,
   DnscontrolProvider,
   DnscontrolDomainProviderProps,
   DnscontrolRegistrar,
