@@ -3,16 +3,16 @@ import { DnscontrolSvcbRecordConfig } from "../../types/dnscontrol-record-config
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolSvcbRecordProps {
-  readonly label: string;
-  readonly target: string;
-  readonly priority: number;
-  readonly params: string;
-  readonly ttl?: Duration;
+    readonly label: string;
+    readonly target: string;
+    readonly priority: number;
+    readonly params: string;
+    readonly ttl?: Duration;
 }
 export declare class DnscontrolSvcbRecord extends DnscontrolRecord {
-  readonly priority: number;
-  readonly params: string;
-  constructor(scope: Construct, id: string, props: DnscontrolSvcbRecordProps);
-  static isDnscontrolSvcbRecord(x: unknown): x is DnscontrolSvcbRecord;
-  getRecordConfig(): DnscontrolSvcbRecordConfig;
+    readonly priority: number;
+    readonly params: string;
+    constructor(scope: Construct, id: string, props: DnscontrolSvcbRecordProps);
+    static isDnscontrolSvcbRecord(x: unknown): x is DnscontrolSvcbRecord;
+    getRecordConfig(): DnscontrolSvcbRecordConfig;
 }

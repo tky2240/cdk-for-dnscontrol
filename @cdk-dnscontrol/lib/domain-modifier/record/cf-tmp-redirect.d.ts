@@ -3,20 +3,14 @@ import { DnscontrolCfTmpRedirectRecordConfig } from "../../types/dnscontrol-reco
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolCfTmpRedirectRecordProps {
-  readonly source: string;
-  readonly destination: string;
-  readonly ttl?: Duration;
+    readonly source: string;
+    readonly destination: string;
+    readonly ttl?: Duration;
 }
 export declare class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
-  readonly source: string;
-  readonly destination: string;
-  constructor(
-    scope: Construct,
-    id: string,
-    props: DnscontrolCfTmpRedirectRecordProps,
-  );
-  static isDnscontrolCfTmpRedirectRecord(
-    x: unknown,
-  ): x is DnscontrolCfTmpRedirectRecord;
-  getRecordConfig(): DnscontrolCfTmpRedirectRecordConfig;
+    readonly source: string;
+    readonly destination: string;
+    constructor(scope: Construct, id: string, props: DnscontrolCfTmpRedirectRecordProps);
+    static isDnscontrolCfTmpRedirectRecord(x: unknown): x is DnscontrolCfTmpRedirectRecord;
+    getRecordConfig(): DnscontrolCfTmpRedirectRecordConfig;
 }

@@ -3,6 +3,7 @@ import {
   DnscontrolDomainProvider,
   DnscontrolDomainProviderProps,
 } from "./dnscontrol-domain-provider";
+import { DnscontrolRegistrar } from "./dnscontrol-registrar";
 import { DnscontrolStack } from "./dnscontrol-stack";
 import { DnscontrolIgnore } from "./domain-modifier/management/ignore";
 import { DnscontrolRawRecord } from "./domain-modifier/raw-record/dnscontrol-raw-record";
@@ -14,8 +15,8 @@ const DNS_CONTROL_DOMAIN_SYMBOL = Symbol.for("DnscontrolDomain");
 
 export interface DnscontrolDomainProps {
   readonly domainName: string;
-  readonly registrarName: string;
-  readonly providerPropsList: readonly DnscontrolDomainProviderProps[];
+  readonly registrar: DnscontrolRegistrar;
+  readonly domainProviderPropsList: readonly DnscontrolDomainProviderProps[];
   readonly defaultTtl?: Duration;
   readonly isEnabledAutoDnssec?: boolean;
   readonly isDisabledIgnoreSafetyCheck?: boolean;
@@ -41,14 +42,14 @@ export abstract class DnscontrolDomain extends Construct {
     super(scope, id);
     Object.defineProperty(this, DNS_CONTROL_DOMAIN_SYMBOL, { value: true });
     this.domainName = props.domainName;
-    this.registrarName = props.registrarName;
+    this.registrarName = props.registrar.registrarName;
     this.defaultTtl = props.defaultTtl ?? new Duration(300);
     this.isEnabledAutoDnssec = props.isEnabledAutoDnssec;
     this.isDisabledIgnoreSafetyCheck = props.isDisabledIgnoreSafetyCheck;
     this.shouldKeepExistingRecord = props.shouldKeepExistingRecord;
     this.parentNameservers = props.parentNameservers;
     this.parentNameserverTtl = props.parentNameserverTtl;
-    for (const providerProps of props.providerPropsList) {
+    for (const providerProps of props.domainProviderPropsList) {
       new DnscontrolDomainProvider(
         this,
         providerProps.domainProviderName,
