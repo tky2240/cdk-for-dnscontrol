@@ -8,6 +8,7 @@ export interface AppConfig {
 export class App extends Construct {
   public readonly outDir: string;
   constructor(config: AppConfig = {}) {
+    // eslint-disable-next-line
     super(undefined as any, "");
     this.outDir = config.outDir ?? "cdk.out";
   }

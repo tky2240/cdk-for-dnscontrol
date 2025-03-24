@@ -7,6 +7,7 @@ const DNS_CONTROL_AZURE_ALIAS_RECORD_SYMBOL = Symbol.for(
   "DnscontrolAzureAliasRecord",
 );
 
+// eslint-disable-next-line
 const azureAliasTypeString = ["A", "AAAA", "CNAME"] as const;
 
 type AzureAliasType = (typeof azureAliasTypeString)[number];

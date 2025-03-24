@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 const recordTypeStrings = [
   "A",
   "AAAA",

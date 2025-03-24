@@ -65,7 +65,7 @@ export class Duration {
       }
     })();
   }
-  private to(unit: DurationUnit, isFloor: boolean = false) {
+  private to(unit: DurationUnit, isFloor = false) {
     const v = this.value
       ? Math.round(this.value * this.unit.value) / unit.value
       : 0;

@@ -7,6 +7,7 @@ const DNS_CONTROL_R53_ALIAS_RECORD_SYMBOL = Symbol.for(
   "DnscontrolR53AliasRecord",
 );
 
+// eslint-disable-next-line
 const r53AliasTypeString = [
   "A",
   "AAAA",
