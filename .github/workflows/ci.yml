@@ -19,7 +19,7 @@ jobs:
         working-directory: '@cdk-dnscontrol'
       
       - name: use Go
-        uses: action/setup-go@v5
+        uses: actions/setup-go@v5
         with:
           go-version: '1.23.0'
       
