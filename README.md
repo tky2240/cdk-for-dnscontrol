@@ -1,11 +1,11 @@
 # CDK for dnscontrol
 
-CDK for [dnscontrol](https://github.com/StackExchange/dnscontrol) simplifies DNS management using CDK.
+CDK for [dnscontrol](https://github.com/StackExchange/dnscontrol) simplifies DNS management using the AWS Cloud Development Kit (CDK).
 
 ## Requirements
 
 - Node.js >= 22
-- Go >= 1.23.0 
+- Go >= 1.23.0
 
 ## Installation
 
@@ -21,7 +21,7 @@ npm install @tky2240/cdk-for-dnscontrol
 
 ## Usage
 
-This example is based on [the official tutorial](https://docs.dnscontrol.org/getting-started/getting-started#id-3.-create-the-initial-dnsconfig.js).
+This example is based on [the official dnscontrol tutorial](https://docs.dnscontrol.org/getting-started/getting-started#id-3.-create-the-initial-dnsconfig.js).
 
 ### 1. Create a Stack
 
@@ -122,4 +122,14 @@ cdk-dnscontrol-cli diff
 cdk-dnscontrol-cli apply
 ```
 
-After applying, the zone file will be generated!
+After applying, the zone file will be generated in the output directory.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## TODO
+- [ ] cdk: add helper function
+- [ ] cdk: remove prefix at class name
+- [ ] cli: remove hardcoded paths
+- [ ] add CI action
