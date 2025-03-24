@@ -1,29 +1,31 @@
 name: CI
 on:
   pull_request:
-  workfow_dispatch:
+  workflow_dispatch:
   
 jobs:
   ci:
-    runs-on: actions/checkout@4
-  steps:
-    - name: use Node.js
-      uses: actions/setup-node@4
-      with:
-        node-version: '22.x'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@4
 
-    - name: install dependency
-      run: npm install
-      working-directory: '@cdk-dnscontrol'
-    
-    - name: use Go
-      uses: action/setup-go@v5
-      with:
-        go-version: '1.23.0'
-    
-    - name: install task
-      run: go install github.com/go-task/task/v3/cmd/task@latest
-      working-directory: '@cdk-dnscontrol'
+      - name: use Node.js
+        uses: actions/setup-node@4
+        with:
+          node-version: '22.x'
 
-    - name: run ci
-      run: task ci
+      - name: install dependency
+        run: npm install
+        working-directory: '@cdk-dnscontrol'
+      
+      - name: use Go
+        uses: action/setup-go@v5
+        with:
+          go-version: '1.23.0'
+      
+      - name: install task
+        run: go install github.com/go-task/task/v3/cmd/task@latest
+        working-directory: '@cdk-dnscontrol'
+
+      - name: run ci
+        run: task ci
