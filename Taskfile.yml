@@ -16,6 +16,11 @@ tasks:
     dir: '{{.USER_WORKING_DIR}}/@cdk-dnscontrol'
     cmds:
       - npm run lint
+  ts-test:
+    desc: run jest in @dns-control directory
+    dir: '{{.USER_WORKING_DIR}}/@cdk-dnscontrol'
+    cmds:
+      - npm run test
   go-format:
     desc: run gofmt
     dir : '{{.USER_WORKING_DIR}}/cdk-dnscontrol-cli'
@@ -51,3 +56,4 @@ tasks:
     cmds:
       - task: lint
       - task: check
+      - task: ts-test
