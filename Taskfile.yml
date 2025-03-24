@@ -1,0 +1,53 @@
+version: '3'
+
+tasks:
+  ts-format:
+    desc: run prettier formatter in @dns-control directory
+    dir: '{{.USER_WORKING_DIR}}/@cdk-dnscontrol'
+    cmds:
+      - npm run format
+  ts-check:
+    desc: run prettier format check in @dns-control directory
+    dir: '{{.USER_WORKING_DIR}}/@cdk-dnscontrol'
+    cmds:
+      - npm run check
+  ts-lint:
+    desc: run eslint in @dns-control directory
+    dir: '{{.USER_WORKING_DIR}}/@cdk-dnscontrol'
+    cmds:
+      - npm run lint
+  go-format:
+    desc: run gofmt
+    dir : '{{.USER_WORKING_DIR}}/cdk-dnscontrol-cli'
+    cmds: 
+      - gofmt -s -l .
+  go-check:
+    desc: for CI, if gofmt return formatted files, exit 1
+    dir : '{{.USER_WORKING_DIR}}/cdk-dnscontrol-cli'
+    cmds:
+      - if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
+  go-lint:
+    desc: run golangci-lint
+    dir: '{{.USER_WORKING_DIR}}/cdk-dnscontrol-cli'
+    cmds:
+      - golangci-lint run .
+  format:
+    desc: format all
+    cmds:
+      - task: ts-format
+      - task: go-format
+  lint:
+    desc: lint all
+    cmds:
+      - task: ts-lint
+      - task: go-lint
+  check:
+    desc: check format
+    cmds:
+      - task: ts-check
+      - task: go-check
+  ci:
+    desc: check codes
+    cmds:
+      - task: lint
+      - task: check

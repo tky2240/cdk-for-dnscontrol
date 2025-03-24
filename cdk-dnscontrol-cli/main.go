@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -103,8 +104,8 @@ func apply(c *cli.Context) error {
 	return nil
 }
 
-func prepare(c *cli.Context) error {
-	err := synth(c)
+func prepare(c *cli.Context) (err error) {
+	err = synth(c)
 	if err != nil {
 		return err
 	}
@@ -129,7 +130,12 @@ func prepare(c *cli.Context) error {
 	if err != nil {
 		return nil
 	}
-	defer f.Close()
+	defer func() {
+		closeErr := f.Close()
+		if closeErr != nil {
+			err = closeErr
+		}
+	}()
 
 	_, err = f.Write(configJson)
 	if err != nil {
@@ -151,7 +157,10 @@ func synth(c *cli.Context) error {
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-	cmd.Start()
+	err := cmd.Start()
+	if err != nil {
+		return err
+	}
 
 	done := make(chan error)
 	go func() {
@@ -163,8 +172,8 @@ func synth(c *cli.Context) error {
 	signal.Notify(s, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM)
 	select {
 	case <-s:
-		syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
-		return errors.New("Interrupted")
+		err = syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
+		return fmt.Errorf("interrupted: %s", err)
 	case err := <-done:
 		return err
 	}
