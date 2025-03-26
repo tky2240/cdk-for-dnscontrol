@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DnscontrolR53AliasRecord = void 0;
 const dnscontrol_record_1 = require("./dnscontrol-record");
 const DNS_CONTROL_R53_ALIAS_RECORD_SYMBOL = Symbol.for("DnscontrolR53AliasRecord");
+// eslint-disable-next-line
 const r53AliasTypeString = [
     "A",
     "AAAA",

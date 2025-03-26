@@ -8,7 +8,7 @@ const DNS_CONTROL_CNAME_RECORD_SYMBOL = Symbol.for("DnscontrolCnameRecord");
 export interface DnscontrolCnameRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolCnameRecord extends DnscontrolRecord {

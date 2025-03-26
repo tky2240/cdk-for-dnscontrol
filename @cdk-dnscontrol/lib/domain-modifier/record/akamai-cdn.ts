@@ -10,7 +10,7 @@ const DNS_CONTROL_AKAMAICDN_RECORD_SYMBOL = Symbol.for(
 export interface DnscontrolAkamaiCdnRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolAkamaiCdnRecord extends DnscontrolRecord {

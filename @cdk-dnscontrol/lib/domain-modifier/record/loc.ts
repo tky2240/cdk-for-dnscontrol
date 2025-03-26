@@ -8,7 +8,7 @@ const DNS_CONTROL_LOC_RECORD_SYMBOL = Symbol.for("DnscontrolLocRecord");
 export interface DnscontrolLocRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolLocRecord extends DnscontrolRecord {

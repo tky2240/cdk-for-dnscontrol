@@ -21,15 +21,15 @@ const r53AliasTypeString = [
   "NAPTR",
 ] as const;
 
-type R53AliasType = (typeof r53AliasTypeString)[number];
+export type R53AliasType = (typeof r53AliasTypeString)[number];
 
 export interface DnscontrolR53AliasRecordProps {
   readonly label: string;
   readonly target: string;
   readonly r53AliasType: R53AliasType;
-  readonly zoneId?: string;
-  readonly isEnabledEvaluateTargetHealth?: boolean;
-  readonly ttl?: Duration;
+  readonly zoneId?: string | undefined;
+  readonly isEnabledEvaluateTargetHealth?: boolean | undefined;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolR53AliasRecord extends DnscontrolRecord {

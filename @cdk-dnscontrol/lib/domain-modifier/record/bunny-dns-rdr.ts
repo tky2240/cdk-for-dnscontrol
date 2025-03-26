@@ -10,7 +10,7 @@ const DNS_CONTROL_BUNNY_DNS_RDR_RECORD_SYMBOL = Symbol.for(
 export interface DnscontrolBunnyDnsRdrRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolBunnyDnsRdrRecord extends DnscontrolRecord {

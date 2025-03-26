@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DnscontrolCaaRecord = void 0;
 const dnscontrol_record_1 = require("./dnscontrol-record");
 const DNS_CONTROL_CAA_RECORD_SYMBOL = Symbol.for("DnscontrolCaaRecord");
+// eslint-disable-next-line
 const caaTagStrings = ["issue", "issuewild", "iodef"];
 class DnscontrolCaaRecord extends dnscontrol_record_1.DnscontrolRecord {
     caaTag;

@@ -9,7 +9,7 @@ const DNS_CONTROL_A_RECORD_SYMBOL = Symbol.for("DnscontrolARecord");
 export interface DnscontrolARecordProps {
   readonly label: string;
   readonly ip: IPv4Address;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolARecord extends DnscontrolRecord {

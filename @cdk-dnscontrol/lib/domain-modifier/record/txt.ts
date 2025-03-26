@@ -8,7 +8,7 @@ const DNS_CONTROL_TXT_RECORD_SYMBOL = Symbol.for("DnscontrolTxtRecord");
 export interface DnscontrolTxtRecordProps {
   readonly label: string;
   readonly txtStrings: string[];
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolTxtRecord extends DnscontrolRecord {

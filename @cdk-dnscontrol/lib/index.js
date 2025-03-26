@@ -13,7 +13,7 @@ var dnscontrol_registrar_1 = require("./dnscontrol-registrar");
 Object.defineProperty(exports, "DnscontrolRegistrar", { enumerable: true, get: function () { return dnscontrol_registrar_1.DnscontrolRegistrar; } });
 var dnscontrol_stack_1 = require("./dnscontrol-stack");
 Object.defineProperty(exports, "DnscontrolStack", { enumerable: true, get: function () { return dnscontrol_stack_1.DnscontrolStack; } });
-var rev_1 = require("./domain-modifier/function/rev");
+var rev_1 = require("./function/rev");
 Object.defineProperty(exports, "createReverseDnsName", { enumerable: true, get: function () { return rev_1.createReverseDnsName; } });
 var duration_1 = require("./types/duration");
 Object.defineProperty(exports, "Duration", { enumerable: true, get: function () { return duration_1.Duration; } });

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// eslint-disable-next-line
 const recordTypeStrings = [
     "A",
     "AAAA",

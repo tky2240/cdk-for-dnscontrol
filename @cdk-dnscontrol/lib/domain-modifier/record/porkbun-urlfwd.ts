@@ -10,7 +10,7 @@ const DNS_CONTROL_PORKBUN_URLFWD_RECORD_SYMBOL = Symbol.for(
 export interface DnscontrolPorkbunUrlfwdRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolPorkbunUrlfwdRecord extends DnscontrolRecord {

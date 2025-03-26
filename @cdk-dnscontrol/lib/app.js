@@ -6,6 +6,7 @@ const dnscontrol_stack_1 = require("./dnscontrol-stack");
 class App extends constructs_1.Construct {
     outDir;
     constructor(config = {}) {
+        // eslint-disable-next-line
         super(undefined, "");
         this.outDir = config.outDir ?? "cdk.out";
     }

@@ -1,4 +1,4 @@
-import { createReverseDnsName } from "../lib/domain-modifier/function/rev";
+import { createReverseDnsName } from "../lib/function/rev";
 import { asIPv4Cidr } from "../lib/types/ipv4";
 import { asIPv6Cidr } from "../lib/types/ipv6";
 

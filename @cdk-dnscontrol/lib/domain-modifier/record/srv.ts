@@ -11,7 +11,7 @@ export interface DnscontrolSrvRecordProps {
   readonly priority: number;
   readonly weight: number;
   readonly port: number;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolSrvRecord extends DnscontrolRecord {

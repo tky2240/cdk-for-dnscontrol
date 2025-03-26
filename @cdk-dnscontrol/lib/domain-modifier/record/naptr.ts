@@ -13,7 +13,7 @@ export interface DnscontrolNaptrRecordProps {
   readonly flags: string;
   readonly service: string;
   readonly regexp: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolNaptrRecord extends DnscontrolRecord {

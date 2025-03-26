@@ -10,7 +10,7 @@ export interface DnscontrolHttpsRecordProps {
   readonly target: string;
   readonly priority: number;
   readonly params: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolHttpsRecord extends DnscontrolRecord {
