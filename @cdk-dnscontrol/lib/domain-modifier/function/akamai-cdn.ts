@@ -1,12 +1,12 @@
 import { Construct } from "constructs";
-import { DnscontrolAkamaiCdnRecord } from "../record/akamai-cdn";
 import { Duration } from "../../types/duration";
+import { DnscontrolAkamaiCdnRecord } from "../record/akamai-cdn";
 
 export function AKAMAI_CDN(
   scope: Construct,
   label: string,
   target: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolAkamaiCdnRecord {
   return new DnscontrolAkamaiCdnRecord(scope, `AkamaiCdn:${label}:${target}`, {
     target: target,

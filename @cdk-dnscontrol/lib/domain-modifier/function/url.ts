@@ -1,12 +1,12 @@
 import { Construct } from "constructs";
-import { DnscontrolUrlRecord } from "../record/url";
 import { Duration } from "../../types/duration";
+import { DnscontrolUrlRecord } from "../record/url";
 
 export function URL(
   scope: Construct,
   label: string,
   target: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolUrlRecord {
   return new DnscontrolUrlRecord(scope, `Url:${label}:${target}`, {
     label: label,

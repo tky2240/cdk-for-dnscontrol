@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
-import { DnscontrolSvcbRecord } from "../record/svcb";
 import { Duration } from "../../types/duration";
+import { DnscontrolSvcbRecord } from "../record/svcb";
 
 export function SVCB(
   scope: Construct,
@@ -8,13 +8,17 @@ export function SVCB(
   priority: number,
   target: string,
   params: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolSvcbRecord {
-  return new DnscontrolSvcbRecord(scope, `Svcb:${label}:${priority}:${target}`, {
-    label: label,
-    target: target,
-    ttl: ttl != null ? new Duration(ttl) : undefined,
-    priority: priority,
-    params: params,
-  });
+  return new DnscontrolSvcbRecord(
+    scope,
+    `Svcb:${label}:${priority}:${target}`,
+    {
+      label: label,
+      target: target,
+      ttl: ttl != null ? new Duration(ttl) : undefined,
+      priority: priority,
+      params: params,
+    },
+  );
 }

@@ -1,1 +1,1 @@
-export {DnscontrolCfSingleRedirectRawRecord } from "./cf-single-redirect";
+export { DnscontrolCfSingleRedirectRawRecord } from "./cf-single-redirect";

@@ -9,7 +9,7 @@ const DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL = Symbol.for(
 
 // eslint-disable-next-line
 const redirectCodes = [301, 302] as const;
-export type RedirectCode = typeof redirectCodes[number];
+export type RedirectCode = (typeof redirectCodes)[number];
 
 export interface DnscontrolCfSingleRedirectRecordProps {
   readonly name: string;

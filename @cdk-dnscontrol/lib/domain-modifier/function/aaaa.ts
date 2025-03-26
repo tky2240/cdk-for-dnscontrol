@@ -1,13 +1,13 @@
 import { Construct } from "constructs";
-import { DnscontrolAAAARecord } from "../record/aaaa";
 import { Duration } from "../../types/duration";
 import { asIPv6Address } from "../../types/ipv6";
+import { DnscontrolAAAARecord } from "../record/aaaa";
 
 export function AAAA(
   scope: Construct,
   label: string,
   ip: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolAAAARecord {
   return new DnscontrolAAAARecord(scope, `AAAA:${label}:${ip}`, {
     ip: asIPv6Address(ip),

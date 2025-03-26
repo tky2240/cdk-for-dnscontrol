@@ -1,12 +1,12 @@
 import { Construct } from "constructs";
-import { DnscontrolTxtRecord } from "../record/txt";
 import { Duration } from "../../types/duration";
+import { DnscontrolTxtRecord } from "../record/txt";
 
 export function TXT(
   scope: Construct,
   label: string,
   target: string | readonly string[],
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolTxtRecord {
   return new DnscontrolTxtRecord(scope, `Txt:${label}:${target}`, {
     label: label,

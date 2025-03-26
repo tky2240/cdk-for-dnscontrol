@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
-import { DnscontrolNaptrRecord } from "../record/naptr";
 import { Duration } from "../../types/duration";
+import { DnscontrolNaptrRecord } from "../record/naptr";
 
 export function NAPTR(
   scope: Construct,
@@ -11,16 +11,20 @@ export function NAPTR(
   service: string,
   regexp: string,
   target: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolNaptrRecord {
-  return new DnscontrolNaptrRecord(scope, `Naptr:${label}:${order}:${preference}:${flags}:${service}:${regexp}:${target}`, {
-    label: label,
-    target: target,
-    ttl: ttl != null ? new Duration(ttl) : undefined,
-    order: order,
-    preference: preference,
-    flags: flags,
-    service: service,
-    regexp: regexp,
-  });
+  return new DnscontrolNaptrRecord(
+    scope,
+    `Naptr:${label}:${order}:${preference}:${flags}:${service}:${regexp}:${target}`,
+    {
+      label: label,
+      target: target,
+      ttl: ttl != null ? new Duration(ttl) : undefined,
+      order: order,
+      preference: preference,
+      flags: flags,
+      service: service,
+      regexp: regexp,
+    },
+  );
 }

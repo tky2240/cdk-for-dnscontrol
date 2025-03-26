@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
-import { CaaTag, DnscontrolCaaRecord } from "../record/caa";
 import { Duration } from "../../types/duration";
+import { CaaTag, DnscontrolCaaRecord } from "../record/caa";
 
 export function CAA(
   scope: Construct,
@@ -8,7 +8,7 @@ export function CAA(
   caaTag: CaaTag,
   target: string,
   isCaaCritical: boolean,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolCaaRecord {
   return new DnscontrolCaaRecord(scope, `Caa:${label}:${target}`, {
     target: target,

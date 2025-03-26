@@ -1,12 +1,12 @@
 import { Construct } from "constructs";
-import { DnscontrolDhcidRecord } from "../record/dhcid";
 import { Duration } from "../../types/duration";
+import { DnscontrolDhcidRecord } from "../record/dhcid";
 
 export function DHCID(
   scope: Construct,
   label: string,
   target: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolDhcidRecord {
   return new DnscontrolDhcidRecord(scope, `Dhcid:${label}:${target}`, {
     target: target,

@@ -68,9 +68,7 @@ export class DnscontrolDsRecord extends DnscontrolRecord {
     this.digestType = props.digestType;
     this.digest = props.digest;
   }
-  public static isDnscontrolDsRecord(
-    x: unknown,
-  ): x is DnscontrolDsRecord {
+  public static isDnscontrolDsRecord(x: unknown): x is DnscontrolDsRecord {
     return (
       x != null && typeof x === "object" && DNS_CONTROL_DS_RECORD_SYMBOL in x
     );

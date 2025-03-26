@@ -1,12 +1,12 @@
 import { Construct } from "constructs";
-import { DnscontrolLocRecord } from "../record/loc";
 import { Duration } from "../../types/duration";
+import { DnscontrolLocRecord } from "../record/loc";
 
 export function LOC(
   scope: Construct,
   label: string,
   target: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolLocRecord {
   return new DnscontrolLocRecord(scope, `Loc:${label}:${target}`, {
     label: label,

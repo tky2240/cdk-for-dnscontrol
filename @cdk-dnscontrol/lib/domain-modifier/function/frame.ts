@@ -1,12 +1,12 @@
 import { Construct } from "constructs";
-import { DnscontrolFrameRecord } from "../record/frame";
 import { Duration } from "../../types/duration";
+import { DnscontrolFrameRecord } from "../record/frame";
 
 export function FRAME(
   scope: Construct,
   label: string,
   target: string,
-  ttl?: number | string
+  ttl?: number | string,
 ): DnscontrolFrameRecord {
   return new DnscontrolFrameRecord(scope, `Frame:${label}:${target}`, {
     label: label,
