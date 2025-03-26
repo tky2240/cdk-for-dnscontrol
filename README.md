@@ -124,8 +124,8 @@ Use the following commands to manage DNS configurations:
 # Show configuration differences
 cdk-dnscontrol-cli diff
 
-# Apply DNS configurations
-cdk-dnscontrol-cli apply
+# Deploy DNS configurations
+cdk-dnscontrol-cli deploy
 ```
 
 After applying, the zone file will be generated in the output directory.
