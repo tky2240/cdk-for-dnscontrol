@@ -10,7 +10,7 @@ export interface DnscontrolNaptrRecordProps {
     readonly flags: string;
     readonly service: string;
     readonly regexp: string;
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolNaptrRecord extends DnscontrolRecord {
     readonly order: number;

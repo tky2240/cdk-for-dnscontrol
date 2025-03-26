@@ -6,7 +6,7 @@ import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolARecordProps {
     readonly label: string;
     readonly ip: IPv4Address;
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolARecord extends DnscontrolRecord {
     readonly ip: IPv4Address;

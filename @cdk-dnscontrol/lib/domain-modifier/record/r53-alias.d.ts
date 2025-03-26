@@ -3,14 +3,14 @@ import { DnscontrolR53AliasRecordConfig } from "../../types/dnscontrol-record-co
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 declare const r53AliasTypeString: readonly ["A", "AAAA", "CNAME", "CAA", "MX", "TXT", "PTR", "SPF", "SRV", "NAPTR"];
-type R53AliasType = (typeof r53AliasTypeString)[number];
+export type R53AliasType = (typeof r53AliasTypeString)[number];
 export interface DnscontrolR53AliasRecordProps {
     readonly label: string;
     readonly target: string;
     readonly r53AliasType: R53AliasType;
-    readonly zoneId?: string;
-    readonly isEnabledEvaluateTargetHealth?: boolean;
-    readonly ttl?: Duration;
+    readonly zoneId?: string | undefined;
+    readonly isEnabledEvaluateTargetHealth?: boolean | undefined;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolR53AliasRecord extends DnscontrolRecord {
     readonly r53AliasType: R53AliasType;

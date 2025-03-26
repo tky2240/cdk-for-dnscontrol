@@ -5,7 +5,7 @@ import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolCfWorkerRouteRecordProps {
     readonly pattern: string;
     readonly script: string;
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
     readonly pattern: string;

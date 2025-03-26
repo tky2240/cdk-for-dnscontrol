@@ -12,25 +12,25 @@ declare const dnskeyProtocol: {
 };
 export type DnskeyProtocol = keyof typeof dnskeyProtocol;
 declare const dnskeyAlgorithm: {
-    DELETE: number;
-    RSAMD5: number;
-    DH: number;
-    DSA: number;
-    RSASHA1: number;
-    "DSA-NSEC3-SHA1": number;
-    "RSASHA1-NSEC3-SHA1": number;
-    RSASHA256: number;
-    RSASHA512: number;
-    "ECC-GOST": number;
-    ECDSAP256SHA256: number;
-    ECDSAP384SHA384: number;
-    ED25519: number;
-    ED448: number;
-    SM2SM3: number;
-    "ECC-GOST12": number;
-    INDIRECT: number;
-    PRIVATEDNS: number;
-    PRIVATEOID: number;
+    readonly DELETE: 0;
+    readonly RSAMD5: 1;
+    readonly DH: 2;
+    readonly DSA: 3;
+    readonly RSASHA1: 5;
+    readonly "DSA-NSEC3-SHA1": 6;
+    readonly "RSASHA1-NSEC3-SHA1": 7;
+    readonly RSASHA256: 8;
+    readonly RSASHA512: 10;
+    readonly "ECC-GOST": 12;
+    readonly ECDSAP256SHA256: 13;
+    readonly ECDSAP384SHA384: 14;
+    readonly ED25519: 15;
+    readonly ED448: 16;
+    readonly SM2SM3: 17;
+    readonly "ECC-GOST12": 23;
+    readonly INDIRECT: 252;
+    readonly PRIVATEDNS: 253;
+    readonly PRIVATEOID: 254;
 };
 export type DnskeyAlgorithm = keyof typeof dnskeyAlgorithm;
 export interface DnscontrolDnskeyRecordProps {
@@ -39,7 +39,7 @@ export interface DnscontrolDnskeyRecordProps {
     readonly protocol: DnskeyProtocol;
     readonly algorythm: DnskeyAlgorithm;
     readonly publickey: string;
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolDnskeyRecord extends DnscontrolRecord {
     readonly flag: DnskeyFlag;

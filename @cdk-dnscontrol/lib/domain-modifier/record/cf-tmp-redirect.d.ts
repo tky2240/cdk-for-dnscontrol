@@ -5,7 +5,7 @@ import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolCfTmpRedirectRecordProps {
     readonly source: string;
     readonly destination: string;
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
     readonly source: string;

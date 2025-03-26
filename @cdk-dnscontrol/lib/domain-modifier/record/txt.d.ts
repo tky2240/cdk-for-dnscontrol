@@ -5,7 +5,7 @@ import { DnscontrolRecord } from "./dnscontrol-record";
 export interface DnscontrolTxtRecordProps {
     readonly label: string;
     readonly txtStrings: string[];
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolTxtRecord extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolTxtRecordProps);
