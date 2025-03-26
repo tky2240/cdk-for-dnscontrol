@@ -38,10 +38,10 @@ func main() {
 				},
 			},
 			{
-				Name:  "apply",
-				Usage: "synth and apply",
+				Name:  "deploy",
+				Usage: "synth and deploy",
 				Action: func(c *cli.Context) error {
-					return apply(c)
+					return deploy(c)
 				},
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -81,7 +81,7 @@ func diff(c *cli.Context) error {
 	return nil
 }
 
-func apply(c *cli.Context) error {
+func deploy(c *cli.Context) error {
 	err := prepare(c)
 	if err != nil {
 		return err
