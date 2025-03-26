@@ -8,7 +8,7 @@ export interface DnscontrolTlsaRecordProps {
     readonly usage: number;
     readonly selector: number;
     readonly matchingType: number;
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolTlsaRecord extends DnscontrolRecord {
     readonly usage: number;

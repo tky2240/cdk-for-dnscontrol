@@ -8,7 +8,7 @@ const DNS_CONTROL_DHCID_RECORD_SYMBOL = Symbol.for("DnscontrolDhcidRecord");
 export interface DnscontrolDhcidRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolDhcidRecord extends DnscontrolRecord {

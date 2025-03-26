@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DnscontrolAzureAliasRecord = void 0;
 const dnscontrol_record_1 = require("./dnscontrol-record");
 const DNS_CONTROL_AZURE_ALIAS_RECORD_SYMBOL = Symbol.for("DnscontrolAzureAliasRecord");
+// eslint-disable-next-line
 const azureAliasTypeString = ["A", "AAAA", "CNAME"];
 class DnscontrolAzureAliasRecord extends dnscontrol_record_1.DnscontrolRecord {
     azureAliasType;

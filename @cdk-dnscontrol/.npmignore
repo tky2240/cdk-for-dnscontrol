@@ -12,5 +12,6 @@ package.sh
 tsconfig.json
 tsconfig.build.json
 jest.config.js
+eslint.config.mjs
 
 cdk.out

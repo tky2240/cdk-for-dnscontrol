@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DnscontrolSshfpRecord = void 0;
+exports.DnscontrolSshfpRecord = exports.sshfpFingerprintFormat = exports.sshfpAlgorithm = void 0;
 const dnscontrol_record_1 = require("./dnscontrol-record");
 const DNS_CONTROL_SSHFP_RECORD_SYMBOL = Symbol.for("DnscontrolSshfpRecord");
-const sshfpAlgorithm = {
+exports.sshfpAlgorithm = {
     RSA: 1,
     DSA: 2,
     SCDSA: 3,
     ED25519: 4,
 };
-const sshfpFingerprintFormat = {
+exports.sshfpFingerprintFormat = {
     "SHA-1": 1,
     "SHA-256": 2,
 };
@@ -20,7 +20,7 @@ class DnscontrolSshfpRecord extends dnscontrol_record_1.DnscontrolRecord {
         super(scope, id, {
             recordType: "SSHFP",
             label: props.label,
-            target: props.target,
+            target: props.value,
             ttl: props.ttl,
         });
         this.algorithm = props.algorithm;
@@ -35,8 +35,8 @@ class DnscontrolSshfpRecord extends dnscontrol_record_1.DnscontrolRecord {
             target: this.target,
             type: this.recordType,
             ttl: this.ttl?.toSeconds(),
-            sshfpalgorithm: sshfpAlgorithm[this.algorithm],
-            sshfpfingerprint: sshfpFingerprintFormat[this.fingerprintFormat],
+            sshfpalgorithm: exports.sshfpAlgorithm[this.algorithm],
+            sshfpfingerprint: exports.sshfpFingerprintFormat[this.fingerprintFormat],
             meta: {},
         };
     }

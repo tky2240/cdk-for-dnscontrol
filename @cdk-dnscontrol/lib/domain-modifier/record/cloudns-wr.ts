@@ -10,7 +10,7 @@ const DNS_CONTROL_CLOUDNS_WR_RECORD_SYMBOL = Symbol.for(
 export interface DnscontrolCloudnsWrRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolCloudnsWrRecord extends DnscontrolRecord {

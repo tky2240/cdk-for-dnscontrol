@@ -8,7 +8,7 @@ const DNS_CONTROL_URL301_RECORD_SYMBOL = Symbol.for("DnscontrolUrl301Record");
 export interface DnscontrolUrl301RecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolUrl301Record extends DnscontrolRecord {

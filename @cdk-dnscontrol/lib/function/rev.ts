@@ -1,5 +1,5 @@
-import { IPv4Cidr, isIPv4Cidr } from "../../types/ipv4";
-import { IPv6Address, IPv6Cidr, isIPv6Cidr } from "../../types/ipv6";
+import { IPv4Cidr, isIPv4Cidr } from "../types/ipv4";
+import { IPv6Address, IPv6Cidr, isIPv6Cidr } from "../types/ipv6";
 
 export type ReverseDomainMode = "Rfc2317" | "Rfc4183";
 

@@ -5,7 +5,7 @@ import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_SSHFP_RECORD_SYMBOL = Symbol.for("DnscontrolSshfpRecord");
 
-const sshfpAlgorithm = {
+export const sshfpAlgorithm = {
   RSA: 1,
   DSA: 2,
   SCDSA: 3,
@@ -14,7 +14,7 @@ const sshfpAlgorithm = {
 
 export type SshfpAlgorithm = keyof typeof sshfpAlgorithm;
 
-const sshfpFingerprintFormat = {
+export const sshfpFingerprintFormat = {
   "SHA-1": 1,
   "SHA-256": 2,
 } as const;
@@ -23,10 +23,10 @@ export type SshfpFingerprintFormat = keyof typeof sshfpFingerprintFormat;
 
 export interface DnscontrolSshfpRecordProps {
   readonly label: string;
-  readonly target: string;
+  readonly value: string;
   readonly algorithm: SshfpAlgorithm;
   readonly fingerprintFormat: SshfpFingerprintFormat;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolSshfpRecord extends DnscontrolRecord {
@@ -36,7 +36,7 @@ export class DnscontrolSshfpRecord extends DnscontrolRecord {
     super(scope, id, {
       recordType: "SSHFP",
       label: props.label,
-      target: props.target,
+      target: props.value,
       ttl: props.ttl,
     });
     this.algorithm = props.algorithm;

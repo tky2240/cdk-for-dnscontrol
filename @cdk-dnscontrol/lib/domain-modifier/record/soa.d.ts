@@ -10,7 +10,7 @@ export interface DnscontrolSoaRecordProps {
     readonly retry: number;
     readonly expire: number;
     readonly minttl: number;
-    readonly ttl?: Duration;
+    readonly ttl?: Duration | undefined;
 }
 export declare class DnscontrolSoaRecord extends DnscontrolRecord {
     readonly mbox: string;

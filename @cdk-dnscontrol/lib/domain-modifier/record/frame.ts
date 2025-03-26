@@ -8,7 +8,7 @@ const DNS_CONTROL_FRAME_RECORD_SYMBOL = Symbol.for("DnscontrolFrameRecord");
 export interface DnscontrolFrameRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolFrameRecord extends DnscontrolRecord {

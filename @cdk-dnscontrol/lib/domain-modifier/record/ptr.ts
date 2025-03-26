@@ -8,7 +8,7 @@ const DNS_CONTROL_PTR_RECORD_SYMBOL = Symbol.for("DnscontrolPtrRecord");
 export interface DnscontrolPtrRecordProps {
   readonly label: string;
   readonly target: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolPtrRecord extends DnscontrolRecord {

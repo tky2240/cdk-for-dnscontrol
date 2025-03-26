@@ -10,13 +10,13 @@ const DNS_CONTROL_AZURE_ALIAS_RECORD_SYMBOL = Symbol.for(
 // eslint-disable-next-line
 const azureAliasTypeString = ["A", "AAAA", "CNAME"] as const;
 
-type AzureAliasType = (typeof azureAliasTypeString)[number];
+export type AzureAliasType = (typeof azureAliasTypeString)[number];
 
 export interface DnscontrolAzureAliasRecordProps {
   readonly label: string;
   readonly target: string;
   readonly azureAliasType: AzureAliasType;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolAzureAliasRecord extends DnscontrolRecord {

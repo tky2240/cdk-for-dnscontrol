@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DnscontrolCfSingleRedirectRawRecord = void 0;
 const dnscontrol_raw_record_1 = require("../raw-record/dnscontrol-raw-record");
 const DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL = Symbol.for("DnscontrolCfSingleRedirectRawRecord");
+// eslint-disable-next-line
 const redirectCodes = [301, 302];
 class DnscontrolCfSingleRedirectRawRecord extends dnscontrol_raw_record_1.DnscontrolRawRecord {
     name;

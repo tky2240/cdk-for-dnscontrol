@@ -10,7 +10,7 @@ const DNS_CONTROL_CF_REDIRECT_RECORD_SYMBOL = Symbol.for(
 export interface DnscontrolCfRedirectRecordProps {
   readonly source: string;
   readonly destination: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolCfRedirectRecord extends DnscontrolRecord {

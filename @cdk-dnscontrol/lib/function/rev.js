@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createReverseDnsName = createReverseDnsName;
-const ipv4_1 = require("../../types/ipv4");
-const ipv6_1 = require("../../types/ipv6");
+const ipv4_1 = require("../types/ipv4");
+const ipv6_1 = require("../types/ipv6");
 function createReverseDnsName(cidr, reverseDomainMode) {
     if ((0, ipv6_1.isIPv6Cidr)(cidr)) {
         return generateIPv6Rfc4183ReverseDnsName(cidr);

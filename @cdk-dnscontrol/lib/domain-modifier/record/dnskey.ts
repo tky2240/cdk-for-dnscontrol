@@ -38,7 +38,7 @@ const dnskeyAlgorithm = {
   INDIRECT: 252,
   PRIVATEDNS: 253,
   PRIVATEOID: 254,
-};
+} as const;
 export type DnskeyAlgorithm = keyof typeof dnskeyAlgorithm;
 
 export interface DnscontrolDnskeyRecordProps {
@@ -47,7 +47,7 @@ export interface DnscontrolDnskeyRecordProps {
   readonly protocol: DnskeyProtocol;
   readonly algorythm: DnskeyAlgorithm;
   readonly publickey: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolDnskeyRecord extends DnscontrolRecord {

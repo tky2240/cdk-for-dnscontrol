@@ -14,7 +14,7 @@ export interface DnscontrolCaaRecordProps {
   readonly target: string;
   readonly caaTag: CaaTag;
   readonly isCaaCritical: boolean;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolCaaRecord extends DnscontrolRecord {

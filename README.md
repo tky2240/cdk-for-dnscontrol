@@ -1,6 +1,6 @@
 # CDK for dnscontrol
 
-CDK for [dnscontrol](https://github.com/StackExchange/dnscontrol) simplifies DNS management using the AWS Cloud Development Kit (CDK).
+CDK for [dnscontrol](https://github.com/StackExchange/dnscontrol) simplifies DNS management using the Cloud Development Kit (CDK).
 
 ## Requirements
 
@@ -37,9 +37,12 @@ import {
   DnscontrolDomainProviderProps,
   DnscontrolRegistrar,
   DnscontrolStack,
-  DnscontrolARecord,
   asIPv4Address,
 } from "@tky2240/cdk-for-dnscontrol";
+
+import { DnscontrolARecord } from "@cdk-dnscontrol/lib/domain-modifier/record";
+
+import { A } from "@cdk-dnscontrol/lib/domain-modifier/function"
 
 export class ExampleStack extends DnscontrolStack {
   constructor(scope: Construct, id: string) {
@@ -73,10 +76,13 @@ interface ExampleDomainProps extends DnscontrolDomainProps {
 export class ExampleDomain extends DnscontrolDomain {
   constructor(scope: DnscontrolStack, id: string, props: ExampleDomainProps) {
     super(scope, id, props);
+    // CDK style
     new DnscontrolARecord(this, "MyARecord", {
       label: "@",
       ip: asIPv4Address("1.2.3.4"),
     });
+    // or you can use dnscontrol style
+    A(this, "@", "2.3.4.5")
   }
 }
 ```
@@ -129,7 +135,7 @@ After applying, the zone file will be generated in the output directory.
 Contributions are welcome! Please open an issue or submit a pull request.
 
 ## TODO
-- [ ] cdk: add helper function
+- [x] cdk: add helper function
 - [ ] cdk: remove prefix at class name
 - [ ] cli: remove hardcoded paths
-- [ ] add CI action
+- [x] add CI action

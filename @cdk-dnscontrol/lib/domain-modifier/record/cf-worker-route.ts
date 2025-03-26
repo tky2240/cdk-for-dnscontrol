@@ -10,7 +10,7 @@ const DNS_CONTROL_CF_WORKER_ROUTE_RECORD_SYMBOL = Symbol.for(
 export interface DnscontrolCfWorkerRouteRecordProps {
   readonly pattern: string;
   readonly script: string;
-  readonly ttl?: Duration;
+  readonly ttl?: Duration | undefined;
 }
 
 export class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
