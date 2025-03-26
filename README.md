@@ -82,7 +82,7 @@ export class ExampleDomain extends DnscontrolDomain {
       ip: asIPv4Address("1.2.3.4"),
     });
     // or you can use dnscontrol style
-    A(this, "@", "2.3.4.5")
+    A(this, "@", "2.3.4.5");
   }
 }
 ```
