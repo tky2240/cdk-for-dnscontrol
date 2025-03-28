@@ -16,12 +16,12 @@ const DNS_CONTROL_DOMAIN_SYMBOL = Symbol.for("DnscontrolDomain");
 export interface DnscontrolDomainProps {
   readonly domainName: string;
   readonly registrar: DnscontrolRegistrar;
-  readonly domainProviderPropsList: readonly DnscontrolDomainProviderProps[];
+  readonly domainProviderPropsList: DnscontrolDomainProviderProps[];
   readonly defaultTtl?: Duration;
   readonly isEnabledAutoDnssec?: boolean;
   readonly isDisabledIgnoreSafetyCheck?: boolean;
   readonly shouldKeepExistingRecord?: boolean;
-  readonly parentNameservers?: readonly string[];
+  readonly parentNameservers?: string[];
   readonly parentNameserverTtl?: Duration;
 }
 
@@ -32,7 +32,7 @@ export abstract class DnscontrolDomain extends Construct {
   public readonly isEnabledAutoDnssec?: boolean | undefined;
   public readonly isDisabledIgnoreSafetyCheck?: boolean | undefined;
   public readonly shouldKeepExistingRecord?: boolean | undefined;
-  public readonly parentNameservers?: readonly string[] | undefined;
+  public readonly parentNameservers?: string[] | undefined;
   public readonly parentNameserverTtl?: Duration | undefined;
   constructor(
     scope: DnscontrolStack,
