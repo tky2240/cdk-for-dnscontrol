@@ -24,5 +24,6 @@ export { DnscontrolDomainModifier, type DnscontrolDomainModifierProps } from "./
 export { type DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
 export { type DnscontrolUnmanagedConfig } from "./types/dnscontrol-unmanaged-config";
 export { type DnscontrolDnsConfig } from "./types/dnscontrol-dns-config";
+export { type DnscontrolRecordConfig } from "./types/dnscontrol-record-config";
 export { type DnscontrolRawRecordConfig } from "./types/dnscontrol-raw-record-config";
 export { type DnscontrolNamesever } from "./types/dnscontrol-namesever";
