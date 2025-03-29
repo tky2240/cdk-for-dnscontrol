@@ -62,7 +62,7 @@ export abstract class DnscontrolDomain extends Construct {
     return x != null && typeof x === "object" && DNS_CONTROL_DOMAIN_SYMBOL in x;
   }
 
-  public getDomainConfig(): DnscontrolDomainConfig {
+  public renderDomainConfig(): DnscontrolDomainConfig {
     const autoDnssec = (() => {
       switch (this.isEnabledAutoDnssec) {
         case undefined:
@@ -98,9 +98,9 @@ export abstract class DnscontrolDomain extends Construct {
           : { ns_ttl: this.parentNameserverTtl.toSeconds().toString() },
     } satisfies DnscontrolDomainConfig;
 
-    return this._getDomainConfig(this, initialDomainConfig);
+    return this._renderDomainConfig(this, initialDomainConfig);
   }
-  private _getDomainConfig(
+  private _renderDomainConfig(
     node: IConstruct,
     domainConfig: DnscontrolDomainConfig,
   ): DnscontrolDomainConfig {
@@ -108,22 +108,22 @@ export abstract class DnscontrolDomain extends Construct {
       domainConfig.dnsProviders[node.domainProviderName] = node.nameserverCount;
     }
     if (DnscontrolRecord.isDnscontrolRecord(node)) {
-      const recordConfig = node.getRecordConfig();
+      const recordConfig = node.renderRecordConfig();
       domainConfig.records.push({
         ...recordConfig,
         ttl: recordConfig?.ttl ?? this.defaultTtl.toSeconds(),
       });
     }
     if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
-      const rawRecordConfig = node.getRawRecordConfig();
+      const rawRecordConfig = node.renderRawRecordConfig();
       domainConfig.rawRecords.push(rawRecordConfig);
     }
     if (DnscontrolIgnore.isDnscontrolIgnore(node)) {
-      const unmanagedConfig = node.getUnmanagedConfig();
+      const unmanagedConfig = node.renderUnmanagedConfig();
       domainConfig.unmanaged.push(unmanagedConfig);
     }
     for (const child of node.node.children) {
-      this._getDomainConfig(child, domainConfig);
+      this._renderDomainConfig(child, domainConfig);
     }
     return domainConfig;
   }

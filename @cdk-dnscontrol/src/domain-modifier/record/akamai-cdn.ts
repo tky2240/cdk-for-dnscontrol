@@ -35,7 +35,7 @@ export class DnscontrolAkamaiCdnRecord extends DnscontrolRecord {
       DNS_CONTROL_AKAMAICDN_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolAkamaiCdnRecordConfig {
+  public renderRecordConfig(): DnscontrolAkamaiCdnRecordConfig {
     return {
       name: this.name,
       target: this.target,

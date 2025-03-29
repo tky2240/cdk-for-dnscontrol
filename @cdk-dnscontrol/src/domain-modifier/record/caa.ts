@@ -35,7 +35,7 @@ export class DnscontrolCaaRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_CAA_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolCaaRecordConfig {
+  public renderRecordConfig(): DnscontrolCaaRecordConfig {
     return {
       name: this.name,
       target: this.target,

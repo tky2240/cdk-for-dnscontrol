@@ -80,7 +80,7 @@ export class DnscontrolDnskeyRecord extends DnscontrolRecord {
       DNS_CONTROL_DNSKEY_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolDnskeyRecordConfig {
+  public renderRecordConfig(): DnscontrolDnskeyRecordConfig {
     return {
       name: this.name,
       target: this.target,

@@ -27,7 +27,7 @@ export class DnscontrolFrameRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_FRAME_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolFrameRecordConfig {
+  public renderRecordConfig(): DnscontrolFrameRecordConfig {
     return {
       name: this.name,
       target: this.target,

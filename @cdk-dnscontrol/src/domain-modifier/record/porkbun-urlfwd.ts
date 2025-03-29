@@ -35,7 +35,7 @@ export class DnscontrolPorkbunUrlfwdRecord extends DnscontrolRecord {
       DNS_CONTROL_PORKBUN_URLFWD_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolPorkbunUrlfwdRecordConfig {
+  public renderRecordConfig(): DnscontrolPorkbunUrlfwdRecordConfig {
     return {
       name: this.name,
       target: this.target,

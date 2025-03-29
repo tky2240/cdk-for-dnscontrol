@@ -45,7 +45,7 @@ export class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
       DNS_CONTROL_CF_WORKER_ROUTE_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolCfWorkerRouteRecordConfig {
+  public renderRecordConfig(): DnscontrolCfWorkerRouteRecordConfig {
     return {
       name: this.name,
       target: this.target,

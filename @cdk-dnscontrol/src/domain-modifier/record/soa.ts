@@ -40,7 +40,7 @@ export class DnscontrolSoaRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_SOA_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolSoaRecordConfig {
+  public renderRecordConfig(): DnscontrolSoaRecordConfig {
     return {
       name: this.name,
       target: this.target,

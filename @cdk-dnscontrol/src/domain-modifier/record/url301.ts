@@ -33,7 +33,7 @@ export class DnscontrolUrl301Record extends DnscontrolRecord {
       DNS_CONTROL_URL301_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolUrl301RecordConfig {
+  public renderRecordConfig(): DnscontrolUrl301RecordConfig {
     return {
       name: this.name,
       target: this.target,

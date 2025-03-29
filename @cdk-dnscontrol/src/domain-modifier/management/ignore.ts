@@ -25,7 +25,7 @@ export class DnscontrolIgnore extends DnscontrolDomainModifier {
   public static isDnscontrolIgnore(x: unknown): x is DnscontrolIgnore {
     return x != null && typeof x === "object" && DNS_CONTROL_IGNORE_SYMBOL in x;
   }
-  public getUnmanagedConfig(): DnscontrolUnmanagedConfig {
+  public renderUnmanagedConfig(): DnscontrolUnmanagedConfig {
     return {
       labelPattern: this.labelPattern,
       rTypePattern: this.typePattern,

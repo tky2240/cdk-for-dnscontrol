@@ -34,7 +34,7 @@ export class DnscontrolTlsaRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_TLSA_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolTlsaRecordConfig {
+  public renderRecordConfig(): DnscontrolTlsaRecordConfig {
     return {
       name: this.name,
       target: this.target,

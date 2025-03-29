@@ -35,7 +35,7 @@ export class DnscontrolCloudnsWrRecord extends DnscontrolRecord {
       DNS_CONTROL_CLOUDNS_WR_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolCloudnsWrRecordConfig {
+  public renderRecordConfig(): DnscontrolCloudnsWrRecordConfig {
     return {
       name: this.name,
       target: this.target,

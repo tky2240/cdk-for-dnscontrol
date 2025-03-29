@@ -47,7 +47,7 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
       DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL in x
     );
   }
-  public getRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig {
+  public renderRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig {
     return {
       type: this.rawRecordType,
       ttl: this.ttl?.toSeconds(),

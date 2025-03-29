@@ -27,7 +27,7 @@ export class DnscontrolDhcidRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_DHCID_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolDhcidRecordConfig {
+  public renderRecordConfig(): DnscontrolDhcidRecordConfig {
     return {
       name: this.name,
       target: this.target,

@@ -31,7 +31,7 @@ export class DnscontrolSvcbRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_SVCB_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolSvcbRecordConfig {
+  public renderRecordConfig(): DnscontrolSvcbRecordConfig {
     return {
       name: this.name,
       target: this.target,

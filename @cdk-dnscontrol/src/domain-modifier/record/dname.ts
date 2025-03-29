@@ -27,7 +27,7 @@ export class DnscontrolDnameRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_DNAME_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolDnameRecordConfig {
+  public renderRecordConfig(): DnscontrolDnameRecordConfig {
     return {
       name: this.name,
       target: this.target,

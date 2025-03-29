@@ -25,5 +25,5 @@ export abstract class DnscontrolRawRecord extends DnscontrolDomainModifier {
       x != null && typeof x === "object" && DNS_CONTROL_RAW_RECORD_SYMBOL in x
     );
   }
-  public abstract getRawRecordConfig(): DnscontrolRawRecordConfig;
+  public abstract renderRawRecordConfig(): DnscontrolRawRecordConfig;
 }

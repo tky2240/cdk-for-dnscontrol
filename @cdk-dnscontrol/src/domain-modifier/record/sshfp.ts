@@ -49,7 +49,7 @@ export class DnscontrolSshfpRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_SSHFP_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolSshfpRecordConfig {
+  public renderRecordConfig(): DnscontrolSshfpRecordConfig {
     return {
       name: this.name,
       target: this.target,

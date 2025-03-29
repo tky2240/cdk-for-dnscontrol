@@ -60,7 +60,7 @@ export class DnscontrolR53AliasRecord extends DnscontrolRecord {
       DNS_CONTROL_R53_ALIAS_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolR53AliasRecordConfig {
+  public renderRecordConfig(): DnscontrolR53AliasRecordConfig {
     // missing Boolean.prototype.toString() method
     // https://github.com/microsoft/TypeScript/issues/38347
     const evaluateTargetHealth = (() => {

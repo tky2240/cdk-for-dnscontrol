@@ -42,7 +42,7 @@ export class DnscontrolNaptrRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_NAPTR_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolNaptrRecordConfig {
+  public renderRecordConfig(): DnscontrolNaptrRecordConfig {
     return {
       name: this.name,
       target: this.target,

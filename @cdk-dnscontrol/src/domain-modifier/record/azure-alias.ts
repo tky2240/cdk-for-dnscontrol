@@ -43,7 +43,7 @@ export class DnscontrolAzureAliasRecord extends DnscontrolRecord {
       DNS_CONTROL_AZURE_ALIAS_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolAzureAliasRecordConfig {
+  public renderRecordConfig(): DnscontrolAzureAliasRecordConfig {
     return {
       name: this.name,
       target: this.target,

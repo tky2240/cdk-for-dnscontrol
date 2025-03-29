@@ -25,7 +25,7 @@ export class DnscontrolPtrRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_PTR_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolPtrRecordConfig {
+  public renderRecordConfig(): DnscontrolPtrRecordConfig {
     return {
       name: this.name,
       target: this.target,

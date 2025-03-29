@@ -25,7 +25,7 @@ export class DnscontrolAliasRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_ALIAS_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolAliasRecordConfig {
+  public renderRecordConfig(): DnscontrolAliasRecordConfig {
     return {
       name: this.name,
       target: this.target,

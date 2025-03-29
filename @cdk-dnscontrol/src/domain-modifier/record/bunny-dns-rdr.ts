@@ -35,7 +35,7 @@ export class DnscontrolBunnyDnsRdrRecord extends DnscontrolRecord {
       DNS_CONTROL_BUNNY_DNS_RDR_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolBunnyDnsRdrRecordConfig {
+  public renderRecordConfig(): DnscontrolBunnyDnsRdrRecordConfig {
     return {
       name: this.name,
       target: this.target,

@@ -31,5 +31,5 @@ export abstract class DnscontrolRecord extends DnscontrolDomainModifier {
   public static isDnscontrolRecord(x: unknown): x is DnscontrolRecord {
     return x != null && typeof x === "object" && DNS_CONTROL_RECORD_SYMBOL in x;
   }
-  public abstract getRecordConfig(): DnscontrolRecordConfig;
+  public abstract renderRecordConfig(): DnscontrolRecordConfig;
 }

@@ -45,7 +45,7 @@ export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
       DNS_CONTROL_CF_TEMP_REDIRECT_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolCfTmpRedirectRecordConfig {
+  public renderRecordConfig(): DnscontrolCfTmpRedirectRecordConfig {
     return {
       name: this.name,
       target: this.target,

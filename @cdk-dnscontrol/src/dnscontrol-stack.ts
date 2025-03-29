@@ -23,7 +23,7 @@ export abstract class DnscontrolStack extends Construct {
     return x != null && typeof x === "object" && DNS_CONTROL_STACK_SYMBOL in x;
   }
   public synth(outdir: string) {
-    const dnsConfig = getDnsConfig(this);
+    const dnsConfig = renderDnsConfig(this);
     const jsonContent = JSON.stringify(dnsConfig);
     const filePath = path.join(outdir, this.stackMetadataPath);
     const dirPath = path.dirname(filePath);
@@ -35,7 +35,7 @@ export abstract class DnscontrolStack extends Construct {
   }
 }
 
-function getDnsConfig(
+function renderDnsConfig(
   node: IConstruct,
   dnsConfig: DnscontrolDnsConfig = {
     registrars: [],
@@ -58,11 +58,11 @@ function getDnsConfig(
     });
   }
   if (DnscontrolDomain.isDnscontrolDomain(node)) {
-    const domainConfig = node.getDomainConfig();
+    const domainConfig = node.renderDomainConfig();
     dnsConfig.domains.push(domainConfig);
   }
   for (const child of node.node.children) {
-    getDnsConfig(child, dnsConfig);
+    renderDnsConfig(child, dnsConfig);
   }
   return dnsConfig;
 }

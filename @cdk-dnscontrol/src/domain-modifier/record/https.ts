@@ -33,7 +33,7 @@ export class DnscontrolHttpsRecord extends DnscontrolRecord {
       x != null && typeof x === "object" && DNS_CONTROL_HTTPS_RECORD_SYMBOL in x
     );
   }
-  public getRecordConfig(): DnscontrolHttpsRecordConfig {
+  public renderRecordConfig(): DnscontrolHttpsRecordConfig {
     return {
       name: this.name,
       target: this.target,
