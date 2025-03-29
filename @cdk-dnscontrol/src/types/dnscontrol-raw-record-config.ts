@@ -1,14 +1,10 @@
-export type DnscontrolRawRecordConfigBase = {
-  type: string;
+export interface DnscontrolRawRecordConfig {
+  readonly type: string;
   // eslint-disable-next-line
-  args?: any[] | undefined;
-  ttl?: number | undefined;
+  readonly args?: any[] | undefined;
+  readonly ttl?: number | undefined;
   // eslint-disable-next-line
-  metas?: Record<string, any> | undefined;
+  readonly metas?: Record<string, any> | undefined;
 };
 
-export type DnscontrolCfSingleRedirectRawRecordConfig =
-  DnscontrolRawRecordConfigBase;
-
-export type DnscontrolRawRecordConfig =
-  DnscontrolCfSingleRedirectRawRecordConfig;
+export interface DnscontrolCfSingleRedirectRawRecordConfig extends DnscontrolRawRecordConfig {};

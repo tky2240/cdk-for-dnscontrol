@@ -1,53 +1,53 @@
 import { DnscontrolCloudflareSingleRedirectConfig } from "./dnscontrol-cloudflare-single-redirect-config";
 
-export type DnscontrolRecordConfigBase = {
-  type: string;
-  name: string;
-  subdomain?: string | undefined;
-  target: string;
-  ttl?: number | undefined;
-  meta: Record<string, string>;
+export interface DnscontrolRecordConfig {
+  readonly  interface: string;
+  readonly name: string;
+  readonly subdomain?: string | undefined;
+  readonly target: string;
+  readonly ttl?: number | undefined;
+  readonly meta: Record<string, string>;
 };
 
-export type DnscontrolARecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolARecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolAAAARecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolAAAARecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolAliasRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolAliasRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolCaaRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolCaaRecordConfig extends DnscontrolRecordConfig {
   caatag: string;
   caaflag: number;
 };
 
-export type DnscontrolCnameRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolCnameRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolDhcidRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolDhcidRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolDnameRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolDnameRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolDnskeyRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolDnskeyRecordConfig extends DnscontrolRecordConfig {
   dnskeyflags: number;
   dnskeyprotocol: number;
   dnskeyalgorithm: number;
   dnskeypublickey: string;
 };
 
-export type DnscontrolDsRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolDsRecordConfig extends DnscontrolRecordConfig {
   dskeytag: number;
   dsalgorithm: number;
-  dsdigesttype: number;
+  dsdigestinterface: number;
   dsdigest: string;
 };
 
-export type DnscontrolFrameRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolFrameRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolHttpsRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolHttpsRecordConfig extends DnscontrolRecordConfig {
   svcpriority: number;
   svcparams: string;
 };
 
-export type DnscontrolLocRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolLocRecordConfig extends DnscontrolRecordConfig {
   locversion?: number | undefined;
   locsize?: number | undefined;
   lochorizpre?: number | undefined;
@@ -57,11 +57,11 @@ export type DnscontrolLocRecordConfig = DnscontrolRecordConfigBase & {
   localtitude?: number | undefined;
 };
 
-export type DnscontrolMxRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolMxRecordConfig extends DnscontrolRecordConfig {
   mxpreference?: number | undefined;
 };
 
-export type DnscontrolNaptrRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolNaptrRecordConfig extends DnscontrolRecordConfig {
   naptrorder: number;
   naptrpreference: number;
   naptrflags: string;
@@ -69,11 +69,11 @@ export type DnscontrolNaptrRecordConfig = DnscontrolRecordConfigBase & {
   naptrregexp: string;
 };
 
-export type DnscontrolNsRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolNsRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolPtrRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolPtrRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolSoaRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolSoaRecordConfig extends DnscontrolRecordConfig {
   soambox: string;
   soaserial?: number;
   soarefresh: number;
@@ -82,99 +82,66 @@ export type DnscontrolSoaRecordConfig = DnscontrolRecordConfigBase & {
   soaminttl: number;
 };
 
-export type DnscontrolSrvRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolSrvRecordConfig extends DnscontrolRecordConfig {
   srvpriority: number;
   srvweight: number;
   srvport: number;
 };
 
-export type DnscontrolSshfpRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolSshfpRecordConfig extends DnscontrolRecordConfig {
   sshfpalgorithm: number;
   sshfpfingerprint: number;
 };
 
-export type DnscontrolSvcbRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolSvcbRecordConfig extends DnscontrolRecordConfig {
   svcpriority: number;
   svcparams: string;
 };
 
-export type DnscontrolTlsaRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolTlsaRecordConfig extends DnscontrolRecordConfig {
   tlsausage: number;
   tlsselector: number;
-  tlsmatchingtype: number;
+  tlsmatchinginterface: number;
 };
 
-export type DnscontrolTxtRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolTxtRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolUrlRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolUrlRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolUrl301RecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolUrl301RecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolAkamaiCdnRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolAkamaiCdnRecordConfig extends DnscontrolRecordConfig {};
 
-type R53AliasConfig = {
-  type: string;
+interface R53AliasConfig {
+  interface: string;
   evaluate_target_health: string;
   zone_id?: string | undefined;
 };
 
-export type DnscontrolR53AliasRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolR53AliasRecordConfig extends DnscontrolRecordConfig {
   r53_alias: R53AliasConfig;
 };
 
-type AzureAliasConfig = {
-  type: string;
+interface AzureAliasConfig {
+  interface: string;
 };
 
-export type DnscontrolAzureAliasRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolAzureAliasRecordConfig extends DnscontrolRecordConfig {
   azure_alias: AzureAliasConfig;
 };
 
-export type DnscontrolCfRedirectRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolCfRedirectRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolCfTmpRedirectRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolCfTmpRedirectRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolCfWorkerRouteRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolCfWorkerRouteRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolCloudnsWrRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolCloudnsWrRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolPorkbunUrlfwdRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolPorkbunUrlfwdRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolBunnyDnsRdrRecordConfig = DnscontrolRecordConfigBase;
+export interface DnscontrolBunnyDnsRdrRecordConfig extends DnscontrolRecordConfig {};
 
-export type DnscontrolCloudflareRecordConfig = DnscontrolRecordConfigBase & {
+export interface DnscontrolCloudflareRecordConfig extends DnscontrolRecordConfig {
   cloudflareapi_redirect?: DnscontrolCloudflareSingleRedirectConfig | undefined;
 };
-
-export type DnscontrolRecordConfig =
-  | DnscontrolARecordConfig
-  | DnscontrolAAAARecordConfig
-  | DnscontrolAliasRecordConfig
-  | DnscontrolAzureAliasRecordConfig
-  | DnscontrolCaaRecordConfig
-  | DnscontrolCloudflareRecordConfig
-  | DnscontrolCnameRecordConfig
-  | DnscontrolDhcidRecordConfig
-  | DnscontrolDnameRecordConfig
-  | DnscontrolDnskeyRecordConfig
-  | DnscontrolDsRecordConfig
-  | DnscontrolFrameRecordConfig
-  | DnscontrolHttpsRecordConfig
-  | DnscontrolLocRecordConfig
-  | DnscontrolMxRecordConfig
-  | DnscontrolNaptrRecordConfig
-  | DnscontrolNsRecordConfig
-  | DnscontrolR53AliasRecordConfig
-  | DnscontrolSoaRecordConfig
-  | DnscontrolSrvRecordConfig
-  | DnscontrolSshfpRecordConfig
-  | DnscontrolSvcbRecordConfig
-  | DnscontrolTlsaRecordConfig
-  | DnscontrolTxtRecordConfig
-  | DnscontrolUrlRecordConfig
-  | DnscontrolUrl301RecordConfig
-  | DnscontrolCloudnsWrRecordConfig
-  | DnscontrolCfRedirectRecordConfig
-  | DnscontrolCfTmpRedirectRecordConfig
-  | DnscontrolPorkbunUrlfwdRecordConfig
-  | DnscontrolBunnyDnsRdrRecordConfig;

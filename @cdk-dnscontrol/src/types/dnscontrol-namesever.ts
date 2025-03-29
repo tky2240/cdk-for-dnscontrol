@@ -1,3 +1,3 @@
-export type DnscontrolNamesever = {
-  name: string;
+export interface DnscontrolNamesever {
+  readonly name: string;
 };
