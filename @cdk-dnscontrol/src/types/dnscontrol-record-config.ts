@@ -1,7 +1,7 @@
 import { DnscontrolCloudflareSingleRedirectConfig } from "./dnscontrol-cloudflare-single-redirect-config";
 
 export interface DnscontrolRecordConfig {
-  readonly  interface: string;
+  readonly type: string;
   readonly name: string;
   readonly subdomain?: string | undefined;
   readonly target: string;
