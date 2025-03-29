@@ -36,7 +36,7 @@ export interface DnscontrolDnskeyRecordConfig extends DnscontrolRecordConfig {
 export interface DnscontrolDsRecordConfig extends DnscontrolRecordConfig {
   dskeytag: number;
   dsalgorithm: number;
-  dsdigestinterface: number;
+  dsdigesttype: number;
   dsdigest: string;
 };
 
@@ -101,7 +101,7 @@ export interface DnscontrolSvcbRecordConfig extends DnscontrolRecordConfig {
 export interface DnscontrolTlsaRecordConfig extends DnscontrolRecordConfig {
   tlsausage: number;
   tlsselector: number;
-  tlsmatchinginterface: number;
+  tlsmatchingtype: number;
 };
 
 export interface DnscontrolTxtRecordConfig extends DnscontrolRecordConfig {};
@@ -113,7 +113,7 @@ export interface DnscontrolUrl301RecordConfig extends DnscontrolRecordConfig {};
 export interface DnscontrolAkamaiCdnRecordConfig extends DnscontrolRecordConfig {};
 
 interface R53AliasConfig {
-  interface: string;
+  type: string;
   evaluate_target_health: string;
   zone_id?: string | undefined;
 };
@@ -123,7 +123,7 @@ export interface DnscontrolR53AliasRecordConfig extends DnscontrolRecordConfig {
 };
 
 interface AzureAliasConfig {
-  interface: string;
+  type: string;
 };
 
 export interface DnscontrolAzureAliasRecordConfig extends DnscontrolRecordConfig {
