@@ -27,9 +27,9 @@ export class DnscontrolIgnore extends DnscontrolDomainModifier {
   }
   public getUnmanagedConfig(): DnscontrolUnmanagedConfig {
     return {
-      label_pattern: this.labelPattern,
-      rType_pattern: this.typePattern,
-      target_pattern: this.targetPattern,
+      labelPattern: this.labelPattern,
+      rTypePattern: this.typePattern,
+      targetPattern: this.targetPattern,
     };
   }
 }
