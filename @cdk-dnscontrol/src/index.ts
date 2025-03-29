@@ -1,4 +1,4 @@
-export { App } from "./app";
+export { App, type AppConfig } from "./app";
 export {
   DnscontrolDomain,
   type DnscontrolDomainProps,
@@ -7,9 +7,9 @@ export {
   DnscontrolDomainProvider,
   type DnscontrolDomainProviderProps,
 } from "./dnscontrol-domain-provider";
-export { DnscontrolProvider } from "./dnscontrol-provider";
-export { DnscontrolRegistrar } from "./dnscontrol-registrar";
-export { DnscontrolStack } from "./dnscontrol-stack";
+export { DnscontrolProvider, type DnscontrolProviderProps } from "./dnscontrol-provider";
+export { DnscontrolRegistrar, type DnscontrolRegistrarProps } from "./dnscontrol-registrar";
+export { DnscontrolStack, type DnscontrolStackProps } from "./dnscontrol-stack";
 
 export { createReverseDnsName } from "./function/rev";
 export { Duration, DurationUnit } from "./types/duration";
@@ -17,6 +17,9 @@ export { asIPv4Address, asIPv4Cidr, asIPv4PrefixLength } from "./types/ipv4";
 export { asIPv6Address, asIPv6Cidr, asIPv6PrefixLength } from "./types/ipv6";
 export { asMxPreference } from "./types/mx-preference";
 
-export { DnscontrolIgnore } from "./domain-modifier/management/ignore";
+export { DnscontrolIgnore, type DnscontrolIgnoreProps } from "./domain-modifier/management/ignore";
 
-export { DnscontrolDomainModifier } from "./domain-modifier/dnscontrol-domain-modifier";
+export { DnscontrolDomainModifier, type DnscontrolDomainModifierProps } from "./domain-modifier/dnscontrol-domain-modifier";
+
+export { type DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
+export { type DnscontrolUnmanagedConfig } from "./types/dnscontrol-unmanaged-config";
