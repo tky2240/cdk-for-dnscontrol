@@ -18,3 +18,5 @@ export { asIPv6Address, asIPv6Cidr, asIPv6PrefixLength } from "./types/ipv6";
 export { asMxPreference } from "./types/mx-preference";
 
 export { DnscontrolIgnore } from "./domain-modifier/management/ignore";
+
+export { DnscontrolDomainModifier } from "./domain-modifier/dnscontrol-domain-modifier";

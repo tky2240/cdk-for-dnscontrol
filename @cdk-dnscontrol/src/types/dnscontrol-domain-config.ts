@@ -3,7 +3,7 @@ import { DnscontrolRawRecordConfig } from "./dnscontrol-raw-record-config";
 import { DnscontrolRecordConfig } from "./dnscontrol-record-config";
 import { DnscontrolUnmanagedConfig } from "./dnscontrol-unmanaged-config";
 
-export type DnscontrolDomainConfig = {
+export interface DnscontrolDomainConfig {
   name: string;
   registrar: string;
   dnsProviders: Record<string, number>;

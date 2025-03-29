@@ -94,7 +94,7 @@ export abstract class DnscontrolDomain extends Construct {
       })),
       meta:
         this.parentNameserverTtl == null
-          ? {}
+          ? undefined
           : { ns_ttl: this.parentNameserverTtl.toSeconds().toString() },
     } satisfies DnscontrolDomainConfig;
 
