@@ -109,8 +109,10 @@ export abstract class DnscontrolDomain extends Construct {
     }
     if (DnscontrolRecord.isDnscontrolRecord(node)) {
       const recordConfig = node.getRecordConfig();
-      recordConfig.ttl = recordConfig?.ttl ?? this.defaultTtl.toSeconds();
-      domainConfig.records.push(recordConfig);
+      domainConfig.records.push({
+        ...recordConfig,
+        ttl: recordConfig?.ttl ?? this.defaultTtl.toSeconds();
+      });
     }
     if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
       const rawRecordConfig = node.getRawRecordConfig();
