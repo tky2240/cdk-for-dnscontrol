@@ -5,7 +5,7 @@ const DNS_CONTROL_DOMAIN_MODIFIER_SYMBOL = Symbol.for(
 );
 
 export interface DnscontrolDomainModifierProps {
-  type: string;
+  readonly type: string;
 }
 
 export abstract class DnscontrolDomainModifier extends Construct {

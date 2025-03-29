@@ -2,7 +2,7 @@ import { Construct, IConstruct } from "constructs";
 import { DnscontrolStack } from "./dnscontrol-stack";
 
 export interface AppConfig {
-  outDir?: string;
+  readonly outDir?: string;
 }
 
 export class App extends Construct {

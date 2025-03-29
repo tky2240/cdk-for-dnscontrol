@@ -7,7 +7,7 @@ import { DnscontrolRegistrar } from "./dnscontrol-registrar";
 import { DnscontrolDnsConfig } from "./types/dnscontrol-dns-config";
 
 export interface DnscontrolStackProps {
-  stackMetadataPath?: string;
+  readonly stackMetadataPath?: string;
 }
 
 const DNS_CONTROL_STACK_SYMBOL = Symbol.for("DnscontrolStack");

@@ -1,5 +1,5 @@
 export interface DnscontrolUnmanagedConfig {
-  label_pattern?: string | undefined;
-  rType_pattern?: string | undefined;
-  target_pattern?: string | undefined;
+  readonly label_pattern?: string | undefined;
+  readonly rType_pattern?: string | undefined;
+  readonly target_pattern?: string | undefined;
 };
