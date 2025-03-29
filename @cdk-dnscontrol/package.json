@@ -8,8 +8,8 @@
   },
   "license": "MIT",
   "author": "tky2240",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "type": "commonjs",
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
@@ -45,7 +45,7 @@
     "constructs": "10.4.2"
   },
   "files": [
-    "lib",
+    "src",
     ".jsii"
   ],
   "jsii": {
@@ -71,7 +71,7 @@
       }
     },
     "tsc": {
-      "outDir": "lib",
+      "outDir": "src",
       "rootDir": "src"
     }
   }
