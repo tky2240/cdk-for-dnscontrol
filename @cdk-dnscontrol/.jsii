@@ -48,7 +48,7 @@
   },
   "name": "@tky2240/cdk-for-dnscontrol",
   "readme": {
-    "markdown": "# @cdk-dnscontrol\nTODO\n"
+    "markdown": "# @cdk-dnscontrol\n\nTODO\n"
   },
   "repository": {
     "type": "git",
@@ -1851,5 +1851,5 @@
     }
   },
   "version": "0.0.5",
-  "fingerprint": "gGgiZf/a27HLLvUPR1VmGaPZWgpSl4yP3V0DfmJrmZ4="
+  "fingerprint": "HzfU3LWpYlGbBznoMY+5wXjZJD/3wPisyg1l8oYn68k="
 }

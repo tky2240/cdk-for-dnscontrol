@@ -16,7 +16,7 @@
     "watch": "tsc -w --project tsconfig.build.json",
     "jsii:build": "jsii --tsconfig=tsconfig.jsii.json",
     "jsii:watch": "jsii -w --tsconfig=tsconfig.jsii.json",
-    "package": "jsii-pacmak",
+    "jsii:package": "jsii --tsconfig=tsconfig.jsii.json & jsii-pacmak",
     "test": "jest",
     "test:verbose": "jest --silent=false --verbose",
     "cdk": "cdk",
