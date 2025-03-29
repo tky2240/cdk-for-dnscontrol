@@ -16,7 +16,7 @@ export class DnscontrolIgnore extends DnscontrolDomainModifier {
   public readonly targetPattern?: string | undefined;
   constructor(scope: Construct, id: string, props: DnscontrolIgnoreProps) {
     super(scope, id, {
-      type: "IGNORE",
+      modiferType: "IGNORE",
     });
     this.labelPattern = props.labelPattern;
     this.typePattern = props.typePattern;

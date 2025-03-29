@@ -33,7 +33,7 @@ export class DnscontrolMxRecord extends DnscontrolRecord {
     return {
       name: this.name,
       target: this.target,
-      type: this.recordType,
+      recordType: this.recordType,
       mxPreference: this.mxPreference,
       ttl: this.ttl?.toSeconds(),
       meta: {},

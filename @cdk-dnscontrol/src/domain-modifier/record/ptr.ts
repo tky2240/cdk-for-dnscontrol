@@ -29,7 +29,7 @@ export class DnscontrolPtrRecord extends DnscontrolRecord {
     return {
       name: this.name,
       target: this.target,
-      type: this.recordType,
+      recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
       meta: {},
     };

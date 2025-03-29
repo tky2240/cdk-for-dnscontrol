@@ -15,7 +15,7 @@ export abstract class DnscontrolRawRecord extends DnscontrolDomainModifier {
   public readonly rawRecordType: DnscontrolRawRecordType;
   public readonly ttl?: Duration | undefined;
   constructor(scope: Construct, id: string, props: DnscontrolRawRecordProps) {
-    super(scope, id, { type: props.rawRecordType });
+    super(scope, id, { modiferType: props.rawRecordType });
     Object.defineProperty(this, DNS_CONTROL_RAW_RECORD_SYMBOL, { value: true });
     this.rawRecordType = props.rawRecordType;
     this.ttl = props.ttl;

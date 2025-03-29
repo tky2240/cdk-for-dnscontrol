@@ -37,7 +37,7 @@ export class DnscontrolHttpsRecord extends DnscontrolRecord {
     return {
       name: this.name,
       target: this.target,
-      type: this.recordType,
+      recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
       svcPriority: this.priority,
       svcParams: this.params,

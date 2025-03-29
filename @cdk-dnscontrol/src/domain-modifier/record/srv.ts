@@ -38,7 +38,7 @@ export class DnscontrolSrvRecord extends DnscontrolRecord {
     return {
       name: this.name,
       target: this.target,
-      type: this.recordType,
+      recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
       srvPriority: this.priority,
       srvWeight: this.weight,

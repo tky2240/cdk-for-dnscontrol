@@ -5,11 +5,11 @@ const DNS_CONTROL_DOMAIN_MODIFIER_SYMBOL = Symbol.for(
 );
 
 export interface DnscontrolDomainModifierProps {
-  readonly type: string;
+  readonly modiferType: string;
 }
 
 export abstract class DnscontrolDomainModifier extends Construct {
-  public readonly type: string;
+  public readonly modiferType: string;
   constructor(
     scope: Construct,
     id: string,
@@ -19,7 +19,7 @@ export abstract class DnscontrolDomainModifier extends Construct {
     Object.defineProperty(this, DNS_CONTROL_DOMAIN_MODIFIER_SYMBOL, {
       value: true,
     });
-    this.type = props.type;
+    this.modiferType = props.modiferType;
   }
   public static isDnscontrolDomainModifier(
     x: unknown,

@@ -1,5 +1,5 @@
 export interface DnscontrolRawRecordConfig {
-  readonly type: string;
+  readonly recordType: string;
   // eslint-disable-next-line
   readonly args?: any[] | undefined;
   readonly ttl?: number | undefined;

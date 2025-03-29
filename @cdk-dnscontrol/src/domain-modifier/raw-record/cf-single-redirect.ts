@@ -49,7 +49,7 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
   }
   public renderRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig {
     return {
-      type: this.rawRecordType,
+      recordType: this.rawRecordType,
       ttl: this.ttl?.toSeconds(),
       args: [this.name, this.code, this.when, this.then],
       metas: [{ orig_custom_type: "CLOUDFLAREAPI_SINGLE_REDIRECT" }],

@@ -44,7 +44,7 @@ export class DnscontrolSoaRecord extends DnscontrolRecord {
     return {
       name: this.name,
       target: this.target,
-      type: this.recordType,
+      recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
       soaMbox: this.mbox,
       soaRefresh: this.refresh,
