@@ -16,6 +16,6 @@ export declare class DnscontrolCaaRecord extends DnscontrolRecord {
     readonly isCaaCritical: boolean;
     constructor(scope: Construct, id: string, props: DnscontrolCaaRecordProps);
     static isDnscontrolARecord(x: unknown): x is DnscontrolCaaRecord;
-    getRecordConfig(): DnscontrolCaaRecordConfig;
+    renderRecordConfig(): DnscontrolCaaRecordConfig;
 }
 export {};

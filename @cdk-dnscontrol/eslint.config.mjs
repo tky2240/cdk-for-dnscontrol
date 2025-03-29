@@ -9,6 +9,9 @@ export default defineConfig({
     "@typescript-eslint/consistent-type-definitions": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
-    "@typescript-eslint/no-empty-object-type": ["error", { allowInterfaces: "with-single-extends" }],
+    "@typescript-eslint/no-empty-object-type": [
+      "error",
+      { allowInterfaces: "with-single-extends" },
+    ],
   },
 });

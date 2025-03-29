@@ -14,5 +14,5 @@ export declare class DnscontrolSvcbRecord extends DnscontrolRecord {
     readonly params: string;
     constructor(scope: Construct, id: string, props: DnscontrolSvcbRecordProps);
     static isDnscontrolSvcbRecord(x: unknown): x is DnscontrolSvcbRecord;
-    getRecordConfig(): DnscontrolSvcbRecordConfig;
+    renderRecordConfig(): DnscontrolSvcbRecordConfig;
 }

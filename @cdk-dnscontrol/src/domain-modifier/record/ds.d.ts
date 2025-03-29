@@ -48,6 +48,6 @@ export declare class DnscontrolDsRecord extends DnscontrolRecord {
     readonly digest: string;
     constructor(scope: Construct, id: string, props: DnscontrolDsRecordProps);
     static isDnscontrolDsRecord(x: unknown): x is DnscontrolDsRecord;
-    getRecordConfig(): DnscontrolDsRecordConfig;
+    renderRecordConfig(): DnscontrolDsRecordConfig;
 }
 export {};

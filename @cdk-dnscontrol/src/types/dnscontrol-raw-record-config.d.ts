@@ -1,8 +1,8 @@
-export type DnscontrolRawRecordConfigBase = {
-    type: string;
-    args?: any[] | undefined;
-    ttl?: number | undefined;
-    metas?: Record<string, any> | undefined;
-};
-export type DnscontrolCfSingleRedirectRawRecordConfig = DnscontrolRawRecordConfigBase;
-export type DnscontrolRawRecordConfig = DnscontrolCfSingleRedirectRawRecordConfig;
+export interface DnscontrolRawRecordConfig {
+    readonly recordType: string;
+    readonly args?: any[] | undefined;
+    readonly ttl?: number | undefined;
+    readonly metas?: Record<string, any> | undefined;
+}
+export interface DnscontrolCfSingleRedirectRawRecordConfig extends DnscontrolRawRecordConfig {
+}

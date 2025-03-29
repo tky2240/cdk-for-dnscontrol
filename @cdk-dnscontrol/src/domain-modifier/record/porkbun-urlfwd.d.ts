@@ -10,5 +10,5 @@ export interface DnscontrolPorkbunUrlfwdRecordProps {
 export declare class DnscontrolPorkbunUrlfwdRecord extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolPorkbunUrlfwdRecordProps);
     static isDnscontrolPorkbunUrlfwdRecord(x: unknown): x is DnscontrolPorkbunUrlfwdRecord;
-    getRecordConfig(): DnscontrolPorkbunUrlfwdRecordConfig;
+    renderRecordConfig(): DnscontrolPorkbunUrlfwdRecordConfig;
 }

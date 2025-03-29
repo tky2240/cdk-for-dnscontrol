@@ -10,5 +10,5 @@ export interface DnscontrolUrl301RecordProps {
 export declare class DnscontrolUrl301Record extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolUrl301RecordProps);
     static isDnscontrolUrl301Record(x: unknown): x is DnscontrolUrl301Record;
-    getRecordConfig(): DnscontrolUrl301RecordConfig;
+    renderRecordConfig(): DnscontrolUrl301RecordConfig;
 }

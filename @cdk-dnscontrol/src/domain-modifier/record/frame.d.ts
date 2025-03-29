@@ -10,5 +10,5 @@ export interface DnscontrolFrameRecordProps {
 export declare class DnscontrolFrameRecord extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolFrameRecordProps);
     static isDnscontrolFrameRecord(x: unknown): x is DnscontrolFrameRecord;
-    getRecordConfig(): DnscontrolFrameRecordConfig;
+    renderRecordConfig(): DnscontrolFrameRecordConfig;
 }

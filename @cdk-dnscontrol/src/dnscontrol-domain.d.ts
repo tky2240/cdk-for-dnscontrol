@@ -7,12 +7,12 @@ import { Duration } from "./types/duration";
 export interface DnscontrolDomainProps {
     readonly domainName: string;
     readonly registrar: DnscontrolRegistrar;
-    readonly domainProviderPropsList: readonly DnscontrolDomainProviderProps[];
+    readonly domainProviderPropsList: DnscontrolDomainProviderProps[];
     readonly defaultTtl?: Duration;
     readonly isEnabledAutoDnssec?: boolean;
     readonly isDisabledIgnoreSafetyCheck?: boolean;
     readonly shouldKeepExistingRecord?: boolean;
-    readonly parentNameservers?: readonly string[];
+    readonly parentNameservers?: string[];
     readonly parentNameserverTtl?: Duration;
 }
 export declare abstract class DnscontrolDomain extends Construct {
@@ -22,10 +22,10 @@ export declare abstract class DnscontrolDomain extends Construct {
     readonly isEnabledAutoDnssec?: boolean | undefined;
     readonly isDisabledIgnoreSafetyCheck?: boolean | undefined;
     readonly shouldKeepExistingRecord?: boolean | undefined;
-    readonly parentNameservers?: readonly string[] | undefined;
+    readonly parentNameservers?: string[] | undefined;
     readonly parentNameserverTtl?: Duration | undefined;
     constructor(scope: DnscontrolStack, id: string, props: DnscontrolDomainProps);
     static isDnscontrolDomain(x: unknown): x is DnscontrolDomain;
-    getDomainConfig(): DnscontrolDomainConfig;
-    private _getDomainConfig;
+    renderDomainConfig(): DnscontrolDomainConfig;
+    private _renderDomainConfig;
 }

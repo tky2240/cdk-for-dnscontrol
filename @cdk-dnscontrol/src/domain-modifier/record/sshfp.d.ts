@@ -26,5 +26,5 @@ export declare class DnscontrolSshfpRecord extends DnscontrolRecord {
     readonly fingerprintFormat: SshfpFingerprintFormat;
     constructor(scope: Construct, id: string, props: DnscontrolSshfpRecordProps);
     static isDnscontrolSshfpRecord(x: unknown): x is DnscontrolSshfpRecord;
-    getRecordConfig(): DnscontrolSshfpRecordConfig;
+    renderRecordConfig(): DnscontrolSshfpRecordConfig;
 }

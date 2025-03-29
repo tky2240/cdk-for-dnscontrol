@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
 export interface DnscontrolStackProps {
-    stackMetadataPath?: string;
+    readonly stackMetadataPath?: string;
 }
 export declare abstract class DnscontrolStack extends Construct {
     private readonly stackMetadataPath;

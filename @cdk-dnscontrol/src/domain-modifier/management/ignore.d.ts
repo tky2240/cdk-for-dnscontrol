@@ -12,5 +12,5 @@ export declare class DnscontrolIgnore extends DnscontrolDomainModifier {
     readonly targetPattern?: string | undefined;
     constructor(scope: Construct, id: string, props: DnscontrolIgnoreProps);
     static isDnscontrolIgnore(x: unknown): x is DnscontrolIgnore;
-    getUnmanagedConfig(): DnscontrolUnmanagedConfig;
+    renderUnmanagedConfig(): DnscontrolUnmanagedConfig;
 }

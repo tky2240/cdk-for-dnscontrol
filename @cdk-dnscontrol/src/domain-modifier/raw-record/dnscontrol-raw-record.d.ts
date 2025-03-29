@@ -12,5 +12,5 @@ export declare abstract class DnscontrolRawRecord extends DnscontrolDomainModifi
     readonly ttl?: Duration | undefined;
     constructor(scope: Construct, id: string, props: DnscontrolRawRecordProps);
     static isDnscontrolRawRecord(x: unknown): x is DnscontrolRawRecord;
-    abstract getRawRecordConfig(): DnscontrolRawRecordConfig;
+    abstract renderRawRecordConfig(): DnscontrolRawRecordConfig;
 }

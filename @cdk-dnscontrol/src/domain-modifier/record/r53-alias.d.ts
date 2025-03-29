@@ -18,6 +18,6 @@ export declare class DnscontrolR53AliasRecord extends DnscontrolRecord {
     readonly isEnabledEvaluateTargetHealth?: boolean | undefined;
     constructor(scope: Construct, id: string, props: DnscontrolR53AliasRecordProps);
     static isDnscontrolR53AliasRecord(x: unknown): x is DnscontrolR53AliasRecord;
-    getRecordConfig(): DnscontrolR53AliasRecordConfig;
+    renderRecordConfig(): DnscontrolR53AliasRecordConfig;
 }
 export {};

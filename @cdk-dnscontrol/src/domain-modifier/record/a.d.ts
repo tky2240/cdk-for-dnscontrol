@@ -12,5 +12,5 @@ export declare class DnscontrolARecord extends DnscontrolRecord {
     readonly ip: IPv4Address;
     constructor(scope: Construct, id: string, props: DnscontrolARecordProps);
     static isDnscontrolARecord(x: unknown): x is DnscontrolARecord;
-    getRecordConfig(): DnscontrolARecordConfig;
+    renderRecordConfig(): DnscontrolARecordConfig;
 }

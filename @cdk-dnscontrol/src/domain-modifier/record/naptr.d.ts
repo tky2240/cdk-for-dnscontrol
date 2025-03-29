@@ -20,5 +20,5 @@ export declare class DnscontrolNaptrRecord extends DnscontrolRecord {
     readonly regexp: string;
     constructor(scope: Construct, id: string, props: DnscontrolNaptrRecordProps);
     static isDnscontrolNaptrRecord(x: unknown): x is DnscontrolNaptrRecord;
-    getRecordConfig(): DnscontrolNaptrRecordConfig;
+    renderRecordConfig(): DnscontrolNaptrRecordConfig;
 }

@@ -14,6 +14,6 @@ export declare class DnscontrolAzureAliasRecord extends DnscontrolRecord {
     readonly azureAliasType: AzureAliasType;
     constructor(scope: Construct, id: string, props: DnscontrolAzureAliasRecordProps);
     static isDnscontrolAzureAliasRecord(x: unknown): x is DnscontrolAzureAliasRecord;
-    getRecordConfig(): DnscontrolAzureAliasRecordConfig;
+    renderRecordConfig(): DnscontrolAzureAliasRecordConfig;
 }
 export {};

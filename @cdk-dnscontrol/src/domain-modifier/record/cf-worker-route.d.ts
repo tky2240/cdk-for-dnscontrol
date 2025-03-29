@@ -12,5 +12,5 @@ export declare class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
     readonly script: string;
     constructor(scope: Construct, id: string, props: DnscontrolCfWorkerRouteRecordProps);
     static isDnscontrolCfWorkerRouteRecord(x: unknown): x is DnscontrolCfWorkerRouteRecord;
-    getRecordConfig(): DnscontrolCfWorkerRouteRecordConfig;
+    renderRecordConfig(): DnscontrolCfWorkerRouteRecordConfig;
 }

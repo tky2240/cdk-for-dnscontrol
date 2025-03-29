@@ -20,5 +20,5 @@ export declare class DnscontrolSoaRecord extends DnscontrolRecord {
     readonly minttl: number;
     constructor(scope: Construct, id: string, props: DnscontrolSoaRecordProps);
     static isDnscontrolSoaRecord(x: unknown): x is DnscontrolSoaRecord;
-    getRecordConfig(): DnscontrolSoaRecordConfig;
+    renderRecordConfig(): DnscontrolSoaRecordConfig;
 }

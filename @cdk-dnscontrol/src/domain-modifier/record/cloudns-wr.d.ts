@@ -10,5 +10,5 @@ export interface DnscontrolCloudnsWrRecordProps {
 export declare class DnscontrolCloudnsWrRecord extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolCloudnsWrRecordProps);
     static isDnscontrolCloudnsWrRecord(x: unknown): x is DnscontrolCloudnsWrRecord;
-    getRecordConfig(): DnscontrolCloudnsWrRecordConfig;
+    renderRecordConfig(): DnscontrolCloudnsWrRecordConfig;
 }

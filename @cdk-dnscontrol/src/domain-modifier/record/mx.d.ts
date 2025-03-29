@@ -13,5 +13,5 @@ export declare class DnscontrolMxRecord extends DnscontrolRecord {
     readonly mxPreference: MxPreference;
     constructor(scope: Construct, id: string, props: DnscontrolMxRecordProps);
     static isDnscontrolMxRecord(x: unknown): x is DnscontrolMxRecord;
-    getRecordConfig(): DnscontrolMxRecordConfig;
+    renderRecordConfig(): DnscontrolMxRecordConfig;
 }

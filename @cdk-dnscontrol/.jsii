@@ -1,0 +1,1855 @@
+{
+  "author": {
+    "name": "tky2240",
+    "roles": [
+      "author"
+    ]
+  },
+  "dependencies": {
+    "constructs": "10.4.2"
+  },
+  "dependencyClosure": {
+    "constructs": {
+      "targets": {
+        "dotnet": {
+          "namespace": "Constructs",
+          "packageId": "Constructs"
+        },
+        "go": {
+          "moduleName": "github.com/aws/constructs-go"
+        },
+        "java": {
+          "maven": {
+            "artifactId": "constructs",
+            "groupId": "software.constructs"
+          },
+          "package": "software.constructs"
+        },
+        "js": {
+          "npm": "constructs"
+        },
+        "python": {
+          "distName": "constructs",
+          "module": "constructs"
+        }
+      }
+    }
+  },
+  "description": "CDK construct library for managing DNS records with DNSControl",
+  "homepage": "git+ssh://git@github.com/tky2240/cdk-for-dnscontrol.git",
+  "jsiiVersion": "5.8.2 (build d639fe8)",
+  "license": "MIT",
+  "metadata": {
+    "jsii": {
+      "pacmak": {
+        "hasDefaultInterfaces": true
+      }
+    }
+  },
+  "name": "@tky2240/cdk-for-dnscontrol",
+  "readme": {
+    "markdown": "# @cdk-dnscontrol\nTODO\n"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tky2240/cdk-for-dnscontrol.git"
+  },
+  "schema": "jsii/0.10.0",
+  "targets": {
+    "dotnet": {
+      "namespace": "Tky2240.CdkForDnscontrol",
+      "packageId": "Tky2240.CdkForDnscontrol"
+    },
+    "go": {
+      "moduleName": "github.com/tky2240/cdk-for-dnscontrol-go"
+    },
+    "java": {
+      "maven": {
+        "artifactId": "cdk-for-dnscontrol",
+        "groupId": "com.tky2240"
+      },
+      "package": "com.tky2240.cdkfordnscontrol"
+    },
+    "js": {
+      "npm": "@tky2240/cdk-for-dnscontrol"
+    },
+    "python": {
+      "distName": "tky2240.cdk-for-dnscontrol",
+      "module": "tky2240.cdk_for_dnscontrol"
+    }
+  },
+  "types": {
+    "@tky2240/cdk-for-dnscontrol.App": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "constructs.Construct",
+      "fqn": "@tky2240/cdk-for-dnscontrol.App",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/app.ts",
+          "line": 10
+        },
+        "parameters": [
+          {
+            "name": "config",
+            "optional": true,
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.AppConfig"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/app.ts",
+        "line": 8
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/app.ts",
+            "line": 15
+          },
+          "name": "synth"
+        }
+      ],
+      "name": "App",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/app.ts",
+            "line": 9
+          },
+          "name": "outDir",
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/app:App"
+    },
+    "@tky2240/cdk-for-dnscontrol.AppConfig": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.AppConfig",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/app.ts",
+        "line": 4
+      },
+      "name": "AppConfig",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/app.ts",
+            "line": 5
+          },
+          "name": "outDir",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/app:AppConfig"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolDomain": {
+      "abstract": true,
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "constructs.Construct",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomain",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/dnscontrol-domain.ts",
+          "line": 37
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolStack"
+            }
+          },
+          {
+            "name": "id",
+            "type": {
+              "primitive": "string"
+            }
+          },
+          {
+            "name": "props",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProps"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/dnscontrol-domain.ts",
+        "line": 28
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 61
+          },
+          "name": "isDnscontrolDomain",
+          "parameters": [
+            {
+              "name": "x",
+              "type": {
+                "primitive": "any"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "boolean"
+            }
+          },
+          "static": true
+        },
+        {
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 65
+          },
+          "name": "renderDomainConfig",
+          "returns": {
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainConfig"
+            }
+          }
+        }
+      ],
+      "name": "DnscontrolDomain",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 31
+          },
+          "name": "defaultTtl",
+          "type": {
+            "fqn": "@tky2240/cdk-for-dnscontrol.Duration"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 29
+          },
+          "name": "domainName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 30
+          },
+          "name": "registrarName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 33
+          },
+          "name": "isDisabledIgnoreSafetyCheck",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 32
+          },
+          "name": "isEnabledAutoDnssec",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 35
+          },
+          "name": "parentNameservers",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 36
+          },
+          "name": "parentNameserverTtl",
+          "optional": true,
+          "type": {
+            "fqn": "@tky2240/cdk-for-dnscontrol.Duration"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 34
+          },
+          "name": "shouldKeepExistingRecord",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-domain:DnscontrolDomain"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolDomainConfig": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainConfig",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/types/dnscontrol-domain-config.ts",
+        "line": 6
+      },
+      "name": "DnscontrolDomainConfig",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 9
+          },
+          "name": "dnsProviders",
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "number"
+              },
+              "kind": "map"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 7
+          },
+          "name": "name",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 18
+          },
+          "name": "rawRecords",
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRawRecordConfig"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 11
+          },
+          "name": "records",
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRecordConfig"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 8
+          },
+          "name": "registrar",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 15
+          },
+          "name": "unmanaged",
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolUnmanagedConfig"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 17
+          },
+          "name": "autoDnssec",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 14
+          },
+          "name": "keepUnknown",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 10
+          },
+          "name": "meta",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "map"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 12
+          },
+          "name": "nameServers",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolNamesever"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 13
+          },
+          "name": "recordAbsent",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRecordConfig"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 16
+          },
+          "name": "unmanagedDisableSafetyCheck",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        }
+      ],
+      "symbolId": "src/types/dnscontrol-domain-config:DnscontrolDomainConfig"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifier": {
+      "abstract": true,
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "constructs.Construct",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifier",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/domain-modifier/dnscontrol-domain-modifier.ts",
+          "line": 13
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "constructs.Construct"
+            }
+          },
+          {
+            "name": "id",
+            "type": {
+              "primitive": "string"
+            }
+          },
+          {
+            "name": "props",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifierProps"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/domain-modifier/dnscontrol-domain-modifier.ts",
+        "line": 11
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/domain-modifier/dnscontrol-domain-modifier.ts",
+            "line": 24
+          },
+          "name": "isDnscontrolDomainModifier",
+          "parameters": [
+            {
+              "name": "x",
+              "type": {
+                "primitive": "any"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "boolean"
+            }
+          },
+          "static": true
+        }
+      ],
+      "name": "DnscontrolDomainModifier",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/dnscontrol-domain-modifier.ts",
+            "line": 12
+          },
+          "name": "modiferType",
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/domain-modifier/dnscontrol-domain-modifier:DnscontrolDomainModifier"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifierProps": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifierProps",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/domain-modifier/dnscontrol-domain-modifier.ts",
+        "line": 7
+      },
+      "name": "DnscontrolDomainModifierProps",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/dnscontrol-domain-modifier.ts",
+            "line": 8
+          },
+          "name": "modiferType",
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/domain-modifier/dnscontrol-domain-modifier:DnscontrolDomainModifierProps"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProps": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProps",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/dnscontrol-domain.ts",
+        "line": 16
+      },
+      "name": "DnscontrolDomainProps",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 17
+          },
+          "name": "domainName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 19
+          },
+          "name": "domainProviderPropsList",
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProviderProps"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 18
+          },
+          "name": "registrar",
+          "type": {
+            "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrar"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 20
+          },
+          "name": "defaultTtl",
+          "optional": true,
+          "type": {
+            "fqn": "@tky2240/cdk-for-dnscontrol.Duration"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 22
+          },
+          "name": "isDisabledIgnoreSafetyCheck",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 21
+          },
+          "name": "isEnabledAutoDnssec",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 24
+          },
+          "name": "parentNameservers",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 25
+          },
+          "name": "parentNameserverTtl",
+          "optional": true,
+          "type": {
+            "fqn": "@tky2240/cdk-for-dnscontrol.Duration"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 23
+          },
+          "name": "shouldKeepExistingRecord",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-domain:DnscontrolDomainProps"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProvider": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "constructs.Construct",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProvider",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/dnscontrol-domain-provider.ts",
+          "line": 15
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "constructs.Construct"
+            }
+          },
+          {
+            "name": "id",
+            "type": {
+              "primitive": "string"
+            }
+          },
+          {
+            "name": "props",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProviderProps"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/dnscontrol-domain-provider.ts",
+        "line": 12
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain-provider.ts",
+            "line": 27
+          },
+          "name": "isDnscontrolDomainProvider",
+          "parameters": [
+            {
+              "name": "x",
+              "type": {
+                "primitive": "any"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "boolean"
+            }
+          },
+          "static": true
+        }
+      ],
+      "name": "DnscontrolDomainProvider",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain-provider.ts",
+            "line": 13
+          },
+          "name": "domainProviderName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain-provider.ts",
+            "line": 14
+          },
+          "name": "nameserverCount",
+          "type": {
+            "primitive": "number"
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-domain-provider:DnscontrolDomainProvider"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProviderProps": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainProviderProps",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/dnscontrol-domain-provider.ts",
+        "line": 3
+      },
+      "name": "DnscontrolDomainProviderProps",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain-provider.ts",
+            "line": 4
+          },
+          "name": "domainProviderName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain-provider.ts",
+            "line": 5
+          },
+          "name": "nameserverCount",
+          "optional": true,
+          "type": {
+            "primitive": "number"
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-domain-provider:DnscontrolDomainProviderProps"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolIgnore": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifier",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolIgnore",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/domain-modifier/management/ignore.ts",
+          "line": 17
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "constructs.Construct"
+            }
+          },
+          {
+            "name": "id",
+            "type": {
+              "primitive": "string"
+            }
+          },
+          {
+            "name": "props",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolIgnoreProps"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/domain-modifier/management/ignore.ts",
+        "line": 13
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 25
+          },
+          "name": "isDnscontrolIgnore",
+          "parameters": [
+            {
+              "name": "x",
+              "type": {
+                "primitive": "any"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "boolean"
+            }
+          },
+          "static": true
+        },
+        {
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 28
+          },
+          "name": "renderUnmanagedConfig",
+          "returns": {
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolUnmanagedConfig"
+            }
+          }
+        }
+      ],
+      "name": "DnscontrolIgnore",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 14
+          },
+          "name": "labelPattern",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 16
+          },
+          "name": "targetPattern",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 15
+          },
+          "name": "typePattern",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/domain-modifier/management/ignore:DnscontrolIgnore"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolIgnoreProps": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolIgnoreProps",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/domain-modifier/management/ignore.ts",
+        "line": 7
+      },
+      "name": "DnscontrolIgnoreProps",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 8
+          },
+          "name": "labelPattern",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 10
+          },
+          "name": "targetPattern",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/domain-modifier/management/ignore.ts",
+            "line": 9
+          },
+          "name": "typePattern",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/domain-modifier/management/ignore:DnscontrolIgnoreProps"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolNamesever": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolNamesever",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/types/dnscontrol-namesever.ts",
+        "line": 1
+      },
+      "name": "DnscontrolNamesever",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-namesever.ts",
+            "line": 2
+          },
+          "name": "name",
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/types/dnscontrol-namesever:DnscontrolNamesever"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolProvider": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "constructs.Construct",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolProvider",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/dnscontrol-provider.ts",
+          "line": 15
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "constructs.Construct"
+            }
+          },
+          {
+            "name": "id",
+            "type": {
+              "primitive": "string"
+            }
+          },
+          {
+            "name": "props",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolProviderProps"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/dnscontrol-provider.ts",
+        "line": 11
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/dnscontrol-provider.ts",
+            "line": 22
+          },
+          "name": "isDnscontrolProvider",
+          "parameters": [
+            {
+              "name": "x",
+              "type": {
+                "primitive": "any"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "boolean"
+            }
+          },
+          "static": true
+        }
+      ],
+      "name": "DnscontrolProvider",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-provider.ts",
+            "line": 12
+          },
+          "name": "providerName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-provider.ts",
+            "line": 13
+          },
+          "name": "providerType",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-provider.ts",
+            "line": 14
+          },
+          "name": "providerMetadata",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "map"
+            }
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-provider:DnscontrolProvider"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolProviderProps": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolProviderProps",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/dnscontrol-provider.ts",
+        "line": 3
+      },
+      "name": "DnscontrolProviderProps",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-provider.ts",
+            "line": 4
+          },
+          "name": "providerName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-provider.ts",
+            "line": 6
+          },
+          "name": "providerMetadata",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "map"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-provider.ts",
+            "line": 5
+          },
+          "name": "providerType",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-provider:DnscontrolProviderProps"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolRawRecordConfig": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRawRecordConfig",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/types/dnscontrol-raw-record-config.ts",
+        "line": 1
+      },
+      "name": "DnscontrolRawRecordConfig",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-raw-record-config.ts",
+            "line": 2
+          },
+          "name": "recordType",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-raw-record-config.ts",
+            "line": 4
+          },
+          "name": "args",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "any"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-raw-record-config.ts",
+            "line": 7
+          },
+          "name": "metas",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "any"
+              },
+              "kind": "map"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-raw-record-config.ts",
+            "line": 5
+          },
+          "name": "ttl",
+          "optional": true,
+          "type": {
+            "primitive": "number"
+          }
+        }
+      ],
+      "symbolId": "src/types/dnscontrol-raw-record-config:DnscontrolRawRecordConfig"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolRecordConfig": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRecordConfig",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/types/dnscontrol-record-config.ts",
+        "line": 3
+      },
+      "name": "DnscontrolRecordConfig",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-record-config.ts",
+            "line": 9
+          },
+          "name": "meta",
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "map"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-record-config.ts",
+            "line": 5
+          },
+          "name": "name",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-record-config.ts",
+            "line": 4
+          },
+          "name": "recordType",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-record-config.ts",
+            "line": 7
+          },
+          "name": "target",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-record-config.ts",
+            "line": 6
+          },
+          "name": "subdomain",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-record-config.ts",
+            "line": 8
+          },
+          "name": "ttl",
+          "optional": true,
+          "type": {
+            "primitive": "number"
+          }
+        }
+      ],
+      "symbolId": "src/types/dnscontrol-record-config:DnscontrolRecordConfig"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrar": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "constructs.Construct",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrar",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/dnscontrol-registrar.ts",
+          "line": 15
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "constructs.Construct"
+            }
+          },
+          {
+            "name": "id",
+            "type": {
+              "primitive": "string"
+            }
+          },
+          {
+            "name": "props",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrarProps"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/dnscontrol-registrar.ts",
+        "line": 11
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/dnscontrol-registrar.ts",
+            "line": 22
+          },
+          "name": "isDnscontrolRegistrar",
+          "parameters": [
+            {
+              "name": "x",
+              "type": {
+                "primitive": "any"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "boolean"
+            }
+          },
+          "static": true
+        }
+      ],
+      "name": "DnscontrolRegistrar",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-registrar.ts",
+            "line": 12
+          },
+          "name": "registrarName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-registrar.ts",
+            "line": 13
+          },
+          "name": "registrarType",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-registrar.ts",
+            "line": 14
+          },
+          "name": "registrarMetadata",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "map"
+            }
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-registrar:DnscontrolRegistrar"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrarProps": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrarProps",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/dnscontrol-registrar.ts",
+        "line": 3
+      },
+      "name": "DnscontrolRegistrarProps",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-registrar.ts",
+            "line": 4
+          },
+          "name": "registrarName",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-registrar.ts",
+            "line": 6
+          },
+          "name": "registrarMetadata",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "map"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-registrar.ts",
+            "line": 5
+          },
+          "name": "registrarType",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-registrar:DnscontrolRegistrarProps"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolStack": {
+      "abstract": true,
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "base": "constructs.Construct",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolStack",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/dnscontrol-stack.ts",
+          "line": 17
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "constructs.Construct"
+            }
+          },
+          {
+            "name": "id",
+            "type": {
+              "primitive": "string"
+            }
+          },
+          {
+            "name": "props",
+            "type": {
+              "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolStackProps"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/dnscontrol-stack.ts",
+        "line": 15
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/dnscontrol-stack.ts",
+            "line": 22
+          },
+          "name": "isDnscontrolStack",
+          "parameters": [
+            {
+              "name": "x",
+              "type": {
+                "primitive": "any"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "boolean"
+            }
+          },
+          "static": true
+        },
+        {
+          "locationInModule": {
+            "filename": "src/dnscontrol-stack.ts",
+            "line": 25
+          },
+          "name": "synth",
+          "parameters": [
+            {
+              "name": "outdir",
+              "type": {
+                "primitive": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "name": "DnscontrolStack",
+      "symbolId": "src/dnscontrol-stack:DnscontrolStack"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolStackProps": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolStackProps",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/dnscontrol-stack.ts",
+        "line": 9
+      },
+      "name": "DnscontrolStackProps",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-stack.ts",
+            "line": 10
+          },
+          "name": "stackMetadataPath",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/dnscontrol-stack:DnscontrolStackProps"
+    },
+    "@tky2240/cdk-for-dnscontrol.DnscontrolUnmanagedConfig": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "datatype": true,
+      "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolUnmanagedConfig",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/types/dnscontrol-unmanaged-config.ts",
+        "line": 1
+      },
+      "name": "DnscontrolUnmanagedConfig",
+      "properties": [
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-unmanaged-config.ts",
+            "line": 2
+          },
+          "name": "labelPattern",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-unmanaged-config.ts",
+            "line": 3
+          },
+          "name": "rTypePattern",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-unmanaged-config.ts",
+            "line": 4
+          },
+          "name": "targetPattern",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/types/dnscontrol-unmanaged-config:DnscontrolUnmanagedConfig"
+    },
+    "@tky2240/cdk-for-dnscontrol.Duration": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "fqn": "@tky2240/cdk-for-dnscontrol.Duration",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/types/duration.ts",
+          "line": 22
+        },
+        "parameters": [
+          {
+            "name": "value",
+            "type": {
+              "union": {
+                "types": [
+                  {
+                    "primitive": "string"
+                  },
+                  {
+                    "primitive": "number"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/types/duration.ts",
+        "line": 18
+      },
+      "methods": [
+        {
+          "locationInModule": {
+            "filename": "src/types/duration.ts",
+            "line": 74
+          },
+          "name": "toSeconds",
+          "returns": {
+            "type": {
+              "primitive": "number"
+            }
+          }
+        }
+      ],
+      "name": "Duration",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/duration.ts",
+            "line": 20
+          },
+          "name": "unit",
+          "type": {
+            "fqn": "@tky2240/cdk-for-dnscontrol.DurationUnit"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/duration.ts",
+            "line": 19
+          },
+          "name": "value",
+          "type": {
+            "primitive": "number"
+          }
+        }
+      ],
+      "symbolId": "src/types/duration:Duration"
+    },
+    "@tky2240/cdk-for-dnscontrol.DurationUnit": {
+      "assembly": "@tky2240/cdk-for-dnscontrol",
+      "fqn": "@tky2240/cdk-for-dnscontrol.DurationUnit",
+      "initializer": {
+        "locationInModule": {
+          "filename": "src/types/duration.ts",
+          "line": 4
+        },
+        "parameters": [
+          {
+            "name": "value",
+            "type": {
+              "primitive": "number"
+            }
+          },
+          {
+            "name": "name",
+            "type": {
+              "primitive": "string"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/types/duration.ts",
+        "line": 3
+      },
+      "name": "DurationUnit",
+      "properties": [
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/duration.ts",
+            "line": 6
+          },
+          "name": "name",
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/duration.ts",
+            "line": 5
+          },
+          "name": "value",
+          "type": {
+            "primitive": "number"
+          }
+        }
+      ],
+      "symbolId": "src/types/duration:DurationUnit"
+    }
+  },
+  "version": "0.0.5",
+  "fingerprint": "gGgiZf/a27HLLvUPR1VmGaPZWgpSl4yP3V0DfmJrmZ4="
+}

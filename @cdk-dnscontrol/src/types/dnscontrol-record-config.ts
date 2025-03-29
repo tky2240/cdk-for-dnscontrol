@@ -110,7 +110,8 @@ export interface DnscontrolUrlRecordConfig extends DnscontrolRecordConfig {}
 
 export interface DnscontrolUrl301RecordConfig extends DnscontrolRecordConfig {}
 
-export interface DnscontrolAkamaiCdnRecordConfig extends DnscontrolRecordConfig {}
+export interface DnscontrolAkamaiCdnRecordConfig
+  extends DnscontrolRecordConfig {}
 
 interface R53AliasConfig {
   readonly type: string;
@@ -126,22 +127,32 @@ interface AzureAliasConfig {
   readonly type: string;
 }
 
-export interface DnscontrolAzureAliasRecordConfig extends DnscontrolRecordConfig {
+export interface DnscontrolAzureAliasRecordConfig
+  extends DnscontrolRecordConfig {
   readonly azureAlias: AzureAliasConfig;
 }
 
-export interface DnscontrolCfRedirectRecordConfig extends DnscontrolRecordConfig {}
+export interface DnscontrolCfRedirectRecordConfig
+  extends DnscontrolRecordConfig {}
 
-export interface DnscontrolCfTmpRedirectRecordConfig extends DnscontrolRecordConfig {}
+export interface DnscontrolCfTmpRedirectRecordConfig
+  extends DnscontrolRecordConfig {}
 
-export interface DnscontrolCfWorkerRouteRecordConfig extends DnscontrolRecordConfig {}
+export interface DnscontrolCfWorkerRouteRecordConfig
+  extends DnscontrolRecordConfig {}
 
-export interface DnscontrolCloudnsWrRecordConfig extends DnscontrolRecordConfig {}
+export interface DnscontrolCloudnsWrRecordConfig
+  extends DnscontrolRecordConfig {}
 
-export interface DnscontrolPorkbunUrlfwdRecordConfig extends DnscontrolRecordConfig {}
+export interface DnscontrolPorkbunUrlfwdRecordConfig
+  extends DnscontrolRecordConfig {}
 
-export interface DnscontrolBunnyDnsRdrRecordConfig extends DnscontrolRecordConfig {}
+export interface DnscontrolBunnyDnsRdrRecordConfig
+  extends DnscontrolRecordConfig {}
 
-export interface DnscontrolCloudflareRecordConfig extends DnscontrolRecordConfig {
-  readonly cloudflareApiRedirect?: DnscontrolCloudflareSingleRedirectConfig | undefined;
+export interface DnscontrolCloudflareRecordConfig
+  extends DnscontrolRecordConfig {
+  readonly cloudflareApiRedirect?:
+    | DnscontrolCloudflareSingleRedirectConfig
+    | undefined;
 }

@@ -17,5 +17,5 @@ export declare abstract class DnscontrolRecord extends DnscontrolDomainModifier 
     readonly target: string;
     constructor(scope: Construct, id: string, props: DnscontrolRecordProps);
     static isDnscontrolRecord(x: unknown): x is DnscontrolRecord;
-    abstract getRecordConfig(): DnscontrolRecordConfig;
+    abstract renderRecordConfig(): DnscontrolRecordConfig;
 }

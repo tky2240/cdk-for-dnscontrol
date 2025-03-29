@@ -14,5 +14,5 @@ export declare class DnscontrolHttpsRecord extends DnscontrolRecord {
     readonly params: string;
     constructor(scope: Construct, id: string, props: DnscontrolHttpsRecordProps);
     static isDnscontrolHttpsRecord(x: unknown): x is DnscontrolHttpsRecord;
-    getRecordConfig(): DnscontrolHttpsRecordConfig;
+    renderRecordConfig(): DnscontrolHttpsRecordConfig;
 }

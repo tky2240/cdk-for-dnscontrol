@@ -16,5 +16,5 @@ export declare class DnscontrolSrvRecord extends DnscontrolRecord {
     readonly port: number;
     constructor(scope: Construct, id: string, props: DnscontrolSrvRecordProps);
     static isDnscontrolSrvRecord(x: unknown): x is DnscontrolSrvRecord;
-    getRecordConfig(): DnscontrolSrvRecordConfig;
+    renderRecordConfig(): DnscontrolSrvRecordConfig;
 }

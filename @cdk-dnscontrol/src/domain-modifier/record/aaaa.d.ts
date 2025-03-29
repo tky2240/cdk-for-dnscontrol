@@ -12,5 +12,5 @@ export declare class DnscontrolAAAARecord extends DnscontrolRecord {
     readonly ip: IPv6Address;
     constructor(scope: Construct, id: string, props: DnscontrolAAAARecordProps);
     static isDnscontrolARecord(x: unknown): x is DnscontrolAAAARecord;
-    getRecordConfig(): DnscontrolAAAARecordConfig;
+    renderRecordConfig(): DnscontrolAAAARecordConfig;
 }

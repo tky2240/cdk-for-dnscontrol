@@ -48,6 +48,6 @@ export declare class DnscontrolDnskeyRecord extends DnscontrolRecord {
     readonly publickey: string;
     constructor(scope: Construct, id: string, props: DnscontrolDnskeyRecordProps);
     static isDnscontrolDnskeyRecord(x: unknown): x is DnscontrolDnskeyRecord;
-    getRecordConfig(): DnscontrolDnskeyRecordConfig;
+    renderRecordConfig(): DnscontrolDnskeyRecordConfig;
 }
 export {};

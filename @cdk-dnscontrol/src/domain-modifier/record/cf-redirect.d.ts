@@ -12,5 +12,5 @@ export declare class DnscontrolCfRedirectRecord extends DnscontrolRecord {
     readonly destination: string;
     constructor(scope: Construct, id: string, props: DnscontrolCfRedirectRecordProps);
     static isDnscontrolCfRedirectRecord(x: unknown): x is DnscontrolCfRedirectRecord;
-    getRecordConfig(): DnscontrolCfRedirectRecordConfig;
+    renderRecordConfig(): DnscontrolCfRedirectRecordConfig;
 }

@@ -10,5 +10,5 @@ export interface DnscontrolBunnyDnsRdrRecordProps {
 export declare class DnscontrolBunnyDnsRdrRecord extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolBunnyDnsRdrRecordProps);
     static isDnscontrolBunnyDnsRdrRecord(x: unknown): x is DnscontrolBunnyDnsRdrRecord;
-    getRecordConfig(): DnscontrolBunnyDnsRdrRecordConfig;
+    renderRecordConfig(): DnscontrolBunnyDnsRdrRecordConfig;
 }

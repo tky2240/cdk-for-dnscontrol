@@ -1,112 +1,130 @@
 import { DnscontrolCloudflareSingleRedirectConfig } from "./dnscontrol-cloudflare-single-redirect-config";
-export type DnscontrolRecordConfigBase = {
-    type: string;
-    name: string;
-    subdomain?: string | undefined;
-    target: string;
-    ttl?: number | undefined;
-    meta: Record<string, string>;
-};
-export type DnscontrolARecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolAAAARecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolAliasRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolCaaRecordConfig = DnscontrolRecordConfigBase & {
-    caatag: string;
-    caaflag: number;
-};
-export type DnscontrolCnameRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolDhcidRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolDnameRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolDnskeyRecordConfig = DnscontrolRecordConfigBase & {
-    dnskeyflags: number;
-    dnskeyprotocol: number;
-    dnskeyalgorithm: number;
-    dnskeypublickey: string;
-};
-export type DnscontrolDsRecordConfig = DnscontrolRecordConfigBase & {
-    dskeytag: number;
-    dsalgorithm: number;
-    dsdigesttype: number;
-    dsdigest: string;
-};
-export type DnscontrolFrameRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolHttpsRecordConfig = DnscontrolRecordConfigBase & {
-    svcpriority: number;
-    svcparams: string;
-};
-export type DnscontrolLocRecordConfig = DnscontrolRecordConfigBase & {
-    locversion?: number | undefined;
-    locsize?: number | undefined;
-    lochorizpre?: number | undefined;
-    locvertpre?: number | undefined;
-    loclatitude?: number | undefined;
-    loclongitude?: number | undefined;
-    localtitude?: number | undefined;
-};
-export type DnscontrolMxRecordConfig = DnscontrolRecordConfigBase & {
-    mxpreference?: number | undefined;
-};
-export type DnscontrolNaptrRecordConfig = DnscontrolRecordConfigBase & {
-    naptrorder: number;
-    naptrpreference: number;
-    naptrflags: string;
-    naptrservice: string;
-    naptrregexp: string;
-};
-export type DnscontrolNsRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolPtrRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolSoaRecordConfig = DnscontrolRecordConfigBase & {
-    soambox: string;
-    soaserial?: number;
-    soarefresh: number;
-    soaretry: number;
-    soaexpire: number;
-    soaminttl: number;
-};
-export type DnscontrolSrvRecordConfig = DnscontrolRecordConfigBase & {
-    srvpriority: number;
-    srvweight: number;
-    srvport: number;
-};
-export type DnscontrolSshfpRecordConfig = DnscontrolRecordConfigBase & {
-    sshfpalgorithm: number;
-    sshfpfingerprint: number;
-};
-export type DnscontrolSvcbRecordConfig = DnscontrolRecordConfigBase & {
-    svcpriority: number;
-    svcparams: string;
-};
-export type DnscontrolTlsaRecordConfig = DnscontrolRecordConfigBase & {
-    tlsausage: number;
-    tlsselector: number;
-    tlsmatchingtype: number;
-};
-export type DnscontrolTxtRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolUrlRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolUrl301RecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolAkamaiCdnRecordConfig = DnscontrolRecordConfigBase;
-type R53AliasConfig = {
-    type: string;
-    evaluate_target_health: string;
-    zone_id?: string | undefined;
-};
-export type DnscontrolR53AliasRecordConfig = DnscontrolRecordConfigBase & {
-    r53_alias: R53AliasConfig;
-};
-type AzureAliasConfig = {
-    type: string;
-};
-export type DnscontrolAzureAliasRecordConfig = DnscontrolRecordConfigBase & {
-    azure_alias: AzureAliasConfig;
-};
-export type DnscontrolCfRedirectRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolCfTmpRedirectRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolCfWorkerRouteRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolCloudnsWrRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolPorkbunUrlfwdRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolBunnyDnsRdrRecordConfig = DnscontrolRecordConfigBase;
-export type DnscontrolCloudflareRecordConfig = DnscontrolRecordConfigBase & {
-    cloudflareapi_redirect?: DnscontrolCloudflareSingleRedirectConfig | undefined;
-};
-export type DnscontrolRecordConfig = DnscontrolARecordConfig | DnscontrolAAAARecordConfig | DnscontrolAliasRecordConfig | DnscontrolAzureAliasRecordConfig | DnscontrolCaaRecordConfig | DnscontrolCloudflareRecordConfig | DnscontrolCnameRecordConfig | DnscontrolDhcidRecordConfig | DnscontrolDnameRecordConfig | DnscontrolDnskeyRecordConfig | DnscontrolDsRecordConfig | DnscontrolFrameRecordConfig | DnscontrolHttpsRecordConfig | DnscontrolLocRecordConfig | DnscontrolMxRecordConfig | DnscontrolNaptrRecordConfig | DnscontrolNsRecordConfig | DnscontrolR53AliasRecordConfig | DnscontrolSoaRecordConfig | DnscontrolSrvRecordConfig | DnscontrolSshfpRecordConfig | DnscontrolSvcbRecordConfig | DnscontrolTlsaRecordConfig | DnscontrolTxtRecordConfig | DnscontrolUrlRecordConfig | DnscontrolUrl301RecordConfig | DnscontrolCloudnsWrRecordConfig | DnscontrolCfRedirectRecordConfig | DnscontrolCfTmpRedirectRecordConfig | DnscontrolPorkbunUrlfwdRecordConfig | DnscontrolBunnyDnsRdrRecordConfig;
+export interface DnscontrolRecordConfig {
+    readonly recordType: string;
+    readonly name: string;
+    readonly subdomain?: string | undefined;
+    readonly target: string;
+    readonly ttl?: number | undefined;
+    readonly meta: Record<string, string>;
+}
+export interface DnscontrolARecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolAAAARecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolAliasRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolCaaRecordConfig extends DnscontrolRecordConfig {
+    readonly caaTag: string;
+    readonly caaFlag: number;
+}
+export interface DnscontrolCnameRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolDhcidRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolDnameRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolDnskeyRecordConfig extends DnscontrolRecordConfig {
+    readonly dnskeyFlags: number;
+    readonly dnskeyProtocol: number;
+    readonly dnskeyAlgorithm: number;
+    readonly dnskeyPublicKey: string;
+}
+export interface DnscontrolDsRecordConfig extends DnscontrolRecordConfig {
+    readonly dsKeyTag: number;
+    readonly dsAlgorithm: number;
+    readonly dsDigestType: number;
+    readonly dsDigest: string;
+}
+export interface DnscontrolFrameRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolHttpsRecordConfig extends DnscontrolRecordConfig {
+    readonly svcPriority: number;
+    readonly svcParams: string;
+}
+export interface DnscontrolLocRecordConfig extends DnscontrolRecordConfig {
+    readonly locVersion?: number | undefined;
+    readonly locSize?: number | undefined;
+    readonly locHorizPre?: number | undefined;
+    readonly locVertPre?: number | undefined;
+    readonly locLatitude?: number | undefined;
+    readonly locLongitude?: number | undefined;
+    readonly locAltitude?: number | undefined;
+}
+export interface DnscontrolMxRecordConfig extends DnscontrolRecordConfig {
+    readonly mxPreference?: number | undefined;
+}
+export interface DnscontrolNaptrRecordConfig extends DnscontrolRecordConfig {
+    readonly naptrOrder: number;
+    readonly naptrPreference: number;
+    readonly naptrFlags: string;
+    readonly naptrService: string;
+    readonly naptrRegexp: string;
+}
+export interface DnscontrolNsRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolPtrRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolSoaRecordConfig extends DnscontrolRecordConfig {
+    readonly soaMbox: string;
+    readonly soaSerial?: number;
+    readonly soaRefresh: number;
+    readonly soaRetry: number;
+    readonly soaExpire: number;
+    readonly soaMinTtl: number;
+}
+export interface DnscontrolSrvRecordConfig extends DnscontrolRecordConfig {
+    readonly srvPriority: number;
+    readonly srvWeight: number;
+    readonly srvPort: number;
+}
+export interface DnscontrolSshfpRecordConfig extends DnscontrolRecordConfig {
+    readonly sshfpAlgorithm: number;
+    readonly sshfpFingerprint: number;
+}
+export interface DnscontrolSvcbRecordConfig extends DnscontrolRecordConfig {
+    readonly svcPriority: number;
+    readonly svcParams: string;
+}
+export interface DnscontrolTlsaRecordConfig extends DnscontrolRecordConfig {
+    readonly tlsaUsage: number;
+    readonly tlsaSelector: number;
+    readonly tlsaMatchingType: number;
+}
+export interface DnscontrolTxtRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolUrlRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolUrl301RecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolAkamaiCdnRecordConfig extends DnscontrolRecordConfig {
+}
+interface R53AliasConfig {
+    readonly type: string;
+    readonly evaluateTargetHealth: string;
+    readonly zoneId?: string | undefined;
+}
+export interface DnscontrolR53AliasRecordConfig extends DnscontrolRecordConfig {
+    readonly r53Alias: R53AliasConfig;
+}
+interface AzureAliasConfig {
+    readonly type: string;
+}
+export interface DnscontrolAzureAliasRecordConfig extends DnscontrolRecordConfig {
+    readonly azureAlias: AzureAliasConfig;
+}
+export interface DnscontrolCfRedirectRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolCfTmpRedirectRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolCfWorkerRouteRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolCloudnsWrRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolPorkbunUrlfwdRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolBunnyDnsRdrRecordConfig extends DnscontrolRecordConfig {
+}
+export interface DnscontrolCloudflareRecordConfig extends DnscontrolRecordConfig {
+    readonly cloudflareApiRedirect?: DnscontrolCloudflareSingleRedirectConfig | undefined;
+}
 export {};

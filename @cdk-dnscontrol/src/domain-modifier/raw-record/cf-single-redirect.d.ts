@@ -18,6 +18,6 @@ export declare class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRe
     readonly then: string;
     constructor(scope: Construct, id: string, props: DnscontrolCfSingleRedirectRecordProps);
     static isDnscontrolCfSingleRedirectRecord(x: unknown): x is DnscontrolCfSingleRedirectRawRecord;
-    getRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig;
+    renderRawRecordConfig(): DnscontrolCfSingleRedirectRawRecordConfig;
 }
 export {};

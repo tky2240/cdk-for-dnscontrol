@@ -10,5 +10,5 @@ export interface DnscontrolAkamaiCdnRecordProps {
 export declare class DnscontrolAkamaiCdnRecord extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolAkamaiCdnRecordProps);
     static isDnscontrolAkamaiCdnRecord(x: unknown): x is DnscontrolAkamaiCdnRecord;
-    getRecordConfig(): DnscontrolAkamaiCdnRecordConfig;
+    renderRecordConfig(): DnscontrolAkamaiCdnRecordConfig;
 }

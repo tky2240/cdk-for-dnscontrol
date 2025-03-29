@@ -16,5 +16,5 @@ export declare class DnscontrolTlsaRecord extends DnscontrolRecord {
     readonly matchingType: number;
     constructor(scope: Construct, id: string, props: DnscontrolTlsaRecordProps);
     static isDnscontrolTlsaRecord(x: unknown): x is DnscontrolTlsaRecord;
-    getRecordConfig(): DnscontrolTlsaRecordConfig;
+    renderRecordConfig(): DnscontrolTlsaRecordConfig;
 }
