@@ -15,3 +15,6 @@ jest.config.js
 eslint.config.mjs
 
 cdk.out
+
+# Include .jsii
+!.jsii
