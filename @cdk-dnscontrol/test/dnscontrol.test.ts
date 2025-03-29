@@ -1,4 +1,4 @@
-import { App } from "../lib/app";
+import { App } from "../src/app";
 import { TestStack } from "./stacks/test-stack";
 describe("DnscontrolStack", () => {
   test("Empty Stack", () => {

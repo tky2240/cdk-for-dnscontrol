@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// eslint-disable-next-line
+const elementTypeStrings = [
+    "Domain",
+    "Provider",
+    "Registrar",
+    "Record",
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG5zY29udHJvbC1lbGVtZW50LXR5cGVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZG5zY29udHJvbC1lbGVtZW50LXR5cGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsMkJBQTJCO0FBQzNCLE1BQU0sa0JBQWtCLEdBQUc7SUFDekIsUUFBUTtJQUNSLFVBQVU7SUFDVixXQUFXO0lBQ1gsUUFBUTtDQUNBLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBlc2xpbnQtZGlzYWJsZS1uZXh0LWxpbmVcbmNvbnN0IGVsZW1lbnRUeXBlU3RyaW5ncyA9IFtcbiAgXCJEb21haW5cIixcbiAgXCJQcm92aWRlclwiLFxuICBcIlJlZ2lzdHJhclwiLFxuICBcIlJlY29yZFwiLFxuXSBhcyBjb25zdDtcblxuZXhwb3J0IHR5cGUgRG5zY29udHJvbEVsZW1lbnRUeXBlID0gKHR5cGVvZiBlbGVtZW50VHlwZVN0cmluZ3MpW251bWJlcl07XG4iXX0=

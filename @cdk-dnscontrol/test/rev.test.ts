@@ -1,6 +1,6 @@
-import { createReverseDnsName } from "../lib/function/rev";
-import { asIPv4Cidr } from "../lib/types/ipv4";
-import { asIPv6Cidr } from "../lib/types/ipv6";
+import { createReverseDnsName } from "../src/function/rev";
+import { asIPv4Cidr } from "../src/types/ipv4";
+import { asIPv6Cidr } from "../src/types/ipv6";
 
 describe("RFC 2317 ipv4 reverse domain test", () => {
   test("ipv4 /32", () => {

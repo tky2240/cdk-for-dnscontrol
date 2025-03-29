@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DnscontrolIgnore = void 0;
+const JSII_RTTI_SYMBOL_1 = Symbol.for("jsii.rtti");
+const dnscontrol_domain_modifier_1 = require("../dnscontrol-domain-modifier");
+const DNS_CONTROL_IGNORE_SYMBOL = Symbol.for("DnscontrolIgnore");
+class DnscontrolIgnore extends dnscontrol_domain_modifier_1.DnscontrolDomainModifier {
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolIgnore", version: "0.0.5" };
+    labelPattern;
+    typePattern;
+    targetPattern;
+    constructor(scope, id, props) {
+        super(scope, id, {
+            modiferType: "IGNORE",
+        });
+        this.labelPattern = props.labelPattern;
+        this.typePattern = props.typePattern;
+        this.targetPattern = props.targetPattern;
+    }
+    static isDnscontrolIgnore(x) {
+        return x != null && typeof x === "object" && DNS_CONTROL_IGNORE_SYMBOL in x;
+    }
+    renderUnmanagedConfig() {
+        return {
+            labelPattern: this.labelPattern,
+            rTypePattern: this.typePattern,
+            targetPattern: this.targetPattern,
+        };
+    }
+}
+exports.DnscontrolIgnore = DnscontrolIgnore;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaWdub3JlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiaWdub3JlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFFQSw4RUFBeUU7QUFFekUsTUFBTSx5QkFBeUIsR0FBRyxNQUFNLENBQUMsR0FBRyxDQUFDLGtCQUFrQixDQUFDLENBQUM7QUFRakUsTUFBYSxnQkFBaUIsU0FBUSxxREFBd0I7O0lBQzVDLFlBQVksQ0FBUztJQUNyQixXQUFXLENBQXNCO0lBQ2pDLGFBQWEsQ0FBc0I7SUFDbkQsWUFBWSxLQUFnQixFQUFFLEVBQVUsRUFBRSxLQUE0QjtRQUNwRSxLQUFLLENBQUMsS0FBSyxFQUFFLEVBQUUsRUFBRTtZQUNmLFdBQVcsRUFBRSxRQUFRO1NBQ3RCLENBQUMsQ0FBQztRQUNILElBQUksQ0FBQyxZQUFZLEdBQUcsS0FBSyxDQUFDLFlBQVksQ0FBQztRQUN2QyxJQUFJLENBQUMsV0FBVyxHQUFHLEtBQUssQ0FBQyxXQUFXLENBQUM7UUFDckMsSUFBSSxDQUFDLGFBQWEsR0FBRyxLQUFLLENBQUMsYUFBYSxDQUFDO0lBQzNDLENBQUM7SUFDTSxNQUFNLENBQUMsa0JBQWtCLENBQUMsQ0FBVTtRQUN6QyxPQUFPLENBQUMsSUFBSSxJQUFJLElBQUksT0FBTyxDQUFDLEtBQUssUUFBUSxJQUFJLHlCQUF5QixJQUFJLENBQUMsQ0FBQztJQUM5RSxDQUFDO0lBQ00scUJBQXFCO1FBQzFCLE9BQU87WUFDTCxZQUFZLEVBQUUsSUFBSSxDQUFDLFlBQVk7WUFDL0IsWUFBWSxFQUFFLElBQUksQ0FBQyxXQUFXO1lBQzlCLGFBQWEsRUFBRSxJQUFJLENBQUMsYUFBYTtTQUNsQyxDQUFDO0lBQ0osQ0FBQzs7QUFyQkgsNENBc0JDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29uc3RydWN0IH0gZnJvbSBcImNvbnN0cnVjdHNcIjtcbmltcG9ydCB7IERuc2NvbnRyb2xVbm1hbmFnZWRDb25maWcgfSBmcm9tIFwiLi4vLi4vdHlwZXMvZG5zY29udHJvbC11bm1hbmFnZWQtY29uZmlnXCI7XG5pbXBvcnQgeyBEbnNjb250cm9sRG9tYWluTW9kaWZpZXIgfSBmcm9tIFwiLi4vZG5zY29udHJvbC1kb21haW4tbW9kaWZpZXJcIjtcblxuY29uc3QgRE5TX0NPTlRST0xfSUdOT1JFX1NZTUJPTCA9IFN5bWJvbC5mb3IoXCJEbnNjb250cm9sSWdub3JlXCIpO1xuXG5leHBvcnQgaW50ZXJmYWNlIERuc2NvbnRyb2xJZ25vcmVQcm9wcyB7XG4gIHJlYWRvbmx5IGxhYmVsUGF0dGVybjogc3RyaW5nO1xuICByZWFkb25seSB0eXBlUGF0dGVybj86IHN0cmluZztcbiAgcmVhZG9ubHkgdGFyZ2V0UGF0dGVybj86IHN0cmluZztcbn1cblxuZXhwb3J0IGNsYXNzIERuc2NvbnRyb2xJZ25vcmUgZXh0ZW5kcyBEbnNjb250cm9sRG9tYWluTW9kaWZpZXIge1xuICBwdWJsaWMgcmVhZG9ubHkgbGFiZWxQYXR0ZXJuOiBzdHJpbmc7XG4gIHB1YmxpYyByZWFkb25seSB0eXBlUGF0dGVybj86IHN0cmluZyB8IHVuZGVmaW5lZDtcbiAgcHVibGljIHJlYWRvbmx5IHRhcmdldFBhdHRlcm4/OiBzdHJpbmcgfCB1bmRlZmluZWQ7XG4gIGNvbnN0cnVjdG9yKHNjb3BlOiBDb25zdHJ1Y3QsIGlkOiBzdHJpbmcsIHByb3BzOiBEbnNjb250cm9sSWdub3JlUHJvcHMpIHtcbiAgICBzdXBlcihzY29wZSwgaWQsIHtcbiAgICAgIG1vZGlmZXJUeXBlOiBcIklHTk9SRVwiLFxuICAgIH0pO1xuICAgIHRoaXMubGFiZWxQYXR0ZXJuID0gcHJvcHMubGFiZWxQYXR0ZXJuO1xuICAgIHRoaXMudHlwZVBhdHRlcm4gPSBwcm9wcy50eXBlUGF0dGVybjtcbiAgICB0aGlzLnRhcmdldFBhdHRlcm4gPSBwcm9wcy50YXJnZXRQYXR0ZXJuO1xuICB9XG4gIHB1YmxpYyBzdGF0aWMgaXNEbnNjb250cm9sSWdub3JlKHg6IHVua25vd24pOiB4IGlzIERuc2NvbnRyb2xJZ25vcmUge1xuICAgIHJldHVybiB4ICE9IG51bGwgJiYgdHlwZW9mIHggPT09IFwib2JqZWN0XCIgJiYgRE5TX0NPTlRST0xfSUdOT1JFX1NZTUJPTCBpbiB4O1xuICB9XG4gIHB1YmxpYyByZW5kZXJVbm1hbmFnZWRDb25maWcoKTogRG5zY29udHJvbFVubWFuYWdlZENvbmZpZyB7XG4gICAgcmV0dXJuIHtcbiAgICAgIGxhYmVsUGF0dGVybjogdGhpcy5sYWJlbFBhdHRlcm4sXG4gICAgICByVHlwZVBhdHRlcm46IHRoaXMudHlwZVBhdHRlcm4sXG4gICAgICB0YXJnZXRQYXR0ZXJuOiB0aGlzLnRhcmdldFBhdHRlcm4sXG4gICAgfTtcbiAgfVxufVxuIl19
