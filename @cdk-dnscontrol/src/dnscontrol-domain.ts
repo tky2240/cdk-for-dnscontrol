@@ -105,10 +105,7 @@ export abstract class DnscontrolDomain extends Construct {
     domainConfig: DnscontrolDomainConfig,
   ): DnscontrolDomainConfig {
     if (DnscontrolDomainProvider.isDnscontrolDomainProvider(node)) {
-      domainConfig.dnsProviders = {
-        ...domainConfig.dnsProviders,
-        [node.domainProviderName]: node.nameserverCount,
-      };
+      domainConfig.dnsProviders[node.domainProviderName] = node.nameserverCount;
     }
     if (DnscontrolRecord.isDnscontrolRecord(node)) {
       const recordConfig = node.getRecordConfig();

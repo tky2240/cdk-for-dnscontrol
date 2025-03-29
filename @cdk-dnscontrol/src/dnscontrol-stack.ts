@@ -59,7 +59,6 @@ function getDnsConfig(
   }
   if (DnscontrolDomain.isDnscontrolDomain(node)) {
     const domainConfig = node.getDomainConfig();
-    domainConfig.meta = domainConfig.meta ?? {};
     dnsConfig.domains.push(domainConfig);
   }
   for (const child of node.node.children) {
