@@ -46,11 +46,11 @@ export class DnscontrolSoaRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      soambox: this.mbox,
-      soarefresh: this.refresh,
-      soaretry: this.retry,
-      soaexpire: this.expire,
-      soaminttl: this.minttl,
+      soaMbox: this.mbox,
+      soaRefresh: this.refresh,
+      soaRetry: this.retry,
+      soaExpire: this.expire,
+      soaMinTtl: this.minttl,
       meta: {},
     };
   }

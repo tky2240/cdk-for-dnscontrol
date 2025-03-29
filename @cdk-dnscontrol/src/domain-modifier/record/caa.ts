@@ -40,8 +40,8 @@ export class DnscontrolCaaRecord extends DnscontrolRecord {
       name: this.name,
       target: this.target,
       type: this.recordType,
-      caatag: this.caaTag,
-      caaflag: this.isCaaCritical ? 128 : 0,
+      caaTag: this.caaTag,
+      caaFlag: this.isCaaCritical ? 128 : 0,
       ttl: this.ttl?.toSeconds(),
       meta: {},
     };

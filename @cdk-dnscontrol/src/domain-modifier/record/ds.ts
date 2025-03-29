@@ -80,10 +80,10 @@ export class DnscontrolDsRecord extends DnscontrolRecord {
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
       meta: {},
-      dsalgorithm: dsAlgorithm[this.algorithm],
-      dsdigesttype: digestType[this.digestType],
-      dsdigest: this.digest,
-      dskeytag: this.keytag,
+      dsAlgorithm: dsAlgorithm[this.algorithm],
+      dsDigestType: digestType[this.digestType],
+      dsDigest: this.digest,
+      dsKeyTag: this.keytag,
     };
   }
 }

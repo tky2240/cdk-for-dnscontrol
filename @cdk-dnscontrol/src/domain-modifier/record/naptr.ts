@@ -48,11 +48,11 @@ export class DnscontrolNaptrRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      naptrorder: this.order,
-      naptrpreference: this.preference,
-      naptrflags: this.flags,
-      naptrservice: this.service,
-      naptrregexp: this.regexp,
+      naptrOrder: this.order,
+      naptrPreference: this.preference,
+      naptrFlags: this.flags,
+      naptrService: this.service,
+      naptrRegexp: this.regexp,
       meta: {},
     };
   }

@@ -55,8 +55,8 @@ export class DnscontrolSshfpRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      sshfpalgorithm: sshfpAlgorithm[this.algorithm],
-      sshfpfingerprint: sshfpFingerprintFormat[this.fingerprintFormat],
+      sshfpAlgorithm: sshfpAlgorithm[this.algorithm],
+      sshfpFingerprint: sshfpFingerprintFormat[this.fingerprintFormat],
       meta: {},
     };
   }

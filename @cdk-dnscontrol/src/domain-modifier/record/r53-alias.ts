@@ -74,10 +74,10 @@ export class DnscontrolR53AliasRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      r53_alias: {
+      r53Alias: {
         type: this.r53AliasType,
-        zone_id: this.zoneId,
-        evaluate_target_health: evaluateTargetHealth,
+        zoneId: this.zoneId,
+        evaluateTargetHealth: evaluateTargetHealth,
       },
       meta: {
         orig_custom_type: "R53_ALIAS",

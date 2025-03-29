@@ -49,7 +49,7 @@ export class DnscontrolAzureAliasRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      azure_alias: {
+      azureAlias: {
         type: this.azureAliasType,
       },
       meta: {

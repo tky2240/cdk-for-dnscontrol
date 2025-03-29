@@ -40,9 +40,9 @@ export class DnscontrolSrvRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      srvpriority: this.priority,
-      srvweight: this.weight,
-      srvport: this.port,
+      srvPriority: this.priority,
+      srvWeight: this.weight,
+      srvPort: this.port,
       meta: {},
     };
   }

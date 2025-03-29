@@ -40,9 +40,9 @@ export class DnscontrolTlsaRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      tlsausage: this.usage,
-      tlsselector: this.selector,
-      tlsmatchingtype: this.matchingType,
+      tlsaUsage: this.usage,
+      tlsaSelector: this.selector,
+      tlsaMatchingType: this.matchingType,
       meta: {},
     };
   }

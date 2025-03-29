@@ -84,12 +84,12 @@ export abstract class DnscontrolDomain extends Construct {
       registrar: this.registrarName,
       dnsProviders: {},
       records: [],
-      rawrecords: [],
-      auto_dnssec: autoDnssec,
-      unmanaged_disable_safety_check: this.isDisabledIgnoreSafetyCheck,
-      keepunknown: this.shouldKeepExistingRecord,
+      rawRecords: [],
+      autoDnssec: autoDnssec,
+      unmanagedDisableSafetyCheck: this.isDisabledIgnoreSafetyCheck,
+      keepUnknown: this.shouldKeepExistingRecord,
       unmanaged: [],
-      nameservers: this.parentNameservers?.map((nameserver) => ({
+      nameServers: this.parentNameservers?.map((nameserver) => ({
         name: nameserver,
       })),
       meta:
@@ -116,7 +116,7 @@ export abstract class DnscontrolDomain extends Construct {
     }
     if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
       const rawRecordConfig = node.getRawRecordConfig();
-      domainConfig.rawrecords.push(rawRecordConfig);
+      domainConfig.rawRecords.push(rawRecordConfig);
     }
     if (DnscontrolIgnore.isDnscontrolIgnore(node)) {
       const unmanagedConfig = node.getUnmanagedConfig();

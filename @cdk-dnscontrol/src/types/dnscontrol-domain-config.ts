@@ -9,11 +9,11 @@ export interface DnscontrolDomainConfig {
   readonly dnsProviders: Record<string, number>;
   readonly meta?: Record<string, string> | undefined;
   readonly records: DnscontrolRecordConfig[];
-  readonly nameservers?: DnscontrolNamesever[] | undefined;
-  readonly recordabsent?: DnscontrolRecordConfig[] | undefined;
-  readonly keepunknown?: boolean | undefined;
+  readonly nameServers?: DnscontrolNamesever[] | undefined;
+  readonly recordAbsent?: DnscontrolRecordConfig[] | undefined;
+  readonly keepUnknown?: boolean | undefined;
   readonly unmanaged: DnscontrolUnmanagedConfig[];
-  readonly unmanaged_disable_safety_check?: boolean | undefined;
-  readonly auto_dnssec?: string | undefined;
-  readonly rawrecords: DnscontrolRawRecordConfig[];
-};
+  readonly unmanagedDisableSafetyCheck?: boolean | undefined;
+  readonly autoDnssec?: string | undefined;
+  readonly rawRecords: DnscontrolRawRecordConfig[];
+}

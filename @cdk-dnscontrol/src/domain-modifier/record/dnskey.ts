@@ -86,10 +86,10 @@ export class DnscontrolDnskeyRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      dnskeyalgorithm: dnskeyAlgorithm[this.algorythm],
-      dnskeyflags: dnskeyFlag[this.flag],
-      dnskeyprotocol: dnskeyProtocol[this.protcol],
-      dnskeypublickey: this.publickey,
+      dnskeyAlgorithm: dnskeyAlgorithm[this.algorythm],
+      dnskeyFlags: dnskeyFlag[this.flag],
+      dnskeyProtocol: dnskeyProtocol[this.protcol],
+      dnskeyPublicKey: this.publickey,
       meta: {},
     };
   }

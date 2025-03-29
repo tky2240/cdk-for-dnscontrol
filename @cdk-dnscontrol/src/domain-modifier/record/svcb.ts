@@ -37,8 +37,8 @@ export class DnscontrolSvcbRecord extends DnscontrolRecord {
       target: this.target,
       type: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      svcpriority: this.priority,
-      svcparams: this.params,
+      svcPriority: this.priority,
+      svcParams: this.params,
       meta: {},
     };
   }
