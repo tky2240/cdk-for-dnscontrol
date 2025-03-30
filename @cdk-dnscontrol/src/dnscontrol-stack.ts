@@ -24,7 +24,8 @@ export abstract class DnscontrolStack extends Construct {
   }
   public synth(outdir: string) {
     const dnsConfig = renderDnsConfig(this);
-    const jsonContent = JSON.stringify(dnsConfig);
+    const renamedDnsConfig = renameKeys(dnsConfig);
+    const jsonContent = JSON.stringify(renamedDnsConfig);
     const filePath = path.join(outdir, this.stackMetadataPath);
     const dirPath = path.dirname(filePath);
     if (!fs.existsSync(dirPath)) {
@@ -39,7 +40,7 @@ function renderDnsConfig(
   node: IConstruct,
   dnsConfig: DnscontrolDnsConfig = {
     registrars: [],
-    dns_providers: [],
+    dnsProviders: [],
     domains: [],
   },
 ): DnscontrolDnsConfig {
@@ -51,7 +52,7 @@ function renderDnsConfig(
     });
   }
   if (DnscontrolProvider.isDnscontrolProvider(node)) {
-    dnsConfig.dns_providers.push({
+    dnsConfig.dnsProviders.push({
       name: node.providerName,
       type: node.providerType,
       meta: node.providerMetadata,
@@ -65,4 +66,69 @@ function renderDnsConfig(
     renderDnsConfig(child, dnsConfig);
   }
   return dnsConfig;
+}
+
+export function renameKeys(obj: object): object {
+  // if (key == "nameServers") {
+  //   return ["nameserver", value];
+  // }
+  // if (key == "recordAbsent") {
+  //   return ["recordsabsent", value];
+  // }
+  // if (key == "keepUnknown") {
+  //   return ["keepunknown", value];
+  // }
+
+  if (typeof obj !== "object" || obj == null) {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map((item) => renameKeys(item));
+  }
+
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => {
+      if (key == "dnsProviders") {
+        return ["dns_providers", renameKeys(value)];
+      }
+      if (key == "unmanagedDisableSafetyCheck") {
+        return ["unmanaged_disable_safety_check", renameKeys(value)];
+      }
+      if (key == "autoDnssec") {
+        return ["auto_dnssec", renameKeys(value)];
+      }
+      if (key == "dnsProviderNameserverCountMap") {
+        return ["dnsProviders", renameKeys(value)]
+      }
+      // if (key == "rawRecords") {
+      //   return ["rawrecords", value];
+      // }
+      if (key == "recordType") {
+        return ["type", renameKeys(value)];
+      }
+      if (key == "r53Alias") {
+        return ["r53_alias", renameKeys(value)];
+      }
+      if (key == "azureAlias") {
+        return ["azure_alias", renameKeys(value)];
+      }
+      if (key == "unkownTypeName") {
+        return ["unknown_type_name", renameKeys(value)];
+      }
+      if (key == "cloudflareApiRedirect") {
+        return ["cloudflareapi_redirect", renameKeys(value)];
+      }
+      if (key == "labelPattern") {
+        return ["label_pattern", renameKeys(value)];
+      }
+      if (key == "rTypePattern") {
+        return ["rType_pattern", renameKeys(value)];
+      }
+      if (key == "targetPattern") {
+        return ["target_pattern", renameKeys(value)];
+      }
+      return [key.toLowerCase(), renameKeys(value)];
+    })
+  );
 }
