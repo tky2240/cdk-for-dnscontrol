@@ -99,7 +99,7 @@ export function renameKeys(obj: object): object {
         return ["auto_dnssec", renameKeys(value)];
       }
       if (key == "dnsProviderNameserverCountMap") {
-        return ["dnsProviders", renameKeys(value)]
+        return ["dnsProviders", renameKeys(value)];
       }
       // if (key == "rawRecords") {
       //   return ["rawrecords", value];
@@ -129,6 +129,6 @@ export function renameKeys(obj: object): object {
         return ["target_pattern", renameKeys(value)];
       }
       return [key.toLowerCase(), renameKeys(value)];
-    })
+    }),
   );
 }
