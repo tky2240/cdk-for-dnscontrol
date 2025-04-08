@@ -10,6 +10,7 @@ export function R53_ALIAS(
   zoneId?: string,
   isEnabledEvaluateTargetHealth?: boolean,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolR53AliasRecord {
   return new DnscontrolR53AliasRecord(
     scope,
@@ -18,6 +19,7 @@ export function R53_ALIAS(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       r53AliasType: r53AliasType,
       zoneId: zoneId,
       isEnabledEvaluateTargetHealth: isEnabledEvaluateTargetHealth,

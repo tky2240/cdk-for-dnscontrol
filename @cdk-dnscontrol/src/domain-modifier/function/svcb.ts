@@ -9,6 +9,7 @@ export function SVCB(
   target: string,
   params: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolSvcbRecord {
   return new DnscontrolSvcbRecord(
     scope,
@@ -17,6 +18,7 @@ export function SVCB(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       priority: priority,
       params: params,
     },

@@ -7,10 +7,12 @@ export function URL301(
   label: string,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolUrl301Record {
   return new DnscontrolUrl301Record(scope, `Url301:${label}:${target}`, {
     label: label,
     target: target,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
   });
 }

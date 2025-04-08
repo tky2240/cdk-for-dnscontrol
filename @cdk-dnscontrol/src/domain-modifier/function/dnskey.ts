@@ -16,6 +16,7 @@ export function DNSKEY(
   algorythm: DnskeyAlgorithm,
   publickey: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolDnskeyRecord {
   return new DnscontrolDnskeyRecord(
     scope,
@@ -23,6 +24,7 @@ export function DNSKEY(
     {
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       flag: flag,
       protocol: protocol,
       algorythm: algorythm,

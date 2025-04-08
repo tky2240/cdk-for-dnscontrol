@@ -10,6 +10,7 @@ export function DS(
   digestType: DsDigestType,
   digest: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolDsRecord {
   return new DnscontrolDsRecord(
     scope,
@@ -17,6 +18,7 @@ export function DS(
     {
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       algorithm: algorithm,
       digestType: digestType,
       digest: digest,

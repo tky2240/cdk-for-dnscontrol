@@ -7,6 +7,7 @@ export function CF_TMP_REDIRECT(
   source: string,
   destination: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolCfTmpRedirectRecord {
   return new DnscontrolCfTmpRedirectRecord(
     scope,
@@ -15,6 +16,7 @@ export function CF_TMP_REDIRECT(
       source: source,
       destination: destination,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
     },
   );
 }

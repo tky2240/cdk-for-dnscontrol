@@ -12,6 +12,7 @@ export function SOA(
   expire: number,
   minttl: number,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolSoaRecord {
   return new DnscontrolSoaRecord(
     scope,
@@ -20,6 +21,7 @@ export function SOA(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       mbox: mbox,
       refresh: refresh,
       retry: retry,

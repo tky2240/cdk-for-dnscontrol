@@ -7,6 +7,7 @@ export function CF_WORKER_ROUTE(
   pattern: string,
   script: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolCfWorkerRouteRecord {
   return new DnscontrolCfWorkerRouteRecord(
     scope,
@@ -15,6 +16,7 @@ export function CF_WORKER_ROUTE(
       pattern: pattern,
       script: script,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
     },
   );
 }

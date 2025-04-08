@@ -10,6 +10,7 @@ export function SRV(
   port: number,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolSrvRecord {
   return new DnscontrolSrvRecord(
     scope,
@@ -18,6 +19,7 @@ export function SRV(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       priority: priority,
       weight: weight,
       port: port,

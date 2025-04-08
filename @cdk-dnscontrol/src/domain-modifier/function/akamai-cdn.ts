@@ -7,10 +7,12 @@ export function AKAMAI_CDN(
   label: string,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolAkamaiCdnRecord {
   return new DnscontrolAkamaiCdnRecord(scope, `AkamaiCdn:${label}:${target}`, {
     target: target,
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
   });
 }

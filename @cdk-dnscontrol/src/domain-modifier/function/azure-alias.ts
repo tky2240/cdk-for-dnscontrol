@@ -11,6 +11,7 @@ export function AZURE_ALIAS(
   azureAliasType: AzureAliasType,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolAzureAliasRecord {
   return new DnscontrolAzureAliasRecord(
     scope,
@@ -19,6 +20,7 @@ export function AZURE_ALIAS(
       target: target,
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       azureAliasType: azureAliasType,
     },
   );

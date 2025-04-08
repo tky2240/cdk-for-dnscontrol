@@ -8,10 +8,12 @@ export function AAAA(
   label: string,
   ip: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolAAAARecord {
   return new DnscontrolAAAARecord(scope, `AAAA:${label}:${ip}`, {
     ip: asIPv6Address(ip),
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
   });
 }

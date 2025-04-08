@@ -7,6 +7,7 @@ export function CF_REDIRECT(
   source: string,
   destination: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolCfRedirectRecord {
   return new DnscontrolCfRedirectRecord(
     scope,
@@ -15,6 +16,7 @@ export function CF_REDIRECT(
       source: source,
       destination: destination,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
     },
   );
 }
