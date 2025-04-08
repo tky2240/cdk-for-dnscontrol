@@ -49,7 +49,7 @@ export interface DnscontrolDsRecordProps {
   readonly digestType: DsDigestType;
   readonly digest: string;
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolDsRecord extends DnscontrolRecord {

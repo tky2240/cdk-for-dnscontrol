@@ -11,7 +11,7 @@ export interface DnscontrolCfTmpRedirectRecordProps {
   readonly source: string;
   readonly destination: string;
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {

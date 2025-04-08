@@ -12,7 +12,7 @@ export interface DnscontrolSrvRecordProps {
   readonly weight: number;
   readonly port: number;
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolSrvRecord extends DnscontrolRecord {

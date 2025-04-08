@@ -17,7 +17,7 @@ export interface DnscontrolAzureAliasRecordProps {
   readonly target: string;
   readonly azureAliasType: AzureAliasType;
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolAzureAliasRecord extends DnscontrolRecord {
