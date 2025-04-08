@@ -30,6 +30,7 @@ export interface DnscontrolR53AliasRecordProps {
   readonly zoneId?: string | undefined;
   readonly isEnabledEvaluateTargetHealth?: boolean | undefined;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolR53AliasRecord extends DnscontrolRecord {
@@ -46,6 +47,7 @@ export class DnscontrolR53AliasRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.r53AliasType = props.r53AliasType;
     this.zoneId = props.zoneId;
@@ -80,6 +82,7 @@ export class DnscontrolR53AliasRecord extends DnscontrolRecord {
         evaluateTargetHealth: evaluateTargetHealth,
       },
       meta: {
+        ...this.meta,
         orig_custom_type: "R53_ALIAS",
       },
     };

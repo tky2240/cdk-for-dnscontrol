@@ -11,6 +11,7 @@ export interface DnscontrolCfWorkerRouteRecordProps {
   readonly pattern: string;
   readonly script: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
@@ -26,6 +27,7 @@ export class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
       label: "@",
       target: `${props.pattern},${props.script}`,
       ttl: props.ttl,
+      meta: props.meta,
     });
     if (props.pattern.includes(",")) {
       throw new Error("pattern must include no commma");
@@ -52,6 +54,7 @@ export class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
       meta: {
+        ...this.meta,
         orig_custom_type: "CF_WORKER_ROUTE",
       },
     };

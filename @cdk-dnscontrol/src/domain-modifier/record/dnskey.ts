@@ -48,6 +48,7 @@ export interface DnscontrolDnskeyRecordProps {
   readonly algorythm: DnskeyAlgorithm;
   readonly publickey: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolDnskeyRecord extends DnscontrolRecord {
@@ -65,6 +66,7 @@ export class DnscontrolDnskeyRecord extends DnscontrolRecord {
       label: props.label,
       target: "",
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.algorythm = props.algorythm;
     this.flag = props.flag;
@@ -90,7 +92,7 @@ export class DnscontrolDnskeyRecord extends DnscontrolRecord {
       dnskeyFlags: dnskeyFlag[this.flag],
       dnskeyProtocol: dnskeyProtocol[this.protcol],
       dnskeyPublicKey: this.publickey,
-      meta: {},
+      meta: this.meta,
     };
   }
 }

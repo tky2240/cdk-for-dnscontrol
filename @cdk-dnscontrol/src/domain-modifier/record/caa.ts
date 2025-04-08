@@ -15,6 +15,7 @@ export interface DnscontrolCaaRecordProps {
   readonly caaTag: CaaTag;
   readonly isCaaCritical: boolean;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolCaaRecord extends DnscontrolRecord {
@@ -26,6 +27,7 @@ export class DnscontrolCaaRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.caaTag = props.caaTag;
     this.isCaaCritical = props.isCaaCritical;
@@ -43,7 +45,7 @@ export class DnscontrolCaaRecord extends DnscontrolRecord {
       caaTag: this.caaTag,
       caaFlag: this.isCaaCritical ? 128 : 0,
       ttl: this.ttl?.toSeconds(),
-      meta: {},
+      meta: this.meta,
     };
   }
 }

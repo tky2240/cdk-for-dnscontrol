@@ -14,6 +14,7 @@ export interface DnscontrolNaptrRecordProps {
   readonly service: string;
   readonly regexp: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolNaptrRecord extends DnscontrolRecord {
@@ -28,6 +29,7 @@ export class DnscontrolNaptrRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.order = props.order;
     this.preference = props.preference;
@@ -53,7 +55,7 @@ export class DnscontrolNaptrRecord extends DnscontrolRecord {
       naptrFlags: this.flags,
       naptrService: this.service,
       naptrRegexp: this.regexp,
-      meta: {},
+      meta: this.meta,
     };
   }
 }

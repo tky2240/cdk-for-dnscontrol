@@ -27,6 +27,7 @@ export interface DnscontrolSshfpRecordProps {
   readonly algorithm: SshfpAlgorithm;
   readonly fingerprintFormat: SshfpFingerprintFormat;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolSshfpRecord extends DnscontrolRecord {
@@ -38,6 +39,7 @@ export class DnscontrolSshfpRecord extends DnscontrolRecord {
       label: props.label,
       target: props.value,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.algorithm = props.algorithm;
     this.fingerprintFormat = props.fingerprintFormat;
@@ -57,7 +59,7 @@ export class DnscontrolSshfpRecord extends DnscontrolRecord {
       ttl: this.ttl?.toSeconds(),
       sshfpAlgorithm: sshfpAlgorithm[this.algorithm],
       sshfpFingerprint: sshfpFingerprintFormat[this.fingerprintFormat],
-      meta: {},
+      meta: this.meta,
     };
   }
 }
