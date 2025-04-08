@@ -11,6 +11,7 @@ export interface DnscontrolHttpsRecordProps {
   readonly priority: number;
   readonly params: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolHttpsRecord extends DnscontrolRecord {
@@ -22,6 +23,7 @@ export class DnscontrolHttpsRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.priority = props.priority;
     this.params = props.params;
@@ -41,7 +43,7 @@ export class DnscontrolHttpsRecord extends DnscontrolRecord {
       ttl: this.ttl?.toSeconds(),
       svcPriority: this.priority,
       svcParams: this.params,
-      meta: {},
+      meta: this.meta,
     };
   }
 }

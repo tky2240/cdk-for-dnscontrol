@@ -49,6 +49,7 @@ export interface DnscontrolDsRecordProps {
   readonly digestType: DsDigestType;
   readonly digest: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolDsRecord extends DnscontrolRecord {
@@ -62,6 +63,7 @@ export class DnscontrolDsRecord extends DnscontrolRecord {
       label: props.label,
       target: "",
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.keytag = props.keytag;
     this.algorithm = props.algorithm;
@@ -79,7 +81,7 @@ export class DnscontrolDsRecord extends DnscontrolRecord {
       target: this.target,
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      meta: {},
+      meta: this.meta,
       dsAlgorithm: dsAlgorithm[this.algorithm],
       dsDigestType: digestType[this.digestType],
       dsDigest: this.digest,

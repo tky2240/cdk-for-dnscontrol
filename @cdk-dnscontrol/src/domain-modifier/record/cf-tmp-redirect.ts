@@ -11,6 +11,7 @@ export interface DnscontrolCfTmpRedirectRecordProps {
   readonly source: string;
   readonly destination: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
@@ -26,6 +27,7 @@ export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
       label: "@",
       target: `${props.source},${props.destination}`,
       ttl: props.ttl,
+      meta: props.meta,
     });
     if (props.source.includes(",")) {
       throw new Error("source must include no commma");
@@ -52,6 +54,7 @@ export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
       meta: {
+        ...this.meta,
         orig_custom_type: "CF_TEMP_REDIRECT",
       },
     };

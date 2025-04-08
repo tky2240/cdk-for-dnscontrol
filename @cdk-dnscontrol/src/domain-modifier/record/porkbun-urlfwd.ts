@@ -11,6 +11,7 @@ export interface DnscontrolPorkbunUrlfwdRecordProps {
   readonly label: string;
   readonly target: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolPorkbunUrlfwdRecord extends DnscontrolRecord {
@@ -24,6 +25,7 @@ export class DnscontrolPorkbunUrlfwdRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
   }
   public static isDnscontrolPorkbunUrlfwdRecord(
@@ -41,7 +43,7 @@ export class DnscontrolPorkbunUrlfwdRecord extends DnscontrolRecord {
       target: this.target,
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      meta: {},
+      meta: this.meta,
     };
   }
 }

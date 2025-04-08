@@ -9,6 +9,7 @@ export interface DnscontrolAliasRecordProps {
   readonly label: string;
   readonly target: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolAliasRecord extends DnscontrolRecord {
@@ -18,6 +19,7 @@ export class DnscontrolAliasRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
   }
   public static isDnscontrolARecord(x: unknown): x is DnscontrolAliasRecord {

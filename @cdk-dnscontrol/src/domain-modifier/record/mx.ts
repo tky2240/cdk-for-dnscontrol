@@ -11,6 +11,7 @@ export interface DnscontrolMxRecordProps {
   readonly mxPreference: MxPreference;
   readonly target: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolMxRecord extends DnscontrolRecord {
@@ -21,6 +22,7 @@ export class DnscontrolMxRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.mxPreference = props.mxPreference;
   }
@@ -36,7 +38,7 @@ export class DnscontrolMxRecord extends DnscontrolRecord {
       recordType: this.recordType,
       mxPreference: this.mxPreference,
       ttl: this.ttl?.toSeconds(),
-      meta: {},
+      meta: this.meta,
     };
   }
 }

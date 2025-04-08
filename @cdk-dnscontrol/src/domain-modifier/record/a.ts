@@ -10,6 +10,7 @@ export interface DnscontrolARecordProps {
   readonly label: string;
   readonly ip: IPv4Address;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolARecord extends DnscontrolRecord {
@@ -20,6 +21,7 @@ export class DnscontrolARecord extends DnscontrolRecord {
       label: props.label,
       target: props.ip,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.ip = props.ip;
   }
@@ -34,7 +36,7 @@ export class DnscontrolARecord extends DnscontrolRecord {
       target: this.target,
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      meta: {},
+      meta: this.meta,
     };
   }
 }

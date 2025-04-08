@@ -9,6 +9,7 @@ export interface DnscontrolPtrRecordProps {
   readonly label: string;
   readonly target: string;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolPtrRecord extends DnscontrolRecord {
@@ -18,6 +19,7 @@ export class DnscontrolPtrRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
   }
   public static isDnscontrolPtrRecord(x: unknown): x is DnscontrolPtrRecord {
@@ -31,7 +33,7 @@ export class DnscontrolPtrRecord extends DnscontrolRecord {
       target: this.target,
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      meta: {},
+      meta: this.meta,
     };
   }
 }

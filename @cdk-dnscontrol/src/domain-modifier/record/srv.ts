@@ -12,6 +12,7 @@ export interface DnscontrolSrvRecordProps {
   readonly weight: number;
   readonly port: number;
   readonly ttl?: Duration | undefined;
+  readonly meta?: Record<string, string>;
 }
 
 export class DnscontrolSrvRecord extends DnscontrolRecord {
@@ -24,6 +25,7 @@ export class DnscontrolSrvRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      meta: props.meta,
     });
     this.priority = props.priority;
     this.weight = props.weight;
@@ -43,7 +45,7 @@ export class DnscontrolSrvRecord extends DnscontrolRecord {
       srvPriority: this.priority,
       srvWeight: this.weight,
       srvPort: this.port,
-      meta: {},
+      meta: this.meta,
     };
   }
 }
