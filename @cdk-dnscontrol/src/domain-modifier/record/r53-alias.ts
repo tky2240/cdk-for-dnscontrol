@@ -30,7 +30,7 @@ export interface DnscontrolR53AliasRecordProps {
   readonly zoneId?: string | undefined;
   readonly isEnabledEvaluateTargetHealth?: boolean | undefined;
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolR53AliasRecord extends DnscontrolRecord {

@@ -14,7 +14,7 @@ export interface DnscontrolSoaRecordProps {
   readonly expire: number;
   readonly minttl: number;
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolSoaRecord extends DnscontrolRecord {

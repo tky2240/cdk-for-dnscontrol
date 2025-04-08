@@ -9,7 +9,7 @@ export interface DnscontrolTxtRecordProps {
   readonly label: string;
   readonly txtStrings: string[];
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolTxtRecord extends DnscontrolRecord {

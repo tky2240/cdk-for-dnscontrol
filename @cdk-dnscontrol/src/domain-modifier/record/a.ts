@@ -10,7 +10,7 @@ export interface DnscontrolARecordProps {
   readonly label: string;
   readonly ip: IPv4Address;
   readonly ttl?: Duration | undefined;
-  readonly meta?: Record<string, string>;
+  readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolARecord extends DnscontrolRecord {
