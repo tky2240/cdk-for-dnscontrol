@@ -21,7 +21,7 @@ export abstract class DnscontrolRecord extends DnscontrolDomainModifier {
   public readonly ttl?: Duration | undefined;
   public readonly target: string;
   constructor(scope: Construct, id: string, props: DnscontrolRecordProps) {
-    super(scope, id, { 
+    super(scope, id, {
       modiferType: props.recordType,
       meta: props.meta,
     });
