@@ -7,6 +7,7 @@ export function BUNNY_DNS_RDR(
   label: string,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolBunnyDnsRdrRecord {
   return new DnscontrolBunnyDnsRdrRecord(
     scope,
@@ -15,6 +16,7 @@ export function BUNNY_DNS_RDR(
       target: target,
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
     },
   );
 }

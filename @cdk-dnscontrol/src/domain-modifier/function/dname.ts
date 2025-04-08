@@ -7,10 +7,12 @@ export function DNAME(
   label: string,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolDnameRecord {
   return new DnscontrolDnameRecord(scope, `Dname:${label}:${target}`, {
     target: target,
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
   });
 }

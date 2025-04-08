@@ -7,10 +7,12 @@ export function TXT(
   label: string,
   target: string | readonly string[],
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolTxtRecord {
   return new DnscontrolTxtRecord(scope, `Txt:${label}:${target}`, {
     label: label,
     txtStrings: Array.isArray(target) ? target : [target],
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
   });
 }

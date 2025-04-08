@@ -9,11 +9,13 @@ export function MX(
   mxPriority: number,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolMxRecord {
   return new DnscontrolMxRecord(scope, `Mx:${label}:${mxPriority}:${target}`, {
     label: label,
     target: target,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
     mxPreference: asMxPreference(mxPriority),
   });
 }

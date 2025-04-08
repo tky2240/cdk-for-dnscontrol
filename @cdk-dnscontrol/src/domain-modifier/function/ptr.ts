@@ -7,10 +7,12 @@ export function PTR(
   label: string,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolPtrRecord {
   return new DnscontrolPtrRecord(scope, `Ptr:${label}:${target}`, {
     label: label,
     target: target,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
   });
 }

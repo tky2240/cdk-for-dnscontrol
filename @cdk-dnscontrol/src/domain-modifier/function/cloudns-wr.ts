@@ -7,10 +7,12 @@ export function CLOUDNS_WR(
   label: string,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolCloudnsWrRecord {
   return new DnscontrolCloudnsWrRecord(scope, `CloudnsWr:${label}:${target}`, {
     target: target,
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
   });
 }

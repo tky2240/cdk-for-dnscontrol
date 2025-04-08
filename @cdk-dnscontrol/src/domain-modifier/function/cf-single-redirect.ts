@@ -12,6 +12,7 @@ export function CF_SINGLE_REDIRECT(
   when: string,
   then: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolCfSingleRedirectRawRecord {
   return new DnscontrolCfSingleRedirectRawRecord(
     scope,
@@ -22,6 +23,7 @@ export function CF_SINGLE_REDIRECT(
       when: when,
       then: then,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
     },
   );
 }

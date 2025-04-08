@@ -13,6 +13,7 @@ export function SSHFP(
   fingerprintFormat: SshfpFingerprintFormat,
   value: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolSshfpRecord {
   return new DnscontrolSshfpRecord(
     scope,
@@ -21,6 +22,7 @@ export function SSHFP(
       label: label,
       value: value,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       algorithm: algorithm,
       fingerprintFormat: fingerprintFormat,
     },

@@ -9,11 +9,13 @@ export function CAA(
   target: string,
   isCaaCritical: boolean,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolCaaRecord {
   return new DnscontrolCaaRecord(scope, `Caa:${label}:${target}`, {
     target: target,
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    meta: meta,
     caaTag: caaTag,
     isCaaCritical: isCaaCritical,
   });

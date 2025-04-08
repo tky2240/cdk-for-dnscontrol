@@ -10,6 +10,7 @@ export function TLSA(
   matchingType: number,
   target: string,
   ttl?: number | string,
+  meta?: Record<string, string>,
 ): DnscontrolTlsaRecord {
   return new DnscontrolTlsaRecord(
     scope,
@@ -18,6 +19,7 @@ export function TLSA(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      meta: meta,
       usage: usage,
       selector: selector,
       matchingType: matchingType,
