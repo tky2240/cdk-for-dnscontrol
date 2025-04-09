@@ -17,6 +17,7 @@ export interface DnscontrolCfSingleRedirectRecordProps {
   readonly when: string;
   readonly then: string;
   readonly ttl?: Duration | undefined;
+  readonly metas?: Record<string, string> | undefined;
 }
 
 export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
@@ -32,6 +33,7 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
     super(scope, id, {
       rawRecordType: "CLOUDFLAREAPI_SINGLE_REDIRECT",
       ttl: props.ttl,
+      metas: props.metas,
     });
     this.name = props.name;
     this.code = props.code;
@@ -52,7 +54,10 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
       recordType: this.rawRecordType,
       ttl: this.ttl?.toSeconds(),
       args: [this.name, this.code, this.when, this.then],
-      metas: [{ orig_custom_type: "CLOUDFLAREAPI_SINGLE_REDIRECT" }],
+      metas: {
+        ...this.metas,
+        orig_custom_type: "CLOUDFLAREAPI_SINGLE_REDIRECT",
+      },
     };
   }
 }

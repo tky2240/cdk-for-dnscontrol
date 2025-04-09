@@ -7,7 +7,7 @@ export function CAA(
   label: string,
   caaTag: CaaTag,
   target: string,
-  isCaaCritical: boolean,
+  isCaaCritical: boolean | number,
   ttl?: number | string,
   meta?: Record<string, string>,
 ): DnscontrolCaaRecord {
@@ -17,6 +17,20 @@ export function CAA(
     ttl: ttl != null ? new Duration(ttl) : undefined,
     meta: meta,
     caaTag: caaTag,
-    isCaaCritical: isCaaCritical,
+    isCaaCritical: (() => {
+      if (typeof isCaaCritical === "boolean") {
+        return isCaaCritical;
+      }
+      if (typeof isCaaCritical === "number") {
+        if (isCaaCritical === 0) {
+          return false;
+        }
+        if (isCaaCritical === 128) {
+          return true;
+        }
+        throw new Error("isCaaCritical must be 0 or 128");
+      }
+      throw new Error("isCaaCritical must be boolean or number");
+    })(),
   });
 }

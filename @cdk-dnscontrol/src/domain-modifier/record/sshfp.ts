@@ -13,6 +13,21 @@ export const sshfpAlgorithm = {
 } as const;
 
 export type SshfpAlgorithm = keyof typeof sshfpAlgorithm;
+function isSshfpAlgorithm(x: unknown): x is SshfpAlgorithm {
+  return typeof x === "string" && Object.keys(sshfpAlgorithm).includes(x);
+}
+export const getSshfpAlgorithmStringFromValue = (
+  value: number,
+): SshfpAlgorithm => {
+  const algorithm = Object.entries(sshfpAlgorithm).find((sshfpAlgorithm) => {
+    return sshfpAlgorithm[1] === value;
+  });
+  const sshfpAlgorithmString = algorithm?.[0];
+  if (isSshfpAlgorithm(sshfpAlgorithmString)) {
+    return sshfpAlgorithmString;
+  }
+  throw new Error(`Invalid SSHFP algorithm value: ${value}`);
+};
 
 export const sshfpFingerprintFormat = {
   "SHA-1": 1,
@@ -20,6 +35,25 @@ export const sshfpFingerprintFormat = {
 } as const;
 
 export type SshfpFingerprintFormat = keyof typeof sshfpFingerprintFormat;
+function isSshfpFingerprintFormat(x: unknown): x is SshfpFingerprintFormat {
+  return (
+    typeof x === "string" && Object.keys(sshfpFingerprintFormat).includes(x)
+  );
+}
+export const getSshfpFingerprintFormatStringFromValue = (
+  value: number,
+): SshfpFingerprintFormat => {
+  const fingerprintFormat = Object.entries(sshfpFingerprintFormat).find(
+    (sshfpFingerprintFormat) => {
+      return sshfpFingerprintFormat[1] === value;
+    },
+  );
+  const sshfpFingerprintFormatString = fingerprintFormat?.[0];
+  if (isSshfpFingerprintFormat(sshfpFingerprintFormatString)) {
+    return sshfpFingerprintFormatString;
+  }
+  throw new Error(`Invalid SSHFP fingerprint format value: ${value}`);
+};
 
 export interface DnscontrolSshfpRecordProps {
   readonly label: string;

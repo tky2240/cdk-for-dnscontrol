@@ -10,12 +10,39 @@ const dnskeyFlag = {
   KSK: 257,
 } as const;
 export type DnskeyFlag = keyof typeof dnskeyFlag;
+function isDnskeyFlag(x: unknown): x is DnskeyFlag {
+  return typeof x === "string" && Object.keys(dnskeyFlag).includes(x);
+}
+export const getDnsKeyFlagStringFromValue = (value: number): DnskeyFlag => {
+  const keyFlag = Object.entries(dnskeyFlag).find((keyFlag) => {
+    return keyFlag[1] === value;
+  });
+  const dnskeyFlagString = keyFlag?.[0];
+  if (isDnskeyFlag(dnskeyFlagString)) {
+    return dnskeyFlagString;
+  }
+  throw new Error(`Invalid DNSKEY flag value: ${value}`);
+};
 
 const dnskeyProtocol = {
   DNSSEC: 3,
 } as const;
-
 export type DnskeyProtocol = keyof typeof dnskeyProtocol;
+function isDnskeyProtocol(x: unknown): x is DnskeyProtocol {
+  return typeof x === "string" && Object.keys(dnskeyProtocol).includes(x);
+}
+export const getDnsKeyProtocolStringFromValue = (
+  value: number,
+): DnskeyProtocol => {
+  const keyProtocol = Object.entries(dnskeyProtocol).find((keyProtocol) => {
+    return keyProtocol[1] === value;
+  });
+  const dnskeyProtocolString = keyProtocol?.[0];
+  if (isDnskeyProtocol(dnskeyProtocolString)) {
+    return dnskeyProtocolString;
+  }
+  throw new Error(`Invalid DNSKEY protocol value: ${value}`);
+};
 
 //ref: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml#prime-lengths
 const dnskeyAlgorithm = {
@@ -40,6 +67,21 @@ const dnskeyAlgorithm = {
   PRIVATEOID: 254,
 } as const;
 export type DnskeyAlgorithm = keyof typeof dnskeyAlgorithm;
+function isDnskeyAlgorithm(x: unknown): x is DnskeyAlgorithm {
+  return typeof x === "string" && Object.keys(dnskeyAlgorithm).includes(x);
+}
+export const getDnsKeyAlgorithmStringFromValue = (
+  value: number,
+): DnskeyAlgorithm => {
+  const keyAlgorithm = Object.entries(dnskeyAlgorithm).find((keyAlgorithm) => {
+    return keyAlgorithm[1] === value;
+  });
+  const dnskeyAlgorithmString = keyAlgorithm?.[0];
+  if (isDnskeyAlgorithm(dnskeyAlgorithmString)) {
+    return dnskeyAlgorithmString;
+  }
+  throw new Error(`Invalid DNSKEY algorithm value: ${value}`);
+};
 
 export interface DnscontrolDnskeyRecordProps {
   readonly label: string;
