@@ -1,13 +1,19 @@
 import { Construct } from "constructs";
 import { Duration } from "../../types/duration";
-import { DnscontrolDsRecord, DsAlgorithm, DsDigestType } from "../record/ds";
+import {
+  DnscontrolDsRecord,
+  DsAlgorithm,
+  DsDigestType,
+  getDsAlgorithmStringFromValue,
+  getDsDigestTypeStringFromValue,
+} from "../record/ds";
 
 export function DS(
   scope: Construct,
   label: string,
   keytag: number,
-  algorithm: DsAlgorithm,
-  digestType: DsDigestType,
+  algorithm: DsAlgorithm | number,
+  digestType: DsDigestType | number,
   digest: string,
   ttl?: number | string,
   meta?: Record<string, string>,
@@ -19,8 +25,18 @@ export function DS(
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
       meta: meta,
-      algorithm: algorithm,
-      digestType: digestType,
+      algorithm: (() => {
+        if (typeof algorithm === "number") {
+          return getDsAlgorithmStringFromValue(algorithm);
+        }
+        return algorithm;
+      })(),
+      digestType: (() => {
+        if (typeof digestType === "number") {
+          return getDsDigestTypeStringFromValue(digestType);
+        }
+        return digestType;
+      })(),
       digest: digest,
       keytag: keytag,
     },

@@ -29,9 +29,22 @@ const dsAlgorithm = {
 } as const;
 
 export type DsAlgorithm = keyof typeof dsAlgorithm;
+function isDsAlgorithm(x: unknown): x is DsAlgorithm {
+  return typeof x === "string" && Object.keys(dsAlgorithm).includes(x);
+}
+export const getDsAlgorithmStringFromValue = (value: number): DsAlgorithm => {
+  const algorithm = Object.entries(dsAlgorithm).find((dsAlgorithm) => {
+    return dsAlgorithm[1] === value;
+  });
+  const dsAlgorithmString = algorithm?.[0];
+  if (isDsAlgorithm(dsAlgorithmString)) {
+    return dsAlgorithmString;
+  }
+  throw new Error(`Invalid DS algorithm value: ${value}`);
+};
 
 //ref: https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml
-const digestType = {
+const dsDigestType = {
   SHA1: 1,
   SHA256: 2,
   GOST_R_34_11_94: 3,
@@ -40,7 +53,20 @@ const digestType = {
   SM3: 6,
 } as const;
 
-export type DsDigestType = keyof typeof digestType;
+export type DsDigestType = keyof typeof dsDigestType;
+function isDsDigestType(x: unknown): x is DsDigestType {
+  return typeof x === "string" && Object.keys(dsDigestType).includes(x);
+}
+export const getDsDigestTypeStringFromValue = (value: number): DsDigestType => {
+  const digestType = Object.entries(dsDigestType).find((dsDigestType) => {
+    return dsDigestType[1] === value;
+  });
+  const dsDigestTypeString = digestType?.[0];
+  if (isDsDigestType(dsDigestTypeString)) {
+    return dsDigestTypeString;
+  }
+  throw new Error(`Invalid DS digest type value: ${value}`);
+};
 
 export interface DnscontrolDsRecordProps {
   readonly label: string;
@@ -83,7 +109,7 @@ export class DnscontrolDsRecord extends DnscontrolRecord {
       ttl: this.ttl?.toSeconds(),
       meta: this.meta,
       dsAlgorithm: dsAlgorithm[this.algorithm],
-      dsDigestType: digestType[this.digestType],
+      dsDigestType: dsDigestType[this.digestType],
       dsDigest: this.digest,
       dsKeyTag: this.keytag,
     };

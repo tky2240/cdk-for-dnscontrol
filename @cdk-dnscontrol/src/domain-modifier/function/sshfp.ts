@@ -4,13 +4,15 @@ import {
   DnscontrolSshfpRecord,
   SshfpAlgorithm,
   SshfpFingerprintFormat,
+  getSshfpAlgorithmStringFromValue,
+  getSshfpFingerprintFormatStringFromValue,
 } from "../record/sshfp";
 
 export function SSHFP(
   scope: Construct,
   label: string,
-  algorithm: SshfpAlgorithm,
-  fingerprintFormat: SshfpFingerprintFormat,
+  algorithm: SshfpAlgorithm | number,
+  fingerprintFormat: SshfpFingerprintFormat | number,
   value: string,
   ttl?: number | string,
   meta?: Record<string, string>,
@@ -23,8 +25,18 @@ export function SSHFP(
       value: value,
       ttl: ttl != null ? new Duration(ttl) : undefined,
       meta: meta,
-      algorithm: algorithm,
-      fingerprintFormat: fingerprintFormat,
+      algorithm: (() => {
+        if (typeof algorithm === "number") {
+          return getSshfpAlgorithmStringFromValue(algorithm);
+        }
+        return algorithm;
+      })(),
+      fingerprintFormat: (() => {
+        if (typeof fingerprintFormat === "number") {
+          return getSshfpFingerprintFormatStringFromValue(fingerprintFormat);
+        }
+        return fingerprintFormat;
+      })(),
     },
   );
 }
