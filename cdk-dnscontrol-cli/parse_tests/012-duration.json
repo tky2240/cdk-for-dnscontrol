@@ -1,0 +1,47 @@
+{
+  "dns_providers": [],
+  "domains": [
+    {
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "foo.com"
+      },
+      "name": "foo.com",
+      "records": [
+        {
+          "name": "@",
+          "target": "1.2.3.4",
+          "ttl": 300,
+          "type": "A"
+        },
+        {
+          "name": "a",
+          "target": "1.2.3.5",
+          "ttl": 300,
+          "type": "A"
+        },
+        {
+          "name": "b",
+          "target": "1.2.3.6",
+          "ttl": 180,
+          "type": "A"
+        },
+        {
+          "name": "c",
+          "target": "1.2.3.7",
+          "ttl": 10800,
+          "type": "A"
+        },
+        {
+          "name": "d",
+          "target": "1.2.3.8",
+          "ttl": 259200,
+          "type": "A"
+        }
+      ],
+      "registrar": "none"
+    }
+  ],
+  "registrars": []
+}

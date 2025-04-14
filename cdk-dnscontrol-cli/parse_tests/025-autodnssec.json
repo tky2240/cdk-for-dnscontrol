@@ -1,0 +1,38 @@
+{
+  "dns_providers": [],
+  "domains": [
+    {
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "nothing.com"
+      },
+      "name": "nothing.com",
+      "records": [],
+      "registrar": "none"
+    },
+    {
+      "auto_dnssec": "on",
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "with.com"
+      },
+      "name": "with.com",
+      "records": [],
+      "registrar": "none"
+    },
+    {
+      "auto_dnssec": "off",
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "without.com"
+      },
+      "name": "without.com",
+      "records": [],
+      "registrar": "none"
+    }
+  ],
+  "registrars": []
+}
