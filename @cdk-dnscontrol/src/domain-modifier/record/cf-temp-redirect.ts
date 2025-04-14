@@ -1,26 +1,26 @@
 import { Construct } from "constructs";
-import { DnscontrolCfTmpRedirectRecordConfig } from "../../types/dnscontrol-record-config";
+import { DnscontrolCfTempRedirectRecordConfig } from "../../types/dnscontrol-record-config";
 import { Duration } from "../../types/duration";
 import { DnscontrolRecord } from "./dnscontrol-record";
 
 const DNS_CONTROL_CF_TEMP_REDIRECT_RECORD_SYMBOL = Symbol.for(
-  "DnscontrolCfTmpRedirectRecord",
+  "DnscontrolCfTempRedirectRecord",
 );
 
-export interface DnscontrolCfTmpRedirectRecordProps {
+export interface DnscontrolCfTempRedirectRecordProps {
   readonly source: string;
   readonly destination: string;
   readonly ttl?: Duration | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
-export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
+export class DnscontrolCfTempRedirectRecord extends DnscontrolRecord {
   readonly source: string;
   readonly destination: string;
   constructor(
     scope: Construct,
     id: string,
-    props: DnscontrolCfTmpRedirectRecordProps,
+    props: DnscontrolCfTempRedirectRecordProps,
   ) {
     super(scope, id, {
       recordType: "CF_TEMP_REDIRECT",
@@ -38,16 +38,16 @@ export class DnscontrolCfTmpRedirectRecord extends DnscontrolRecord {
     this.source = props.source;
     this.destination = props.destination;
   }
-  public static isDnscontrolCfTmpRedirectRecord(
+  public static isDnscontrolCfTempRedirectRecord(
     x: unknown,
-  ): x is DnscontrolCfTmpRedirectRecord {
+  ): x is DnscontrolCfTempRedirectRecord {
     return (
       x != null &&
       typeof x === "object" &&
       DNS_CONTROL_CF_TEMP_REDIRECT_RECORD_SYMBOL in x
     );
   }
-  public renderRecordConfig(): DnscontrolCfTmpRedirectRecordConfig {
+  public renderRecordConfig(): DnscontrolCfTempRedirectRecordConfig {
     return {
       name: this.name,
       target: this.target,

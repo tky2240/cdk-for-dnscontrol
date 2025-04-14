@@ -16,14 +16,14 @@ export function DNSKEY(
   target: string,
   flag: DnskeyFlag | number,
   protocol: DnskeyProtocol | number,
-  algorythm: DnskeyAlgorithm | number,
+  algorithm: DnskeyAlgorithm | number,
   publickey: string,
   ttl?: number | string,
   meta?: Record<string, string>,
 ): DnscontrolDnskeyRecord {
   return new DnscontrolDnskeyRecord(
     scope,
-    `Dnskey:${label}:${target}:${flag}:${protocol}:${algorythm}`,
+    `Dnskey:${label}:${target}:${flag}:${protocol}:${algorithm}`,
     {
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
@@ -40,11 +40,11 @@ export function DNSKEY(
         }
         return protocol;
       })(),
-      algorythm: (() => {
-        if (typeof algorythm === "number") {
-          return getDnsKeyAlgorithmStringFromValue(algorythm);
+      algorithm: (() => {
+        if (typeof algorithm === "number") {
+          return getDnsKeyAlgorithmStringFromValue(algorithm);
         }
-        return algorythm;
+        return algorithm;
       })(),
       publickey: publickey,
     },

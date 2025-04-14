@@ -15,7 +15,8 @@ const DNS_CONTROL_DOMAIN_SYMBOL = Symbol.for("DnscontrolDomain");
 
 export interface DnscontrolDomainProps {
   readonly domainName: string;
-  readonly registrar: DnscontrolRegistrar;
+  readonly tag?: string;
+  readonly registrar?: DnscontrolRegistrar | undefined;
   readonly domainProviderPropsList: DnscontrolDomainProviderProps[];
   readonly defaultTtl?: Duration;
   readonly isEnabledAutoDnssec?: boolean;
@@ -27,6 +28,7 @@ export interface DnscontrolDomainProps {
 
 export abstract class DnscontrolDomain extends Construct {
   public readonly domainName: string;
+  public readonly tag?: string | undefined;
   public readonly registrarName: string;
   public readonly defaultTtl: Duration;
   public readonly isEnabledAutoDnssec?: boolean | undefined;
@@ -42,7 +44,8 @@ export abstract class DnscontrolDomain extends Construct {
     super(scope, id);
     Object.defineProperty(this, DNS_CONTROL_DOMAIN_SYMBOL, { value: true });
     this.domainName = props.domainName;
-    this.registrarName = props.registrar.registrarName;
+    this.tag = props.tag;
+    this.registrarName = props.registrar?.registrarName ?? "none";
     this.defaultTtl = props.defaultTtl ?? new Duration(300);
     this.isEnabledAutoDnssec = props.isEnabledAutoDnssec;
     this.isDisabledIgnoreSafetyCheck = props.isDisabledIgnoreSafetyCheck;
@@ -66,9 +69,9 @@ export abstract class DnscontrolDomain extends Construct {
     const autoDnssec = (() => {
       switch (this.isEnabledAutoDnssec) {
         case undefined:
-          return "";
+          return undefined;
         case null:
-          return "";
+          return undefined;
         case true:
           return "on";
         case false:
@@ -92,13 +95,38 @@ export abstract class DnscontrolDomain extends Construct {
       nameServers: this.parentNameservers?.map((nameserver) => ({
         name: nameserver,
       })),
-      meta:
-        this.parentNameserverTtl == null
-          ? undefined
-          : { ns_ttl: this.parentNameserverTtl.toSeconds().toString() },
+      meta: (() => {
+        const meta = { 
+          dnscontrol_tag: this.tag ?? "" ,
+          dnscontrol_uniquename: this.tag == null ? this.domainName : `${this.domainName}!${this.tag}`,
+        }
+        if ( this.parentNameserverTtl != null) {
+          return {
+            ...meta,
+            ns_ttl: this.parentNameserverTtl.toSeconds().toString()
+          } 
+        } else {
+            return meta;
+        }
+      })(),
     } satisfies DnscontrolDomainConfig;
 
-    return this._renderDomainConfig(this, initialDomainConfig);
+    const domainConfig = this._renderDomainConfig(this, initialDomainConfig);
+
+    if (domainConfig.rawRecords == null) {
+      throw new Error("renderDomainConfig: rawRecords is null");
+    }
+
+    if (domainConfig.unmanaged == null) {
+      throw new Error("renderDomainConfig: unmanaged is null");
+    }
+
+    return {
+      ...domainConfig,
+      rawRecords: domainConfig.rawRecords.length == 0 ? undefined : domainConfig.rawRecords,
+      unmanaged: domainConfig.unmanaged.length == 0 ? undefined : domainConfig.unmanaged,
+    }
+    
   }
   private _renderDomainConfig(
     node: IConstruct,
@@ -117,11 +145,17 @@ export abstract class DnscontrolDomain extends Construct {
     }
     if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
       const rawRecordConfig = node.renderRawRecordConfig();
-      domainConfig.rawRecords.push(rawRecordConfig);
+      if (domainConfig.rawRecords != null) {
+        domainConfig.rawRecords.push(rawRecordConfig);
+      }
+      throw new Error("something went wrong");
     }
     if (DnscontrolIgnore.isDnscontrolIgnore(node)) {
       const unmanagedConfig = node.renderUnmanagedConfig();
-      domainConfig.unmanaged.push(unmanagedConfig);
+      if (domainConfig.unmanaged != null) {
+        domainConfig.unmanaged.push(unmanagedConfig);
+      }
+      throw new Error("something went wrong");
     }
     for (const child of node.node.children) {
       this._renderDomainConfig(child, domainConfig);

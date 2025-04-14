@@ -6,6 +6,7 @@ export interface DnscontrolUrlRecordProps {
     readonly label: string;
     readonly target: string;
     readonly ttl?: Duration | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolUrlRecord extends DnscontrolRecord {
     constructor(scope: Construct, id: string, props: DnscontrolUrlRecordProps);

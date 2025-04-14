@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DHCID = DHCID;
 const duration_1 = require("../../types/duration");
 const dhcid_1 = require("../record/dhcid");
-function DHCID(scope, label, target, ttl) {
+function DHCID(scope, label, target, ttl, meta) {
     return new dhcid_1.DnscontrolDhcidRecord(scope, `Dhcid:${label}:${target}`, {
         target: target,
         label: label,
         ttl: ttl != null ? new duration_1.Duration(ttl) : undefined,
+        meta: meta,
     });
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGhjaWQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJkaGNpZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUlBLHNCQVdDO0FBZEQsbURBQWdEO0FBQ2hELDJDQUF3RDtBQUV4RCxTQUFnQixLQUFLLENBQ25CLEtBQWdCLEVBQ2hCLEtBQWEsRUFDYixNQUFjLEVBQ2QsR0FBcUI7SUFFckIsT0FBTyxJQUFJLDZCQUFxQixDQUFDLEtBQUssRUFBRSxTQUFTLEtBQUssSUFBSSxNQUFNLEVBQUUsRUFBRTtRQUNsRSxNQUFNLEVBQUUsTUFBTTtRQUNkLEtBQUssRUFBRSxLQUFLO1FBQ1osR0FBRyxFQUFFLEdBQUcsSUFBSSxJQUFJLENBQUMsQ0FBQyxDQUFDLElBQUksbUJBQVEsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsU0FBUztLQUNqRCxDQUFDLENBQUM7QUFDTCxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29uc3RydWN0IH0gZnJvbSBcImNvbnN0cnVjdHNcIjtcbmltcG9ydCB7IER1cmF0aW9uIH0gZnJvbSBcIi4uLy4uL3R5cGVzL2R1cmF0aW9uXCI7XG5pbXBvcnQgeyBEbnNjb250cm9sRGhjaWRSZWNvcmQgfSBmcm9tIFwiLi4vcmVjb3JkL2RoY2lkXCI7XG5cbmV4cG9ydCBmdW5jdGlvbiBESENJRChcbiAgc2NvcGU6IENvbnN0cnVjdCxcbiAgbGFiZWw6IHN0cmluZyxcbiAgdGFyZ2V0OiBzdHJpbmcsXG4gIHR0bD86IG51bWJlciB8IHN0cmluZyxcbik6IERuc2NvbnRyb2xEaGNpZFJlY29yZCB7XG4gIHJldHVybiBuZXcgRG5zY29udHJvbERoY2lkUmVjb3JkKHNjb3BlLCBgRGhjaWQ6JHtsYWJlbH06JHt0YXJnZXR9YCwge1xuICAgIHRhcmdldDogdGFyZ2V0LFxuICAgIGxhYmVsOiBsYWJlbCxcbiAgICB0dGw6IHR0bCAhPSBudWxsID8gbmV3IER1cmF0aW9uKHR0bCkgOiB1bmRlZmluZWQsXG4gIH0pO1xufVxuIl19

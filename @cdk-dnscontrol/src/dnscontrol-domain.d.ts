@@ -6,7 +6,8 @@ import { DnscontrolDomainConfig } from "./types/dnscontrol-domain-config";
 import { Duration } from "./types/duration";
 export interface DnscontrolDomainProps {
     readonly domainName: string;
-    readonly registrar: DnscontrolRegistrar;
+    readonly tag?: string;
+    readonly registrar?: DnscontrolRegistrar | undefined;
     readonly domainProviderPropsList: DnscontrolDomainProviderProps[];
     readonly defaultTtl?: Duration;
     readonly isEnabledAutoDnssec?: boolean;
@@ -17,6 +18,7 @@ export interface DnscontrolDomainProps {
 }
 export declare abstract class DnscontrolDomain extends Construct {
     readonly domainName: string;
+    readonly tag?: string | undefined;
     readonly registrarName: string;
     readonly defaultTtl: Duration;
     readonly isEnabledAutoDnssec?: boolean | undefined;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DnscontrolSshfpRecord = exports.sshfpFingerprintFormat = exports.sshfpAlgorithm = void 0;
+exports.DnscontrolSshfpRecord = exports.getSshfpFingerprintFormatStringFromValue = exports.sshfpFingerprintFormat = exports.getSshfpAlgorithmStringFromValue = exports.sshfpAlgorithm = void 0;
 const dnscontrol_record_1 = require("./dnscontrol-record");
 const DNS_CONTROL_SSHFP_RECORD_SYMBOL = Symbol.for("DnscontrolSshfpRecord");
 exports.sshfpAlgorithm = {
@@ -9,10 +9,38 @@ exports.sshfpAlgorithm = {
     SCDSA: 3,
     ED25519: 4,
 };
+function isSshfpAlgorithm(x) {
+    return typeof x === "string" && Object.keys(exports.sshfpAlgorithm).includes(x);
+}
+const getSshfpAlgorithmStringFromValue = (value) => {
+    const algorithm = Object.entries(exports.sshfpAlgorithm).find((sshfpAlgorithm) => {
+        return sshfpAlgorithm[1] === value;
+    });
+    const sshfpAlgorithmString = algorithm?.[0];
+    if (isSshfpAlgorithm(sshfpAlgorithmString)) {
+        return sshfpAlgorithmString;
+    }
+    throw new Error(`Invalid SSHFP algorithm value: ${value}`);
+};
+exports.getSshfpAlgorithmStringFromValue = getSshfpAlgorithmStringFromValue;
 exports.sshfpFingerprintFormat = {
     "SHA-1": 1,
     "SHA-256": 2,
 };
+function isSshfpFingerprintFormat(x) {
+    return (typeof x === "string" && Object.keys(exports.sshfpFingerprintFormat).includes(x));
+}
+const getSshfpFingerprintFormatStringFromValue = (value) => {
+    const fingerprintFormat = Object.entries(exports.sshfpFingerprintFormat).find((sshfpFingerprintFormat) => {
+        return sshfpFingerprintFormat[1] === value;
+    });
+    const sshfpFingerprintFormatString = fingerprintFormat?.[0];
+    if (isSshfpFingerprintFormat(sshfpFingerprintFormatString)) {
+        return sshfpFingerprintFormatString;
+    }
+    throw new Error(`Invalid SSHFP fingerprint format value: ${value}`);
+};
+exports.getSshfpFingerprintFormatStringFromValue = getSshfpFingerprintFormatStringFromValue;
 class DnscontrolSshfpRecord extends dnscontrol_record_1.DnscontrolRecord {
     algorithm;
     fingerprintFormat;
@@ -22,6 +50,7 @@ class DnscontrolSshfpRecord extends dnscontrol_record_1.DnscontrolRecord {
             label: props.label,
             target: props.value,
             ttl: props.ttl,
+            meta: props.meta,
         });
         this.algorithm = props.algorithm;
         this.fingerprintFormat = props.fingerprintFormat;
@@ -37,9 +66,8 @@ class DnscontrolSshfpRecord extends dnscontrol_record_1.DnscontrolRecord {
             ttl: this.ttl?.toSeconds(),
             sshfpAlgorithm: exports.sshfpAlgorithm[this.algorithm],
             sshfpFingerprint: exports.sshfpFingerprintFormat[this.fingerprintFormat],
-            meta: {},
+            meta: this.meta,
         };
     }
 }
 exports.DnscontrolSshfpRecord = DnscontrolSshfpRecord;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3NoZnAuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJzc2hmcC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFHQSwyREFBdUQ7QUFFdkQsTUFBTSwrQkFBK0IsR0FBRyxNQUFNLENBQUMsR0FBRyxDQUFDLHVCQUF1QixDQUFDLENBQUM7QUFFL0QsUUFBQSxjQUFjLEdBQUc7SUFDNUIsR0FBRyxFQUFFLENBQUM7SUFDTixHQUFHLEVBQUUsQ0FBQztJQUNOLEtBQUssRUFBRSxDQUFDO0lBQ1IsT0FBTyxFQUFFLENBQUM7Q0FDRixDQUFDO0FBSUUsUUFBQSxzQkFBc0IsR0FBRztJQUNwQyxPQUFPLEVBQUUsQ0FBQztJQUNWLFNBQVMsRUFBRSxDQUFDO0NBQ0osQ0FBQztBQVlYLE1BQWEscUJBQXNCLFNBQVEsb0NBQWdCO0lBQ3pDLFNBQVMsQ0FBaUI7SUFDMUIsaUJBQWlCLENBQXlCO0lBQzFELFlBQVksS0FBZ0IsRUFBRSxFQUFVLEVBQUUsS0FBaUM7UUFDekUsS0FBSyxDQUFDLEtBQUssRUFBRSxFQUFFLEVBQUU7WUFDZixVQUFVLEVBQUUsT0FBTztZQUNuQixLQUFLLEVBQUUsS0FBSyxDQUFDLEtBQUs7WUFDbEIsTUFBTSxFQUFFLEtBQUssQ0FBQyxLQUFLO1lBQ25CLEdBQUcsRUFBRSxLQUFLLENBQUMsR0FBRztTQUNmLENBQUMsQ0FBQztRQUNILElBQUksQ0FBQyxTQUFTLEdBQUcsS0FBSyxDQUFDLFNBQVMsQ0FBQztRQUNqQyxJQUFJLENBQUMsaUJBQWlCLEdBQUcsS0FBSyxDQUFDLGlCQUFpQixDQUFDO0lBQ25ELENBQUM7SUFDTSxNQUFNLENBQUMsdUJBQXVCLENBQ25DLENBQVU7UUFFVixPQUFPLENBQ0wsQ0FBQyxJQUFJLElBQUksSUFBSSxPQUFPLENBQUMsS0FBSyxRQUFRLElBQUksK0JBQStCLElBQUksQ0FBQyxDQUMzRSxDQUFDO0lBQ0osQ0FBQztJQUNNLGtCQUFrQjtRQUN2QixPQUFPO1lBQ0wsSUFBSSxFQUFFLElBQUksQ0FBQyxJQUFJO1lBQ2YsTUFBTSxFQUFFLElBQUksQ0FBQyxNQUFNO1lBQ25CLFVBQVUsRUFBRSxJQUFJLENBQUMsVUFBVTtZQUMzQixHQUFHLEVBQUUsSUFBSSxDQUFDLEdBQUcsRUFBRSxTQUFTLEVBQUU7WUFDMUIsY0FBYyxFQUFFLHNCQUFjLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQztZQUM5QyxnQkFBZ0IsRUFBRSw4QkFBc0IsQ0FBQyxJQUFJLENBQUMsaUJBQWlCLENBQUM7WUFDaEUsSUFBSSxFQUFFLEVBQUU7U0FDVCxDQUFDO0lBQ0osQ0FBQztDQUNGO0FBL0JELHNEQStCQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbnN0cnVjdCB9IGZyb20gXCJjb25zdHJ1Y3RzXCI7XG5pbXBvcnQgeyBEbnNjb250cm9sU3NoZnBSZWNvcmRDb25maWcgfSBmcm9tIFwiLi4vLi4vdHlwZXMvZG5zY29udHJvbC1yZWNvcmQtY29uZmlnXCI7XG5pbXBvcnQgeyBEdXJhdGlvbiB9IGZyb20gXCIuLi8uLi90eXBlcy9kdXJhdGlvblwiO1xuaW1wb3J0IHsgRG5zY29udHJvbFJlY29yZCB9IGZyb20gXCIuL2Ruc2NvbnRyb2wtcmVjb3JkXCI7XG5cbmNvbnN0IEROU19DT05UUk9MX1NTSEZQX1JFQ09SRF9TWU1CT0wgPSBTeW1ib2wuZm9yKFwiRG5zY29udHJvbFNzaGZwUmVjb3JkXCIpO1xuXG5leHBvcnQgY29uc3Qgc3NoZnBBbGdvcml0aG0gPSB7XG4gIFJTQTogMSxcbiAgRFNBOiAyLFxuICBTQ0RTQTogMyxcbiAgRUQyNTUxOTogNCxcbn0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIFNzaGZwQWxnb3JpdGhtID0ga2V5b2YgdHlwZW9mIHNzaGZwQWxnb3JpdGhtO1xuXG5leHBvcnQgY29uc3Qgc3NoZnBGaW5nZXJwcmludEZvcm1hdCA9IHtcbiAgXCJTSEEtMVwiOiAxLFxuICBcIlNIQS0yNTZcIjogMixcbn0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIFNzaGZwRmluZ2VycHJpbnRGb3JtYXQgPSBrZXlvZiB0eXBlb2Ygc3NoZnBGaW5nZXJwcmludEZvcm1hdDtcblxuZXhwb3J0IGludGVyZmFjZSBEbnNjb250cm9sU3NoZnBSZWNvcmRQcm9wcyB7XG4gIHJlYWRvbmx5IGxhYmVsOiBzdHJpbmc7XG4gIHJlYWRvbmx5IHZhbHVlOiBzdHJpbmc7XG4gIHJlYWRvbmx5IGFsZ29yaXRobTogU3NoZnBBbGdvcml0aG07XG4gIHJlYWRvbmx5IGZpbmdlcnByaW50Rm9ybWF0OiBTc2hmcEZpbmdlcnByaW50Rm9ybWF0O1xuICByZWFkb25seSB0dGw/OiBEdXJhdGlvbiB8IHVuZGVmaW5lZDtcbn1cblxuZXhwb3J0IGNsYXNzIERuc2NvbnRyb2xTc2hmcFJlY29yZCBleHRlbmRzIERuc2NvbnRyb2xSZWNvcmQge1xuICBwdWJsaWMgcmVhZG9ubHkgYWxnb3JpdGhtOiBTc2hmcEFsZ29yaXRobTtcbiAgcHVibGljIHJlYWRvbmx5IGZpbmdlcnByaW50Rm9ybWF0OiBTc2hmcEZpbmdlcnByaW50Rm9ybWF0O1xuICBjb25zdHJ1Y3RvcihzY29wZTogQ29uc3RydWN0LCBpZDogc3RyaW5nLCBwcm9wczogRG5zY29udHJvbFNzaGZwUmVjb3JkUHJvcHMpIHtcbiAgICBzdXBlcihzY29wZSwgaWQsIHtcbiAgICAgIHJlY29yZFR5cGU6IFwiU1NIRlBcIixcbiAgICAgIGxhYmVsOiBwcm9wcy5sYWJlbCxcbiAgICAgIHRhcmdldDogcHJvcHMudmFsdWUsXG4gICAgICB0dGw6IHByb3BzLnR0bCxcbiAgICB9KTtcbiAgICB0aGlzLmFsZ29yaXRobSA9IHByb3BzLmFsZ29yaXRobTtcbiAgICB0aGlzLmZpbmdlcnByaW50Rm9ybWF0ID0gcHJvcHMuZmluZ2VycHJpbnRGb3JtYXQ7XG4gIH1cbiAgcHVibGljIHN0YXRpYyBpc0Ruc2NvbnRyb2xTc2hmcFJlY29yZChcbiAgICB4OiB1bmtub3duLFxuICApOiB4IGlzIERuc2NvbnRyb2xTc2hmcFJlY29yZCB7XG4gICAgcmV0dXJuIChcbiAgICAgIHggIT0gbnVsbCAmJiB0eXBlb2YgeCA9PT0gXCJvYmplY3RcIiAmJiBETlNfQ09OVFJPTF9TU0hGUF9SRUNPUkRfU1lNQk9MIGluIHhcbiAgICApO1xuICB9XG4gIHB1YmxpYyByZW5kZXJSZWNvcmRDb25maWcoKTogRG5zY29udHJvbFNzaGZwUmVjb3JkQ29uZmlnIHtcbiAgICByZXR1cm4ge1xuICAgICAgbmFtZTogdGhpcy5uYW1lLFxuICAgICAgdGFyZ2V0OiB0aGlzLnRhcmdldCxcbiAgICAgIHJlY29yZFR5cGU6IHRoaXMucmVjb3JkVHlwZSxcbiAgICAgIHR0bDogdGhpcy50dGw/LnRvU2Vjb25kcygpLFxuICAgICAgc3NoZnBBbGdvcml0aG06IHNzaGZwQWxnb3JpdGhtW3RoaXMuYWxnb3JpdGhtXSxcbiAgICAgIHNzaGZwRmluZ2VycHJpbnQ6IHNzaGZwRmluZ2VycHJpbnRGb3JtYXRbdGhpcy5maW5nZXJwcmludEZvcm1hdF0sXG4gICAgICBtZXRhOiB7fSxcbiAgICB9O1xuICB9XG59XG4iXX0=

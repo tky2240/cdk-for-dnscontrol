@@ -13,14 +13,14 @@ export interface DnscontrolCaaRecordProps {
   readonly label: string;
   readonly target: string;
   readonly caaTag: CaaTag;
-  readonly isCaaCritical: boolean;
+  readonly isCaaCritical?: boolean | undefined;
   readonly ttl?: Duration | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolCaaRecord extends DnscontrolRecord {
   public readonly caaTag: CaaTag;
-  public readonly isCaaCritical: boolean;
+  public readonly isCaaCritical?: boolean | undefined;
   constructor(scope: Construct, id: string, props: DnscontrolCaaRecordProps) {
     super(scope, id, {
       recordType: "CAA",
@@ -43,7 +43,7 @@ export class DnscontrolCaaRecord extends DnscontrolRecord {
       target: this.target,
       recordType: this.recordType,
       caaTag: this.caaTag,
-      caaFlag: this.isCaaCritical ? 128 : 0,
+      caaFlag: this.isCaaCritical ? 128 : undefined,
       ttl: this.ttl?.toSeconds(),
       meta: this.meta,
     };

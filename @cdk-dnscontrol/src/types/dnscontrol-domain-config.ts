@@ -12,8 +12,8 @@ export interface DnscontrolDomainConfig {
   readonly nameServers?: DnscontrolNamesever[] | undefined;
   readonly recordsAbsent?: DnscontrolRecordConfig[] | undefined;
   readonly keepUnknown?: boolean | undefined;
-  readonly unmanaged: DnscontrolUnmanagedConfig[];
+  readonly unmanaged?: DnscontrolUnmanagedConfig[] | undefined;
   readonly unmanagedDisableSafetyCheck?: boolean | undefined;
   readonly autoDnssec?: string | undefined;
-  readonly rawRecords: DnscontrolRawRecordConfig[];
+  readonly rawRecords?: DnscontrolRawRecordConfig[] | undefined;
 }

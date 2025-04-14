@@ -1,17 +1,17 @@
 import { Construct } from "constructs";
 import { Duration } from "../../types/duration";
-import { DnscontrolCfTmpRedirectRecord } from "../record/cf-tmp-redirect";
+import { DnscontrolCfTempRedirectRecord } from "../record/cf-temp-redirect";
 
-export function CF_TMP_REDIRECT(
+export function CF_TEMP_REDIRECT(
   scope: Construct,
   source: string,
   destination: string,
   ttl?: number | string,
   meta?: Record<string, string>,
-): DnscontrolCfTmpRedirectRecord {
-  return new DnscontrolCfTmpRedirectRecord(
+): DnscontrolCfTempRedirectRecord {
+  return new DnscontrolCfTempRedirectRecord(
     scope,
-    `CfTmpRedirect:${source}:${destination}`,
+    `CfTempRedirect:${source}:${destination}`,
     {
       source: source,
       destination: destination,

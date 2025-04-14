@@ -1,15 +1,43 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DnscontrolDnskeyRecord = void 0;
+exports.DnscontrolDnskeyRecord = exports.getDnsKeyAlgorithmStringFromValue = exports.getDnsKeyProtocolStringFromValue = exports.getDnsKeyFlagStringFromValue = void 0;
 const dnscontrol_record_1 = require("./dnscontrol-record");
 const DNS_CONTROL_DNSKEY_RECORD_SYMBOL = Symbol.for("DnscontrolDnskeyRecord");
 const dnskeyFlag = {
     ZSK: 256,
     KSK: 257,
 };
+function isDnskeyFlag(x) {
+    return typeof x === "string" && Object.keys(dnskeyFlag).includes(x);
+}
+const getDnsKeyFlagStringFromValue = (value) => {
+    const keyFlag = Object.entries(dnskeyFlag).find((keyFlag) => {
+        return keyFlag[1] === value;
+    });
+    const dnskeyFlagString = keyFlag?.[0];
+    if (isDnskeyFlag(dnskeyFlagString)) {
+        return dnskeyFlagString;
+    }
+    throw new Error(`Invalid DNSKEY flag value: ${value}`);
+};
+exports.getDnsKeyFlagStringFromValue = getDnsKeyFlagStringFromValue;
 const dnskeyProtocol = {
     DNSSEC: 3,
 };
+function isDnskeyProtocol(x) {
+    return typeof x === "string" && Object.keys(dnskeyProtocol).includes(x);
+}
+const getDnsKeyProtocolStringFromValue = (value) => {
+    const keyProtocol = Object.entries(dnskeyProtocol).find((keyProtocol) => {
+        return keyProtocol[1] === value;
+    });
+    const dnskeyProtocolString = keyProtocol?.[0];
+    if (isDnskeyProtocol(dnskeyProtocolString)) {
+        return dnskeyProtocolString;
+    }
+    throw new Error(`Invalid DNSKEY protocol value: ${value}`);
+};
+exports.getDnsKeyProtocolStringFromValue = getDnsKeyProtocolStringFromValue;
 //ref: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml#prime-lengths
 const dnskeyAlgorithm = {
     DELETE: 0,
@@ -32,10 +60,24 @@ const dnskeyAlgorithm = {
     PRIVATEDNS: 253,
     PRIVATEOID: 254,
 };
+function isDnskeyAlgorithm(x) {
+    return typeof x === "string" && Object.keys(dnskeyAlgorithm).includes(x);
+}
+const getDnsKeyAlgorithmStringFromValue = (value) => {
+    const keyAlgorithm = Object.entries(dnskeyAlgorithm).find((keyAlgorithm) => {
+        return keyAlgorithm[1] === value;
+    });
+    const dnskeyAlgorithmString = keyAlgorithm?.[0];
+    if (isDnskeyAlgorithm(dnskeyAlgorithmString)) {
+        return dnskeyAlgorithmString;
+    }
+    throw new Error(`Invalid DNSKEY algorithm value: ${value}`);
+};
+exports.getDnsKeyAlgorithmStringFromValue = getDnsKeyAlgorithmStringFromValue;
 class DnscontrolDnskeyRecord extends dnscontrol_record_1.DnscontrolRecord {
     flag;
     protcol;
-    algorythm;
+    algorithm;
     publickey;
     constructor(scope, id, props) {
         super(scope, id, {
@@ -43,8 +85,9 @@ class DnscontrolDnskeyRecord extends dnscontrol_record_1.DnscontrolRecord {
             label: props.label,
             target: "",
             ttl: props.ttl,
+            meta: props.meta,
         });
-        this.algorythm = props.algorythm;
+        this.algorithm = props.algorithm;
         this.flag = props.flag;
         this.protcol = props.protocol;
         this.publickey = props.publickey;
@@ -60,13 +103,12 @@ class DnscontrolDnskeyRecord extends dnscontrol_record_1.DnscontrolRecord {
             target: this.target,
             recordType: this.recordType,
             ttl: this.ttl?.toSeconds(),
-            dnskeyAlgorithm: dnskeyAlgorithm[this.algorythm],
+            dnskeyAlgorithm: dnskeyAlgorithm[this.algorithm],
             dnskeyFlags: dnskeyFlag[this.flag],
             dnskeyProtocol: dnskeyProtocol[this.protcol],
             dnskeyPublicKey: this.publickey,
-            meta: {},
+            meta: this.meta,
         };
     }
 }
 exports.DnscontrolDnskeyRecord = DnscontrolDnskeyRecord;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG5za2V5LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZG5za2V5LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUdBLDJEQUF1RDtBQUV2RCxNQUFNLGdDQUFnQyxHQUFHLE1BQU0sQ0FBQyxHQUFHLENBQUMsd0JBQXdCLENBQUMsQ0FBQztBQUU5RSxNQUFNLFVBQVUsR0FBRztJQUNqQixHQUFHLEVBQUUsR0FBRztJQUNSLEdBQUcsRUFBRSxHQUFHO0NBQ0EsQ0FBQztBQUdYLE1BQU0sY0FBYyxHQUFHO0lBQ3JCLE1BQU0sRUFBRSxDQUFDO0NBQ0QsQ0FBQztBQUlYLG1HQUFtRztBQUNuRyxNQUFNLGVBQWUsR0FBRztJQUN0QixNQUFNLEVBQUUsQ0FBQztJQUNULE1BQU0sRUFBRSxDQUFDO0lBQ1QsRUFBRSxFQUFFLENBQUM7SUFDTCxHQUFHLEVBQUUsQ0FBQztJQUNOLE9BQU8sRUFBRSxDQUFDO0lBQ1YsZ0JBQWdCLEVBQUUsQ0FBQztJQUNuQixvQkFBb0IsRUFBRSxDQUFDO0lBQ3ZCLFNBQVMsRUFBRSxDQUFDO0lBQ1osU0FBUyxFQUFFLEVBQUU7SUFDYixVQUFVLEVBQUUsRUFBRTtJQUNkLGVBQWUsRUFBRSxFQUFFO0lBQ25CLGVBQWUsRUFBRSxFQUFFO0lBQ25CLE9BQU8sRUFBRSxFQUFFO0lBQ1gsS0FBSyxFQUFFLEVBQUU7SUFDVCxNQUFNLEVBQUUsRUFBRTtJQUNWLFlBQVksRUFBRSxFQUFFO0lBQ2hCLFFBQVEsRUFBRSxHQUFHO0lBQ2IsVUFBVSxFQUFFLEdBQUc7SUFDZixVQUFVLEVBQUUsR0FBRztDQUNQLENBQUM7QUFZWCxNQUFhLHNCQUF1QixTQUFRLG9DQUFnQjtJQUMxQyxJQUFJLENBQWE7SUFDakIsT0FBTyxDQUFpQjtJQUN4QixTQUFTLENBQWtCO0lBQzNCLFNBQVMsQ0FBUztJQUNsQyxZQUNFLEtBQWdCLEVBQ2hCLEVBQVUsRUFDVixLQUFrQztRQUVsQyxLQUFLLENBQUMsS0FBSyxFQUFFLEVBQUUsRUFBRTtZQUNmLFVBQVUsRUFBRSxRQUFRO1lBQ3BCLEtBQUssRUFBRSxLQUFLLENBQUMsS0FBSztZQUNsQixNQUFNLEVBQUUsRUFBRTtZQUNWLEdBQUcsRUFBRSxLQUFLLENBQUMsR0FBRztTQUNmLENBQUMsQ0FBQztRQUNILElBQUksQ0FBQyxTQUFTLEdBQUcsS0FBSyxDQUFDLFNBQVMsQ0FBQztRQUNqQyxJQUFJLENBQUMsSUFBSSxHQUFHLEtBQUssQ0FBQyxJQUFJLENBQUM7UUFDdkIsSUFBSSxDQUFDLE9BQU8sR0FBRyxLQUFLLENBQUMsUUFBUSxDQUFDO1FBQzlCLElBQUksQ0FBQyxTQUFTLEdBQUcsS0FBSyxDQUFDLFNBQVMsQ0FBQztJQUNuQyxDQUFDO0lBQ00sTUFBTSxDQUFDLHdCQUF3QixDQUNwQyxDQUFVO1FBRVYsT0FBTyxDQUNMLENBQUMsSUFBSSxJQUFJO1lBQ1QsT0FBTyxDQUFDLEtBQUssUUFBUTtZQUNyQixnQ0FBZ0MsSUFBSSxDQUFDLENBQ3RDLENBQUM7SUFDSixDQUFDO0lBQ00sa0JBQWtCO1FBQ3ZCLE9BQU87WUFDTCxJQUFJLEVBQUUsSUFBSSxDQUFDLElBQUk7WUFDZixNQUFNLEVBQUUsSUFBSSxDQUFDLE1BQU07WUFDbkIsVUFBVSxFQUFFLElBQUksQ0FBQyxVQUFVO1lBQzNCLEdBQUcsRUFBRSxJQUFJLENBQUMsR0FBRyxFQUFFLFNBQVMsRUFBRTtZQUMxQixlQUFlLEVBQUUsZUFBZSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUM7WUFDaEQsV0FBVyxFQUFFLFVBQVUsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDO1lBQ2xDLGNBQWMsRUFBRSxjQUFjLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQztZQUM1QyxlQUFlLEVBQUUsSUFBSSxDQUFDLFNBQVM7WUFDL0IsSUFBSSxFQUFFLEVBQUU7U0FDVCxDQUFDO0lBQ0osQ0FBQztDQUNGO0FBM0NELHdEQTJDQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbnN0cnVjdCB9IGZyb20gXCJjb25zdHJ1Y3RzXCI7XG5pbXBvcnQgeyBEbnNjb250cm9sRG5za2V5UmVjb3JkQ29uZmlnIH0gZnJvbSBcIi4uLy4uL3R5cGVzL2Ruc2NvbnRyb2wtcmVjb3JkLWNvbmZpZ1wiO1xuaW1wb3J0IHsgRHVyYXRpb24gfSBmcm9tIFwiLi4vLi4vdHlwZXMvZHVyYXRpb25cIjtcbmltcG9ydCB7IERuc2NvbnRyb2xSZWNvcmQgfSBmcm9tIFwiLi9kbnNjb250cm9sLXJlY29yZFwiO1xuXG5jb25zdCBETlNfQ09OVFJPTF9ETlNLRVlfUkVDT1JEX1NZTUJPTCA9IFN5bWJvbC5mb3IoXCJEbnNjb250cm9sRG5za2V5UmVjb3JkXCIpO1xuXG5jb25zdCBkbnNrZXlGbGFnID0ge1xuICBaU0s6IDI1NixcbiAgS1NLOiAyNTcsXG59IGFzIGNvbnN0O1xuZXhwb3J0IHR5cGUgRG5za2V5RmxhZyA9IGtleW9mIHR5cGVvZiBkbnNrZXlGbGFnO1xuXG5jb25zdCBkbnNrZXlQcm90b2NvbCA9IHtcbiAgRE5TU0VDOiAzLFxufSBhcyBjb25zdDtcblxuZXhwb3J0IHR5cGUgRG5za2V5UHJvdG9jb2wgPSBrZXlvZiB0eXBlb2YgZG5za2V5UHJvdG9jb2w7XG5cbi8vcmVmOiBodHRwczovL3d3dy5pYW5hLm9yZy9hc3NpZ25tZW50cy9kbnMtc2VjLWFsZy1udW1iZXJzL2Rucy1zZWMtYWxnLW51bWJlcnMueGh0bWwjcHJpbWUtbGVuZ3Roc1xuY29uc3QgZG5za2V5QWxnb3JpdGhtID0ge1xuICBERUxFVEU6IDAsXG4gIFJTQU1ENTogMSxcbiAgREg6IDIsXG4gIERTQTogMyxcbiAgUlNBU0hBMTogNSxcbiAgXCJEU0EtTlNFQzMtU0hBMVwiOiA2LFxuICBcIlJTQVNIQTEtTlNFQzMtU0hBMVwiOiA3LFxuICBSU0FTSEEyNTY6IDgsXG4gIFJTQVNIQTUxMjogMTAsXG4gIFwiRUNDLUdPU1RcIjogMTIsXG4gIEVDRFNBUDI1NlNIQTI1NjogMTMsXG4gIEVDRFNBUDM4NFNIQTM4NDogMTQsXG4gIEVEMjU1MTk6IDE1LFxuICBFRDQ0ODogMTYsXG4gIFNNMlNNMzogMTcsXG4gIFwiRUNDLUdPU1QxMlwiOiAyMyxcbiAgSU5ESVJFQ1Q6IDI1MixcbiAgUFJJVkFURUROUzogMjUzLFxuICBQUklWQVRFT0lEOiAyNTQsXG59IGFzIGNvbnN0O1xuZXhwb3J0IHR5cGUgRG5za2V5QWxnb3JpdGhtID0ga2V5b2YgdHlwZW9mIGRuc2tleUFsZ29yaXRobTtcblxuZXhwb3J0IGludGVyZmFjZSBEbnNjb250cm9sRG5za2V5UmVjb3JkUHJvcHMge1xuICByZWFkb25seSBsYWJlbDogc3RyaW5nO1xuICByZWFkb25seSBmbGFnOiBEbnNrZXlGbGFnO1xuICByZWFkb25seSBwcm90b2NvbDogRG5za2V5UHJvdG9jb2w7XG4gIHJlYWRvbmx5IGFsZ29yeXRobTogRG5za2V5QWxnb3JpdGhtO1xuICByZWFkb25seSBwdWJsaWNrZXk6IHN0cmluZztcbiAgcmVhZG9ubHkgdHRsPzogRHVyYXRpb24gfCB1bmRlZmluZWQ7XG59XG5cbmV4cG9ydCBjbGFzcyBEbnNjb250cm9sRG5za2V5UmVjb3JkIGV4dGVuZHMgRG5zY29udHJvbFJlY29yZCB7XG4gIHB1YmxpYyByZWFkb25seSBmbGFnOiBEbnNrZXlGbGFnO1xuICBwdWJsaWMgcmVhZG9ubHkgcHJvdGNvbDogRG5za2V5UHJvdG9jb2w7XG4gIHB1YmxpYyByZWFkb25seSBhbGdvcnl0aG06IERuc2tleUFsZ29yaXRobTtcbiAgcHVibGljIHJlYWRvbmx5IHB1YmxpY2tleTogc3RyaW5nO1xuICBjb25zdHJ1Y3RvcihcbiAgICBzY29wZTogQ29uc3RydWN0LFxuICAgIGlkOiBzdHJpbmcsXG4gICAgcHJvcHM6IERuc2NvbnRyb2xEbnNrZXlSZWNvcmRQcm9wcyxcbiAgKSB7XG4gICAgc3VwZXIoc2NvcGUsIGlkLCB7XG4gICAgICByZWNvcmRUeXBlOiBcIkROU0tFWVwiLFxuICAgICAgbGFiZWw6IHByb3BzLmxhYmVsLFxuICAgICAgdGFyZ2V0OiBcIlwiLFxuICAgICAgdHRsOiBwcm9wcy50dGwsXG4gICAgfSk7XG4gICAgdGhpcy5hbGdvcnl0aG0gPSBwcm9wcy5hbGdvcnl0aG07XG4gICAgdGhpcy5mbGFnID0gcHJvcHMuZmxhZztcbiAgICB0aGlzLnByb3Rjb2wgPSBwcm9wcy5wcm90b2NvbDtcbiAgICB0aGlzLnB1YmxpY2tleSA9IHByb3BzLnB1YmxpY2tleTtcbiAgfVxuICBwdWJsaWMgc3RhdGljIGlzRG5zY29udHJvbERuc2tleVJlY29yZChcbiAgICB4OiB1bmtub3duLFxuICApOiB4IGlzIERuc2NvbnRyb2xEbnNrZXlSZWNvcmQge1xuICAgIHJldHVybiAoXG4gICAgICB4ICE9IG51bGwgJiZcbiAgICAgIHR5cGVvZiB4ID09PSBcIm9iamVjdFwiICYmXG4gICAgICBETlNfQ09OVFJPTF9ETlNLRVlfUkVDT1JEX1NZTUJPTCBpbiB4XG4gICAgKTtcbiAgfVxuICBwdWJsaWMgcmVuZGVyUmVjb3JkQ29uZmlnKCk6IERuc2NvbnRyb2xEbnNrZXlSZWNvcmRDb25maWcge1xuICAgIHJldHVybiB7XG4gICAgICBuYW1lOiB0aGlzLm5hbWUsXG4gICAgICB0YXJnZXQ6IHRoaXMudGFyZ2V0LFxuICAgICAgcmVjb3JkVHlwZTogdGhpcy5yZWNvcmRUeXBlLFxuICAgICAgdHRsOiB0aGlzLnR0bD8udG9TZWNvbmRzKCksXG4gICAgICBkbnNrZXlBbGdvcml0aG06IGRuc2tleUFsZ29yaXRobVt0aGlzLmFsZ29yeXRobV0sXG4gICAgICBkbnNrZXlGbGFnczogZG5za2V5RmxhZ1t0aGlzLmZsYWddLFxuICAgICAgZG5za2V5UHJvdG9jb2w6IGRuc2tleVByb3RvY29sW3RoaXMucHJvdGNvbF0sXG4gICAgICBkbnNrZXlQdWJsaWNLZXk6IHRoaXMucHVibGlja2V5LFxuICAgICAgbWV0YToge30sXG4gICAgfTtcbiAgfVxufVxuIl19

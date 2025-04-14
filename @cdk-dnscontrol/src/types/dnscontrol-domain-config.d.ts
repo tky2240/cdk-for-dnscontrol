@@ -5,14 +5,14 @@ import { DnscontrolUnmanagedConfig } from "./dnscontrol-unmanaged-config";
 export interface DnscontrolDomainConfig {
     readonly name: string;
     readonly registrar: string;
-    readonly dnsProviders: Record<string, number>;
+    readonly dnsProviderNameserverCountMap: Record<string, number>;
     readonly meta?: Record<string, string> | undefined;
     readonly records: DnscontrolRecordConfig[];
     readonly nameServers?: DnscontrolNamesever[] | undefined;
-    readonly recordAbsent?: DnscontrolRecordConfig[] | undefined;
+    readonly recordsAbsent?: DnscontrolRecordConfig[] | undefined;
     readonly keepUnknown?: boolean | undefined;
-    readonly unmanaged: DnscontrolUnmanagedConfig[];
+    readonly unmanaged?: DnscontrolUnmanagedConfig[] | undefined;
     readonly unmanagedDisableSafetyCheck?: boolean | undefined;
     readonly autoDnssec?: string | undefined;
-    readonly rawRecords: DnscontrolRawRecordConfig[];
+    readonly rawRecords?: DnscontrolRawRecordConfig[] | undefined;
 }

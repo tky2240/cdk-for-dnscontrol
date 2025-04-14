@@ -33,7 +33,7 @@ export class DnscontrolAliasRecord extends DnscontrolRecord {
       target: this.target,
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      meta: {},
+      meta: this.meta,
     };
   }
 }

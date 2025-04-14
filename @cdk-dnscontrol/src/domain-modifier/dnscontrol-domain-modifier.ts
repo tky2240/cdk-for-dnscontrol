@@ -11,7 +11,7 @@ export interface DnscontrolDomainModifierProps {
 
 export abstract class DnscontrolDomainModifier extends Construct {
   public readonly modiferType: string;
-  public readonly meta: Record<string, string>;
+  public readonly meta?: Record<string, string> | undefined;
   constructor(
     scope: Construct,
     id: string,
@@ -22,7 +22,7 @@ export abstract class DnscontrolDomainModifier extends Construct {
       value: true,
     });
     this.modiferType = props.modiferType;
-    this.meta = props.meta ?? {};
+    this.meta = props.meta;
   }
   public static isDnscontrolDomainModifier(
     x: unknown,

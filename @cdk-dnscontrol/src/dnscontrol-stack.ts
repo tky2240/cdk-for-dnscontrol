@@ -25,7 +25,7 @@ export abstract class DnscontrolStack extends Construct {
   public synth(outdir: string) {
     const dnsConfig = renderDnsConfig(this);
     const renamedDnsConfig = renameKeys(dnsConfig);
-    const jsonContent = JSON.stringify(renamedDnsConfig);
+    const jsonContent = JSON.stringify(sortObjectKeys(renamedDnsConfig));
     const filePath = path.join(outdir, this.stackMetadataPath);
     const dirPath = path.dirname(filePath);
     if (!fs.existsSync(dirPath)) {
@@ -68,17 +68,7 @@ function renderDnsConfig(
   return dnsConfig;
 }
 
-export function renameKeys(obj: object): object {
-  // if (key == "nameServers") {
-  //   return ["nameserver", value];
-  // }
-  // if (key == "recordAbsent") {
-  //   return ["recordsabsent", value];
-  // }
-  // if (key == "keepUnknown") {
-  //   return ["keepunknown", value];
-  // }
-
+function renameKeys(obj: object): object {
   if (typeof obj !== "object" || obj == null) {
     return obj;
   }
@@ -101,9 +91,18 @@ export function renameKeys(obj: object): object {
       if (key == "dnsProviderNameserverCountMap") {
         return ["dnsProviders", renameKeys(value)];
       }
-      // if (key == "rawRecords") {
-      //   return ["rawrecords", value];
-      // }
+      if (key == "nameServers") {
+        return ["nameserver", value];
+      }
+      if (key == "recordAbsent") {
+        return ["recordsabsent", value];
+      }
+      if (key == "keepUnknown") {
+        return ["keepunknown", value];
+      }
+      if (key == "rawRecords") {
+        return ["rawrecords", value];
+      }
       if (key == "recordType") {
         return ["type", renameKeys(value)];
       }
@@ -128,7 +127,119 @@ export function renameKeys(obj: object): object {
       if (key == "targetPattern") {
         return ["target_pattern", renameKeys(value)];
       }
-      return [key.toLowerCase(), renameKeys(value)];
+      if (key =="mxPreference") {
+        return ["mxpreference", renameKeys(value)];
+      }
+      if (key == "tlsaMatchingType") {
+        return ["tlsamatchingtype", renameKeys(value)];
+      }
+      if (key == "tlsaSelector") {
+        return ["tlsaselector", renameKeys(value)];
+      }
+      if (key == "tlsaUsage") {
+        return ["tlsausage", renameKeys(value)];
+      }
+      if (key == "caaFlag") {
+        return ["caaflag", renameKeys(value)];
+      }
+      if (key == "caaTag") {
+        return ["caatag", renameKeys(value)];
+      }
+      if (key == "srvPriority") {
+        return ["srvpriority", renameKeys(value)];
+      }
+      if (key == "srvWeight") {
+        return ["srvweight", renameKeys(value)];
+      }
+      if (key == "srvPort") {
+        return ["srvport", renameKeys(value)];
+      }
+      if (key == "dnskeyFlags") {
+        return ["dnskeyflags", renameKeys(value)];
+      }
+      if (key == "dnskeyProtocol") {
+        return ["dnskeyprotocol", renameKeys(value)];
+      }
+      if (key == "dnskeyAlgorithm") {
+        return ["dnskeyalgorithm", renameKeys(value)];
+      }
+      if (key == "dnskeyPublicKey") {
+        return ["dnskeypublickey", renameKeys(value)];
+      }
+      if (key == "dsKeyTag") {
+        return ["dskeytag", renameKeys(value)];
+      }
+      if (key == "dsAlgorithm") {
+        return ["dsalgorithm", renameKeys(value)];
+      }
+      if (key == "dsDigestType") {
+        return ["dsdigesttype", renameKeys(value)];
+      }
+      if (key == "dsDigest") {
+        return ["dsdigest", renameKeys(value)];
+      }
+      if (key == "svcPriority") {
+        return ["svcpriority", renameKeys(value)];
+      }
+      if (key == "svcParams") {
+        return ["svcparams", renameKeys(value)];
+      }
+      if (key == "naptrOrder") {
+        return ["naptrorder", renameKeys(value)];
+      }
+      if (key == "naptrPreference") {
+        return ["naptrpreference", renameKeys(value)];
+      }
+      if (key == "naptrFlags") {
+        return ["naptrflags", renameKeys(value)];
+      }
+      if (key == "naptrService") {
+        return ["naptrservice", renameKeys(value)];
+      }
+      if (key == "naptrRegexp") {
+        return ["naptrregexp", renameKeys(value)];
+      }
+      if (key == "soaMbox") {
+        return ["soambox", renameKeys(value)];
+      }
+      if (key == "soaSerial") {
+        return ["soaserial", renameKeys(value)];
+      }
+      if (key == "soaRefresh") {
+        return ["soarefresh", renameKeys(value)];
+      }
+      if (key == "soaRetry") {
+        return ["soaretry", renameKeys(value)];
+      }
+      if (key == "soaExpire") {
+        return ["soaexpire", renameKeys(value)];
+      }
+      if (key == "soaMinTtl") {
+        return ["soaminttl", renameKeys(value)];
+      }
+      if (key == "sshfpAlgorithm") {
+        return ["sshfpalgorithm", renameKeys(value)];
+      }
+      if (key == "sshfpFingerprint") {
+        return ["sshfpfingerprint", renameKeys(value)];
+      }
+      return [key, renameKeys(value)];
     }),
+  );
+}
+
+function sortObjectKeys(obj: object): object {
+  if (typeof obj !== "object" || obj == null) {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map((item) => sortObjectKeys(item));
+  }
+
+  return Object.fromEntries(
+    Object.entries(obj)
+      .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+      .map(([key, value]) => [key, sortObjectKeys(value)]),
   );
 }

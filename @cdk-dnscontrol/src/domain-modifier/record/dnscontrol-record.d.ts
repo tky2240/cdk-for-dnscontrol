@@ -8,6 +8,7 @@ export interface DnscontrolRecordProps {
     label: string;
     ttl?: Duration | undefined;
     target: string;
+    meta?: Record<string, string> | undefined;
 }
 export declare abstract class DnscontrolRecord extends DnscontrolDomainModifier {
     readonly recordType: DnscontrolRecordType;

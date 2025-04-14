@@ -5,7 +5,7 @@ export { DnscontrolAzureAliasRecord } from "./azure-alias";
 export { DnscontrolBunnyDnsRdrRecord } from "./bunny-dns-rdr";
 export { DnscontrolCaaRecord } from "./caa";
 export { DnscontrolCfRedirectRecord } from "./cf-redirect";
-export { DnscontrolCfTmpRedirectRecord } from "./cf-tmp-redirect";
+export { DnscontrolCfTempRedirectRecord } from "./cf-temp-redirect";
 export { DnscontrolCfWorkerRouteRecord } from "./cf-worker-route";
 export { DnscontrolCloudnsWrRecord } from "./cloudns-wr";
 export { DnscontrolCnameRecord } from "./cname";

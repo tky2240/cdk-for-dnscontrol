@@ -24,7 +24,8 @@ declare const dsAlgorithm: {
     readonly PRIVATEOID: 254;
 };
 export type DsAlgorithm = keyof typeof dsAlgorithm;
-declare const digestType: {
+export declare const getDsAlgorithmStringFromValue: (value: number) => DsAlgorithm;
+declare const dsDigestType: {
     readonly SHA1: 1;
     readonly SHA256: 2;
     readonly GOST_R_34_11_94: 3;
@@ -32,7 +33,8 @@ declare const digestType: {
     readonly GOST_R_34_11_2012: 5;
     readonly SM3: 6;
 };
-export type DsDigestType = keyof typeof digestType;
+export type DsDigestType = keyof typeof dsDigestType;
+export declare const getDsDigestTypeStringFromValue: (value: number) => DsDigestType;
 export interface DnscontrolDsRecordProps {
     readonly label: string;
     readonly keytag: number;
@@ -40,6 +42,7 @@ export interface DnscontrolDsRecordProps {
     readonly digestType: DsDigestType;
     readonly digest: string;
     readonly ttl?: Duration | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolDsRecord extends DnscontrolRecord {
     readonly keytag: number;
