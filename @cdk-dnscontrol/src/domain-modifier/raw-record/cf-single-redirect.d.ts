@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 import { DnscontrolCfSingleRedirectRawRecordConfig } from "../../types/dnscontrol-raw-record-config";
 import { Duration } from "../../types/duration";
 import { DnscontrolRawRecord } from "../raw-record/dnscontrol-raw-record";
-declare const redirectCodes: readonly [301, 302];
+declare const redirectCodes: readonly [301, 302, 303, 307, 308];
 export type RedirectCode = (typeof redirectCodes)[number];
 export interface DnscontrolCfSingleRedirectRecordProps {
     readonly name: string;

@@ -163,7 +163,7 @@
       "initializer": {
         "locationInModule": {
           "filename": "src/dnscontrol-domain.ts",
-          "line": 37
+          "line": 41
         },
         "parameters": [
           {
@@ -189,13 +189,13 @@
       "kind": "class",
       "locationInModule": {
         "filename": "src/dnscontrol-domain.ts",
-        "line": 28
+        "line": 30
       },
       "methods": [
         {
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 61
+            "line": 67
           },
           "name": "isDnscontrolDomain",
           "parameters": [
@@ -216,7 +216,7 @@
         {
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 65
+            "line": 71
           },
           "name": "renderDomainConfig",
           "returns": {
@@ -232,7 +232,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 31
+            "line": 34
           },
           "name": "defaultTtl",
           "type": {
@@ -243,7 +243,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 29
+            "line": 31
           },
           "name": "domainName",
           "type": {
@@ -254,7 +254,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 30
+            "line": 33
           },
           "name": "registrarName",
           "type": {
@@ -265,7 +265,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 33
+            "line": 36
           },
           "name": "isDisabledIgnoreSafetyCheck",
           "optional": true,
@@ -277,7 +277,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 32
+            "line": 35
           },
           "name": "isEnabledAutoDnssec",
           "optional": true,
@@ -289,7 +289,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 35
+            "line": 38
           },
           "name": "parentNameservers",
           "optional": true,
@@ -306,7 +306,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 36
+            "line": 39
           },
           "name": "parentNameserverTtl",
           "optional": true,
@@ -318,12 +318,36 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 34
+            "line": 40
+          },
+          "name": "route53ZoneId",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 37
           },
           "name": "shouldKeepExistingRecord",
           "optional": true,
           "type": {
             "primitive": "boolean"
+          }
+        },
+        {
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 32
+          },
+          "name": "tag",
+          "optional": true,
+          "type": {
+            "primitive": "string"
           }
         }
       ],
@@ -347,7 +371,7 @@
             "filename": "src/types/dnscontrol-domain-config.ts",
             "line": 9
           },
-          "name": "dnsProviders",
+          "name": "dnsProviderNameserverCountMap",
           "type": {
             "collection": {
               "elementtype": {
@@ -367,23 +391,6 @@
           "name": "name",
           "type": {
             "primitive": "string"
-          }
-        },
-        {
-          "abstract": true,
-          "immutable": true,
-          "locationInModule": {
-            "filename": "src/types/dnscontrol-domain-config.ts",
-            "line": 18
-          },
-          "name": "rawRecords",
-          "type": {
-            "collection": {
-              "elementtype": {
-                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRawRecordConfig"
-              },
-              "kind": "array"
-            }
           }
         },
         {
@@ -413,23 +420,6 @@
           "name": "registrar",
           "type": {
             "primitive": "string"
-          }
-        },
-        {
-          "abstract": true,
-          "immutable": true,
-          "locationInModule": {
-            "filename": "src/types/dnscontrol-domain-config.ts",
-            "line": 15
-          },
-          "name": "unmanaged",
-          "type": {
-            "collection": {
-              "elementtype": {
-                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolUnmanagedConfig"
-              },
-              "kind": "array"
-            }
           }
         },
         {
@@ -499,14 +489,50 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 18
+          },
+          "name": "rawRecords",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRawRecordConfig"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
             "line": 13
           },
-          "name": "recordAbsent",
+          "name": "recordsAbsent",
           "optional": true,
           "type": {
             "collection": {
               "elementtype": {
                 "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRecordConfig"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-domain-config.ts",
+            "line": 15
+          },
+          "name": "unmanaged",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolUnmanagedConfig"
               },
               "kind": "array"
             }
@@ -657,7 +683,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 19
+            "line": 20
           },
           "name": "domainProviderPropsList",
           "type": {
@@ -674,19 +700,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 18
-          },
-          "name": "registrar",
-          "type": {
-            "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrar"
-          }
-        },
-        {
-          "abstract": true,
-          "immutable": true,
-          "locationInModule": {
-            "filename": "src/dnscontrol-domain.ts",
-            "line": 20
+            "line": 21
           },
           "name": "defaultTtl",
           "optional": true,
@@ -699,7 +713,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 22
+            "line": 23
           },
           "name": "isDisabledIgnoreSafetyCheck",
           "optional": true,
@@ -712,7 +726,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 21
+            "line": 22
           },
           "name": "isEnabledAutoDnssec",
           "optional": true,
@@ -725,7 +739,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 24
+            "line": 25
           },
           "name": "parentNameservers",
           "optional": true,
@@ -743,7 +757,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 25
+            "line": 26
           },
           "name": "parentNameserverTtl",
           "optional": true,
@@ -756,12 +770,51 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dnscontrol-domain.ts",
-            "line": 23
+            "line": 19
+          },
+          "name": "registrar",
+          "optional": true,
+          "type": {
+            "fqn": "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrar"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 27
+          },
+          "name": "route53ZoneId",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 24
           },
           "name": "shouldKeepExistingRecord",
           "optional": true,
           "type": {
             "primitive": "boolean"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dnscontrol-domain.ts",
+            "line": 18
+          },
+          "name": "tag",
+          "optional": true,
+          "type": {
+            "primitive": "string"
           }
         }
       ],
@@ -930,7 +983,7 @@
         {
           "locationInModule": {
             "filename": "src/domain-modifier/management/ignore.ts",
-            "line": 25
+            "line": 26
           },
           "name": "isDnscontrolIgnore",
           "parameters": [
@@ -951,7 +1004,7 @@
         {
           "locationInModule": {
             "filename": "src/domain-modifier/management/ignore.ts",
-            "line": 28
+            "line": 29
           },
           "name": "renderUnmanagedConfig",
           "returns": {
@@ -1284,16 +1337,30 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/types/dnscontrol-raw-record-config.ts",
-            "line": 7
+            "line": 6
           },
           "name": "metas",
           "optional": true,
           "type": {
             "collection": {
               "elementtype": {
-                "primitive": "any"
+                "collection": {
+                  "elementtype": {
+                    "union": {
+                      "types": [
+                        {
+                          "primitive": "string"
+                        },
+                        {
+                          "primitive": "number"
+                        }
+                      ]
+                    }
+                  },
+                  "kind": "map"
+                }
               },
-              "kind": "map"
+              "kind": "array"
             }
           }
         },
@@ -1329,23 +1396,6 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/types/dnscontrol-record-config.ts",
-            "line": 9
-          },
-          "name": "meta",
-          "type": {
-            "collection": {
-              "elementtype": {
-                "primitive": "string"
-              },
-              "kind": "map"
-            }
-          }
-        },
-        {
-          "abstract": true,
-          "immutable": true,
-          "locationInModule": {
-            "filename": "src/types/dnscontrol-record-config.ts",
             "line": 5
           },
           "name": "name",
@@ -1375,6 +1425,24 @@
           "name": "target",
           "type": {
             "primitive": "string"
+          }
+        },
+        {
+          "abstract": true,
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/types/dnscontrol-record-config.ts",
+            "line": 9
+          },
+          "name": "meta",
+          "optional": true,
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "map"
+            }
           }
         },
         {
@@ -1851,5 +1919,5 @@
     }
   },
   "version": "0.0.5",
-  "fingerprint": "HzfU3LWpYlGbBznoMY+5wXjZJD/3wPisyg1l8oYn68k="
+  "fingerprint": "JIlhXRFPM4/jKiN32CeI7N9SOTDP525/Keo5/OgGx/c="
 }
