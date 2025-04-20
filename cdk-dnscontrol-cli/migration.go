@@ -82,10 +82,13 @@ func _migration(outputDir string, dnsconfig string, isTest bool) error {
 			s = strings.ReplaceAll(s, "`", "\\`")
 			return s
 		},
-		"marshalRawMessage": func(raw json.RawMessage) map[string]string {
+		"marshalRawMessage": func(raw json.RawMessage) (map[string]string, error) {
 			metadata := make(map[string]string)
-			json.Unmarshal(raw, &metadata)
-			return metadata
+			err := json.Unmarshal(raw, &metadata)
+			if err != nil {
+				return nil, err
+			}
+			return metadata, nil
 		},
 		"getFormattedValue": func(m map[string]any) (string, error) {
 			return formatMap(m)
@@ -112,7 +115,11 @@ func _migration(outputDir string, dnsconfig string, isTest bool) error {
 	if err != nil {
 		return err
 	}
-	defer file.Close()
+	defer func() {
+		if closeErr := file.Close(); closeErr != nil {
+			err = fmt.Errorf("original error: %v, defer close error: %v", err, closeErr)
+		}
+	}()
 	tmplParams := MigrationTemplateParams{
 		DnsConfig: conf,
 		IsTest:    isTest,
