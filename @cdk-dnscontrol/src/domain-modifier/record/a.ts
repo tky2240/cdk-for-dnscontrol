@@ -10,6 +10,7 @@ export interface DnscontrolARecordProps {
   readonly label: string;
   readonly ip: IPv4Address;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -21,6 +22,7 @@ export class DnscontrolARecord extends DnscontrolRecord {
       label: props.label,
       target: props.ip,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.ip = props.ip;

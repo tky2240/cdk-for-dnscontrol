@@ -15,6 +15,7 @@ export interface DnscontrolDomainProps {
     readonly shouldKeepExistingRecord?: boolean;
     readonly parentNameservers?: string[];
     readonly parentNameserverTtl?: Duration;
+    readonly route53ZoneId?: string;
 }
 export declare abstract class DnscontrolDomain extends Construct {
     readonly domainName: string;
@@ -26,6 +27,7 @@ export declare abstract class DnscontrolDomain extends Construct {
     readonly shouldKeepExistingRecord?: boolean | undefined;
     readonly parentNameservers?: string[] | undefined;
     readonly parentNameserverTtl?: Duration | undefined;
+    readonly route53ZoneId?: string | undefined;
     constructor(scope: DnscontrolStack, id: string, props: DnscontrolDomainProps);
     static isDnscontrolDomain(x: unknown): x is DnscontrolDomain;
     renderDomainConfig(): DnscontrolDomainConfig;

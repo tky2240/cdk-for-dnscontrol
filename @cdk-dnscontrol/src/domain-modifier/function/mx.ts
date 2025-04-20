@@ -9,12 +9,14 @@ export function MX(
   mxPriority: number,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolMxRecord {
   return new DnscontrolMxRecord(scope, `Mx:${label}:${mxPriority}:${target}`, {
     label: label,
     target: target,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
     meta: meta,
     mxPreference: asMxPreference(mxPriority),
   });

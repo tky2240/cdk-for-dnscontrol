@@ -6,6 +6,7 @@ const DNS_CONTROL_RECORD_SYMBOL = Symbol.for("DnscontrolRecord");
 class DnscontrolRecord extends dnscontrol_domain_modifier_1.DnscontrolDomainModifier {
     recordType;
     label;
+    subDomain;
     name;
     ttl;
     target;
@@ -17,6 +18,7 @@ class DnscontrolRecord extends dnscontrol_domain_modifier_1.DnscontrolDomainModi
         Object.defineProperty(this, DNS_CONTROL_RECORD_SYMBOL, { value: true });
         this.recordType = props.recordType;
         this.label = props.label;
+        this.subDomain = props.subDomain;
         this.ttl = props.ttl;
         this.target = props.target;
         this.name = props.label;

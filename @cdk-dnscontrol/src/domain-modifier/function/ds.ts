@@ -16,6 +16,7 @@ export function DS(
   digestType: DsDigestType | number,
   digest: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolDsRecord {
   return new DnscontrolDsRecord(
@@ -24,6 +25,7 @@ export function DS(
     {
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       algorithm: (() => {
         if (typeof algorithm === "number") {

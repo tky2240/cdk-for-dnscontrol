@@ -6,6 +6,7 @@ import { DnscontrolDomainModifier } from "../dnscontrol-domain-modifier";
 export interface DnscontrolRecordProps {
     recordType: DnscontrolRecordType;
     label: string;
+    subDomain?: string | undefined;
     ttl?: Duration | undefined;
     target: string;
     meta?: Record<string, string> | undefined;
@@ -13,6 +14,7 @@ export interface DnscontrolRecordProps {
 export declare abstract class DnscontrolRecord extends DnscontrolDomainModifier {
     readonly recordType: DnscontrolRecordType;
     readonly label: string;
+    readonly subDomain?: string | undefined;
     readonly name: string;
     readonly ttl?: Duration | undefined;
     readonly target: string;

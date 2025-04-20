@@ -18,6 +18,7 @@ class DnscontrolDomain extends constructs_1.Construct {
     shouldKeepExistingRecord;
     parentNameservers;
     parentNameserverTtl;
+    route53ZoneId;
     constructor(scope, id, props) {
         super(scope, id);
         Object.defineProperty(this, DNS_CONTROL_DOMAIN_SYMBOL, { value: true });
@@ -30,6 +31,7 @@ class DnscontrolDomain extends constructs_1.Construct {
         this.shouldKeepExistingRecord = props.shouldKeepExistingRecord;
         this.parentNameservers = props.parentNameservers;
         this.parentNameserverTtl = props.parentNameserverTtl;
+        this.route53ZoneId = props.route53ZoneId;
         for (const providerProps of props.domainProviderPropsList) {
             new dnscontrol_domain_provider_1.DnscontrolDomainProvider(this, providerProps.domainProviderName, providerProps);
         }
@@ -70,15 +72,15 @@ class DnscontrolDomain extends constructs_1.Construct {
                     dnscontrol_tag: this.tag ?? "",
                     dnscontrol_uniquename: this.tag == null ? this.domainName : `${this.domainName}!${this.tag}`,
                 };
-                if (this.parentNameserverTtl != null) {
-                    return {
-                        ...meta,
-                        ns_ttl: this.parentNameserverTtl.toSeconds().toString()
-                    };
-                }
-                else {
-                    return meta;
-                }
+                const ttlAddedMeta = this.parentNameserverTtl != null ? {
+                    ...meta,
+                    ns_ttl: this.parentNameserverTtl.toSeconds().toString()
+                } : meta;
+                const zoneIdAddedMeta = this.route53ZoneId != null ? {
+                    ...ttlAddedMeta,
+                    zone_id: this.route53ZoneId,
+                } : ttlAddedMeta;
+                return zoneIdAddedMeta;
             })(),
         };
         const domainConfig = this._renderDomainConfig(this, initialDomainConfig);
@@ -90,8 +92,8 @@ class DnscontrolDomain extends constructs_1.Construct {
         }
         return {
             ...domainConfig,
-            rawRecords: domainConfig.rawRecords.length == 0 ? undefined : domainConfig.rawRecords,
-            unmanaged: domainConfig.unmanaged.length == 0 ? undefined : domainConfig.unmanaged,
+            rawRecords: domainConfig.rawRecords.length === 0 ? undefined : domainConfig.rawRecords,
+            unmanaged: domainConfig.unmanaged.length === 0 ? undefined : domainConfig.unmanaged,
         };
     }
     _renderDomainConfig(node, domainConfig) {
@@ -108,17 +110,17 @@ class DnscontrolDomain extends constructs_1.Construct {
         }
         if (dnscontrol_raw_record_1.DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
             const rawRecordConfig = node.renderRawRecordConfig();
-            if (domainConfig.rawRecords != null) {
-                domainConfig.rawRecords.push(rawRecordConfig);
+            if (domainConfig.rawRecords == null) {
+                throw new Error("something went wrong");
             }
-            throw new Error("something went wrong");
+            domainConfig.rawRecords.push(rawRecordConfig);
         }
         if (ignore_1.DnscontrolIgnore.isDnscontrolIgnore(node)) {
             const unmanagedConfig = node.renderUnmanagedConfig();
-            if (domainConfig.unmanaged != null) {
-                domainConfig.unmanaged.push(unmanagedConfig);
+            if (domainConfig.unmanaged == null) {
+                throw new Error("something went wrong");
             }
-            throw new Error("something went wrong");
+            domainConfig.unmanaged.push(unmanagedConfig);
         }
         for (const child of node.node.children) {
             this._renderDomainConfig(child, domainConfig);

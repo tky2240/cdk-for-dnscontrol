@@ -75,6 +75,7 @@ export interface DnscontrolDsRecordProps {
   readonly digestType: DsDigestType;
   readonly digest: string;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -89,6 +90,7 @@ export class DnscontrolDsRecord extends DnscontrolRecord {
       label: props.label,
       target: "",
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.keytag = props.keytag;

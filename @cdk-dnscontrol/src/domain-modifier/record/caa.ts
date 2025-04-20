@@ -15,6 +15,7 @@ export interface DnscontrolCaaRecordProps {
   readonly caaTag: CaaTag;
   readonly isCaaCritical?: boolean | undefined;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -27,6 +28,7 @@ export class DnscontrolCaaRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.caaTag = props.caaTag;

@@ -15,6 +15,7 @@ export function SSHFP(
   fingerprintFormat: SshfpFingerprintFormat | number,
   value: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolSshfpRecord {
   return new DnscontrolSshfpRecord(
@@ -24,6 +25,7 @@ export function SSHFP(
       label: label,
       value: value,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       algorithm: (() => {
         if (typeof algorithm === "number") {

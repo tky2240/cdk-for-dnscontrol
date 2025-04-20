@@ -19,6 +19,7 @@ export function DNSKEY(
   algorithm: DnskeyAlgorithm | number,
   publickey: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolDnskeyRecord {
   return new DnscontrolDnskeyRecord(
@@ -27,6 +28,7 @@ export function DNSKEY(
     {
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       flag: (() => {
         if (typeof flag === "number") {

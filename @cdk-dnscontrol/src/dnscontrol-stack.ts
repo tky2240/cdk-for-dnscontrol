@@ -109,6 +109,12 @@ function renameKeys(obj: object): object {
       if (key == "r53Alias") {
         return ["r53_alias", renameKeys(value)];
       }
+      if (key == "zoneId") {
+        return ["zone_id", renameKeys(value)];
+      }
+      if (key == "evaluateTargetHealth") {
+        return ["evaluate_target_health", renameKeys(value)];
+      }
       if (key == "azureAlias") {
         return ["azure_alias", renameKeys(value)];
       }

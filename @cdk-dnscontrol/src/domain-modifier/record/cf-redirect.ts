@@ -11,6 +11,7 @@ export interface DnscontrolCfRedirectRecordProps {
   readonly source: string;
   readonly destination: string;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -27,6 +28,7 @@ export class DnscontrolCfRedirectRecord extends DnscontrolRecord {
       label: "@",
       target: `${props.source},${props.destination}`,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     if (props.source.includes(",")) {

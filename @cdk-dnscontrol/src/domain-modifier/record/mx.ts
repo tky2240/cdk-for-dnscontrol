@@ -11,6 +11,7 @@ export interface DnscontrolMxRecordProps {
   readonly mxPreference: MxPreference;
   readonly target: string;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -22,6 +23,7 @@ export class DnscontrolMxRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.mxPreference = props.mxPreference;
