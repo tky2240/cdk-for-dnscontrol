@@ -1,0 +1,27 @@
+{
+  "dns_providers": [],
+  "domains": [
+    {
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "foo.com"
+      },
+      "name": "foo.com",
+      "records": [
+        {
+          "dnskeyalgorithm": 13,
+          "dnskeyflags": 257,
+          "dnskeyprotocol": 3,
+          "dnskeypublickey": "AABBCCDD",
+          "name": "@",
+          "target": "",
+          "ttl": 300,
+          "type": "DNSKEY"
+        }
+      ],
+      "registrar": "none"
+    }
+  ],
+  "registrars": []
+}

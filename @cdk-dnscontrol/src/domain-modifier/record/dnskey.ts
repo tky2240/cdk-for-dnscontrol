@@ -87,16 +87,17 @@ export interface DnscontrolDnskeyRecordProps {
   readonly label: string;
   readonly flag: DnskeyFlag;
   readonly protocol: DnskeyProtocol;
-  readonly algorythm: DnskeyAlgorithm;
+  readonly algorithm: DnskeyAlgorithm;
   readonly publickey: string;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
 export class DnscontrolDnskeyRecord extends DnscontrolRecord {
   public readonly flag: DnskeyFlag;
   public readonly protcol: DnskeyProtocol;
-  public readonly algorythm: DnskeyAlgorithm;
+  public readonly algorithm: DnskeyAlgorithm;
   public readonly publickey: string;
   constructor(
     scope: Construct,
@@ -108,9 +109,10 @@ export class DnscontrolDnskeyRecord extends DnscontrolRecord {
       label: props.label,
       target: "",
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
-    this.algorythm = props.algorythm;
+    this.algorithm = props.algorithm;
     this.flag = props.flag;
     this.protcol = props.protocol;
     this.publickey = props.publickey;
@@ -130,7 +132,7 @@ export class DnscontrolDnskeyRecord extends DnscontrolRecord {
       target: this.target,
       recordType: this.recordType,
       ttl: this.ttl?.toSeconds(),
-      dnskeyAlgorithm: dnskeyAlgorithm[this.algorythm],
+      dnskeyAlgorithm: dnskeyAlgorithm[this.algorithm],
       dnskeyFlags: dnskeyFlag[this.flag],
       dnskeyProtocol: dnskeyProtocol[this.protcol],
       dnskeyPublicKey: this.publickey,

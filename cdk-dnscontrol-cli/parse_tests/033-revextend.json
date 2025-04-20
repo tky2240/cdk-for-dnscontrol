@@ -1,0 +1,41 @@
+{
+  "dns_providers": [
+    {
+      "name": "bind",
+      "type": "BIND"
+    }
+  ],
+  "domains": [
+    {
+      "dnsProviders": {
+        "bind": -1
+      },
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "3.1.in-addr.arpa"
+      },
+      "name": "3.1.in-addr.arpa",
+      "records": [
+        {
+          "name": "1",
+          "target": "ns1.example.com.",
+          "ttl": 300,
+          "type": "NS"
+        },
+        {
+          "name": "2",
+          "target": "ns2.example.org.",
+          "ttl": 300,
+          "type": "NS"
+        }
+      ],
+      "registrar": "none"
+    }
+  ],
+  "registrars": [
+    {
+      "name": "none",
+      "type": "NONE"
+    }
+  ]
+}

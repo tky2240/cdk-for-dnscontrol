@@ -7,6 +7,7 @@ export function CF_WORKER_ROUTE(
   pattern: string,
   script: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolCfWorkerRouteRecord {
   return new DnscontrolCfWorkerRouteRecord(
@@ -16,6 +17,7 @@ export function CF_WORKER_ROUTE(
       pattern: pattern,
       script: script,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );

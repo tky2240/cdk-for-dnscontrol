@@ -7,6 +7,7 @@ export function CF_REDIRECT(
   source: string,
   destination: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolCfRedirectRecord {
   return new DnscontrolCfRedirectRecord(
@@ -16,6 +17,7 @@ export function CF_REDIRECT(
       source: source,
       destination: destination,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );

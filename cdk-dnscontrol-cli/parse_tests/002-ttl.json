@@ -1,0 +1,35 @@
+{
+  "dns_providers": [
+    {
+      "name": "Cloudflare",
+      "type": "CLOUDFLAREAPI"
+    }
+  ],
+  "domains": [
+    {
+      "dnsProviders": {
+        "Cloudflare": -1
+      },
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "foo.com"
+      },
+      "name": "foo.com",
+      "records": [
+        {
+          "name": "@",
+          "target": "1.2.3.4",
+          "ttl": 42,
+          "type": "A"
+        }
+      ],
+      "registrar": "Third-Party"
+    }
+  ],
+  "registrars": [
+    {
+      "name": "Third-Party",
+      "type": "NONE"
+    }
+  ]
+}

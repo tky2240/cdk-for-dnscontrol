@@ -7,10 +7,12 @@ declare const dnskeyFlag: {
     readonly KSK: 257;
 };
 export type DnskeyFlag = keyof typeof dnskeyFlag;
+export declare const getDnsKeyFlagStringFromValue: (value: number) => DnskeyFlag;
 declare const dnskeyProtocol: {
     readonly DNSSEC: 3;
 };
 export type DnskeyProtocol = keyof typeof dnskeyProtocol;
+export declare const getDnsKeyProtocolStringFromValue: (value: number) => DnskeyProtocol;
 declare const dnskeyAlgorithm: {
     readonly DELETE: 0;
     readonly RSAMD5: 1;
@@ -33,18 +35,21 @@ declare const dnskeyAlgorithm: {
     readonly PRIVATEOID: 254;
 };
 export type DnskeyAlgorithm = keyof typeof dnskeyAlgorithm;
+export declare const getDnsKeyAlgorithmStringFromValue: (value: number) => DnskeyAlgorithm;
 export interface DnscontrolDnskeyRecordProps {
     readonly label: string;
     readonly flag: DnskeyFlag;
     readonly protocol: DnskeyProtocol;
-    readonly algorythm: DnskeyAlgorithm;
+    readonly algorithm: DnskeyAlgorithm;
     readonly publickey: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolDnskeyRecord extends DnscontrolRecord {
     readonly flag: DnskeyFlag;
     readonly protcol: DnskeyProtocol;
-    readonly algorythm: DnskeyAlgorithm;
+    readonly algorithm: DnskeyAlgorithm;
     readonly publickey: string;
     constructor(scope: Construct, id: string, props: DnscontrolDnskeyRecordProps);
     static isDnscontrolDnskeyRecord(x: unknown): x is DnscontrolDnskeyRecord;

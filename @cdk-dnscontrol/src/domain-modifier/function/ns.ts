@@ -7,12 +7,14 @@ export function NS(
   label: string,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolNsRecord {
   return new DnscontrolNsRecord(scope, `Ns:${label}:${target}`, {
     label: label,
     target: target,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
     meta: meta,
   });
 }

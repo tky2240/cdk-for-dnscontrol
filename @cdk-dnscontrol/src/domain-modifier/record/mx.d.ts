@@ -8,6 +8,8 @@ export interface DnscontrolMxRecordProps {
     readonly mxPreference: MxPreference;
     readonly target: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolMxRecord extends DnscontrolRecord {
     readonly mxPreference: MxPreference;

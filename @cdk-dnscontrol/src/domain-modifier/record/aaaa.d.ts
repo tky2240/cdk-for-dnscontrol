@@ -7,6 +7,8 @@ export interface DnscontrolAAAARecordProps {
     readonly label: string;
     readonly ip: IPv6Address;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolAAAARecord extends DnscontrolRecord {
     readonly ip: IPv6Address;

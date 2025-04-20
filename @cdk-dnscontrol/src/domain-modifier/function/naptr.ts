@@ -12,6 +12,7 @@ export function NAPTR(
   regexp: string,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolNaptrRecord {
   return new DnscontrolNaptrRecord(
@@ -21,6 +22,7 @@ export function NAPTR(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       order: order,
       preference: preference,

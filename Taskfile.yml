@@ -36,6 +36,11 @@ tasks:
     dir: '{{.USER_WORKING_DIR}}/cdk-dnscontrol-cli'
     cmds:
       - golangci-lint run .
+  go-test:
+    desc: go test
+    dir: '{{.USER_WORKING_DIR}}/cdk-dnscontrol-cli'
+    cmds:
+      - go test
   format:
     desc: format all
     cmds:
@@ -51,9 +56,14 @@ tasks:
     cmds:
       - task: ts-check
       - task: go-check
+  test:
+    desc: test all
+    cmds:
+      - task: ts-test
+      - task: go-test
   ci:
     desc: check codes
     cmds:
       - task: lint
       - task: check
-      - task: ts-test
+      - task: test

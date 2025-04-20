@@ -12,7 +12,7 @@ export function CF_SINGLE_REDIRECT(
   when: string,
   then: string,
   ttl?: number | string,
-  metas?: Record<string, string>,
+  metas?: Record<string, string | number>,
 ): DnscontrolCfSingleRedirectRawRecord {
   return new DnscontrolCfSingleRedirectRawRecord(
     scope,

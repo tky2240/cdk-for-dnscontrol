@@ -8,12 +8,14 @@ export function A(
   label: string,
   ip: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolARecord {
   return new DnscontrolARecord(scope, `A:${label}:${ip}`, {
     ip: asIPv4Address(ip),
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
     meta: meta,
   });
 }

@@ -61,6 +61,7 @@ export interface DnscontrolSshfpRecordProps {
   readonly algorithm: SshfpAlgorithm;
   readonly fingerprintFormat: SshfpFingerprintFormat;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -73,6 +74,7 @@ export class DnscontrolSshfpRecord extends DnscontrolRecord {
       label: props.label,
       target: props.value,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.algorithm = props.algorithm;

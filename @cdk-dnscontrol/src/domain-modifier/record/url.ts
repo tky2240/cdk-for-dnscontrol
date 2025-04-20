@@ -9,6 +9,7 @@ export interface DnscontrolUrlRecordProps {
   readonly label: string;
   readonly target: string;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -19,6 +20,7 @@ export class DnscontrolUrlRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
   }

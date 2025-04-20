@@ -9,6 +9,8 @@ export interface DnscontrolSrvRecordProps {
     readonly weight: number;
     readonly port: number;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolSrvRecord extends DnscontrolRecord {
     readonly priority: number;

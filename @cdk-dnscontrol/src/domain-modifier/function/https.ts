@@ -9,6 +9,7 @@ export function HTTPS(
   target: string,
   params: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolHttpsRecord {
   return new DnscontrolHttpsRecord(
@@ -18,6 +19,7 @@ export function HTTPS(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       priority: priority,
       params: params,

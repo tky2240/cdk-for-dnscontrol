@@ -11,6 +11,8 @@ export interface DnscontrolNaptrRecordProps {
     readonly service: string;
     readonly regexp: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolNaptrRecord extends DnscontrolRecord {
     readonly order: number;

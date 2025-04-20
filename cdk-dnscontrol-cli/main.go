@@ -11,6 +11,9 @@ import (
 	"syscall"
 
 	"github.com/StackExchange/dnscontrol/v4/commands"
+	"github.com/StackExchange/dnscontrol/v4/models"
+	"github.com/StackExchange/dnscontrol/v4/pkg/normalize"
+	"github.com/StackExchange/dnscontrol/v4/pkg/prettyzone"
 	"github.com/StackExchange/dnscontrol/v4/pkg/rtypes"
 	_ "github.com/StackExchange/dnscontrol/v4/providers/_all"
 	"github.com/urfave/cli/v2"
@@ -50,6 +53,27 @@ func main() {
 						Usage: "CDK entry point, default is ./bin/index.ts",
 
 						Aliases: []string{"i"},
+					},
+				},
+			},
+			{
+				Name:  "migration",
+				Usage: "migrate from cdk-dnscontrol to cdk-dnscontrol-cli",
+				Action: func(c *cli.Context) error {
+					return migration(c)
+				},
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "dnsconfig",
+						Value:   "./dnsconfig.js",
+						Usage:   "dnsconfig js file, default is ./dnsconfig.js",
+						Aliases: []string{"d"},
+					},
+					&cli.StringFlag{
+						Name:    "outputDir",
+						Value:   "./lib/stacks",
+						Usage:   "output directory, default is ./lib/stacks",
+						Aliases: []string{"o"},
 					},
 				},
 			},
@@ -121,6 +145,20 @@ func prepare(c *cli.Context) (err error) {
 		return err
 	}
 
+	for _, dc := range cfg.Domains {
+		ps := prettyzone.PrettySort(dc.Records, dc.Name, 0, nil)
+		dc.Records = ps.Records
+		if len(dc.Records) == 0 {
+			dc.Records = models.Records{}
+		}
+	}
+
+	errs := normalize.ValidateAndNormalizeConfig(cfg)
+	if len(errs) != 0 {
+		commands.PrintValidationErrors(errs)
+		return errors.New("failed to validate config")
+	}
+
 	// rewrite config
 	configJson, err := json.Marshal(cfg)
 	if err != nil {
@@ -153,6 +191,11 @@ func synth(c *cli.Context) error {
 	if _, err := os.Stat(cdkEntryPoint); os.IsNotExist(err) {
 		return errors.New("cdk entry point is not exist")
 	}
+	return _synth(cdkEntryPoint)
+}
+
+func _synth(cdkEntryPoint string) error {
+
 	cmd := exec.Command("npx", "tsx", cdkEntryPoint)
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	cmd.Stdout = os.Stdout

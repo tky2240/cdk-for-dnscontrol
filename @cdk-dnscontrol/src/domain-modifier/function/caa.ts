@@ -7,17 +7,22 @@ export function CAA(
   label: string,
   caaTag: CaaTag,
   target: string,
-  isCaaCritical: boolean | number,
+  isCaaCritical?: boolean | number,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolCaaRecord {
   return new DnscontrolCaaRecord(scope, `Caa:${label}:${target}`, {
     target: target,
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
     meta: meta,
     caaTag: caaTag,
     isCaaCritical: (() => {
+      if (isCaaCritical == null) {
+        return undefined;
+      }
       if (typeof isCaaCritical === "boolean") {
         return isCaaCritical;
       }

@@ -9,6 +9,7 @@ export function SVCB(
   target: string,
   params: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolSvcbRecord {
   return new DnscontrolSvcbRecord(
@@ -18,6 +19,7 @@ export function SVCB(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       priority: priority,
       params: params,

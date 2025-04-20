@@ -5,7 +5,7 @@ export interface DnscontrolRecordConfig {
     readonly subdomain?: string | undefined;
     readonly target: string;
     readonly ttl?: number | undefined;
-    readonly meta: Record<string, string>;
+    readonly meta?: Record<string, string> | undefined;
 }
 export interface DnscontrolARecordConfig extends DnscontrolRecordConfig {
 }
@@ -15,7 +15,7 @@ export interface DnscontrolAliasRecordConfig extends DnscontrolRecordConfig {
 }
 export interface DnscontrolCaaRecordConfig extends DnscontrolRecordConfig {
     readonly caaTag: string;
-    readonly caaFlag: number;
+    readonly caaFlag?: number | undefined;
 }
 export interface DnscontrolCnameRecordConfig extends DnscontrolRecordConfig {
 }
@@ -114,7 +114,7 @@ export interface DnscontrolAzureAliasRecordConfig extends DnscontrolRecordConfig
 }
 export interface DnscontrolCfRedirectRecordConfig extends DnscontrolRecordConfig {
 }
-export interface DnscontrolCfTmpRedirectRecordConfig extends DnscontrolRecordConfig {
+export interface DnscontrolCfTempRedirectRecordConfig extends DnscontrolRecordConfig {
 }
 export interface DnscontrolCfWorkerRouteRecordConfig extends DnscontrolRecordConfig {
 }

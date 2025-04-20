@@ -1,0 +1,23 @@
+{
+  "dns_providers": [],
+  "domains": [
+    {
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "foo.com"
+      },
+      "name": "foo.com",
+      "records": [],
+      "registrar": "none",
+      "unmanaged": [
+        {
+          "label_pattern": "\\*.testignore",
+          "rType_pattern": "*",
+          "target_pattern": "*"
+        }
+      ]
+    }
+  ],
+  "registrars": []
+}

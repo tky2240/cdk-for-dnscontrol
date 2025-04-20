@@ -21,9 +21,9 @@ export class Duration {
 
   constructor(value: string | number) {
     if (typeof value === "number") {
-      if (!isPositiveInteger(value)) {
+      if (!isNonNegativeInteger(value)) {
         throw new Error(
-          "Duration must be a positive integer, but got " + value,
+          "Duration must be a non-negative integer, but got " + value,
         );
       }
       this.value = value;
@@ -37,9 +37,9 @@ export class Duration {
     if (durationValueAndUnit.length !== 3) {
       throw new Error("Invalid duration format: " + value);
     }
-    if (!isPositiveInteger(Number(durationValueAndUnit[1]))) {
+    if (!isNonNegativeInteger(Number(durationValueAndUnit[1]))) {
       throw new Error(
-        "Duration must be a positive integer, but got " +
+        "Duration must be a non-negative integer, but got " +
           durationValueAndUnit[1],
       );
     }
@@ -76,14 +76,14 @@ export class Duration {
   }
 }
 
-function isPositiveInteger(value: unknown): boolean {
+function isNonNegativeInteger(value: unknown): boolean {
   if (typeof value !== "number") {
     return false;
   }
   if (!Number.isInteger(value)) {
     return false;
   }
-  if (value <= 0) {
+  if (value < 0) {
     return false;
   }
   return true;

@@ -3,8 +3,8 @@ import { DnscontrolUnmanagedConfig } from "../../types/dnscontrol-unmanaged-conf
 import { DnscontrolDomainModifier } from "../dnscontrol-domain-modifier";
 export interface DnscontrolIgnoreProps {
     readonly labelPattern: string;
-    readonly typePattern?: string;
-    readonly targetPattern?: string;
+    readonly typePattern?: string | undefined;
+    readonly targetPattern?: string | undefined;
 }
 export declare class DnscontrolIgnore extends DnscontrolDomainModifier {
     readonly labelPattern: string;

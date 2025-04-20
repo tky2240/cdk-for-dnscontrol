@@ -17,6 +17,7 @@ export interface DnscontrolAzureAliasRecordProps {
   readonly target: string;
   readonly azureAliasType: AzureAliasType;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -32,6 +33,7 @@ export class DnscontrolAzureAliasRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.azureAliasType = props.azureAliasType;

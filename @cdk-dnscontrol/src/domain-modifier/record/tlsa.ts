@@ -12,6 +12,7 @@ export interface DnscontrolTlsaRecordProps {
   readonly selector: number;
   readonly matchingType: number;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -25,6 +26,7 @@ export class DnscontrolTlsaRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.usage = props.usage;

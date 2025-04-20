@@ -1,0 +1,539 @@
+{{ if .IsTest }}
+import { Construct } from "../../@cdk-dnscontrol/node_modules/constructs";
+import {
+  DnscontrolDomain,
+  DnscontrolDomainProps,
+  DnscontrolProvider,
+  DnscontrolDomainProviderProps,
+  DnscontrolRegistrar,
+  DnscontrolStack,
+  App,
+  Duration,
+} from "../../@cdk-dnscontrol/src";
+
+import * as recordFunction from "../../@cdk-dnscontrol/src/domain-modifier/function";
+{{ else }}
+import { Construct } from "constructs";
+import {
+  DnscontrolDomain,
+  DnscontrolDomainProps,
+  DnscontrolProvider,
+  DnscontrolDomainProviderProps,
+  DnscontrolRegistrar,
+  DnscontrolStack,
+  App,
+} from "@tky2240/cdk-for-dnscontrol";
+
+import * as recordFunction from "@cdk-dnscontrol/lib/domain-modifier/function"
+{{ end }}
+
+{{ $dnsConfig := .DnsConfig}}
+export class MigrationStack extends DnscontrolStack {
+  constructor(scope: Construct, id: string) {
+    super(scope, id, {});
+
+    {{ range $index, $provider := $dnsConfig.DNSProviders }}
+    const provider{{sanitizeName $provider.Name}} = new DnscontrolProvider(this, "{{$provider.Name}}-{{$provider.Type}}-{{$index}}", {
+      providerName: "{{$provider.Name}}",
+      providerType: "{{$provider.Type}}",
+      {{ with $provider.Metadata }}
+      providerMetadata: {
+        {{ $providerMetadata := marshalRawMessage $provider.Metadata}}
+        {{range $key, $value := $providerMetadata}}
+        {{$key}}: "{{$value}}",
+        {{ end }}
+      },
+      {{ end }}
+    });
+    {{ end }}
+
+    {{ range $index, $registrar := $dnsConfig.Registrars }}
+    const registrar{{sanitizeName $registrar.Name}} = new DnscontrolRegistrar(this, "{{$registrar.Name}}-{{$registrar.Type}}-{{$index}}", {
+      registrarName: "{{$registrar.Name}}",
+      registrarType: "{{$registrar.Type}}",
+      {{ with $registrar.Metadata }}
+      registrarMetadata: {
+        {{ $registrarMetadata := marshalRawMessage $registrar.Metadata}}
+        {{range $key, $value := $registrarMetadata}}
+        {{$key}}: "{{$value}}",
+        {{ end }}
+      },
+      {{ end }}
+    });
+    {{ end }}
+
+    {{$registrars := $dnsConfig.Registrars}}
+    {{ range $index, $domain := $dnsConfig.Domains }}
+    new Migration{{sanitizeDomainName $domain.Name}}{{sanitizeName $domain.Metadata.dnscontrol_tag}}Domain(this, "{{sanitizeDomainName $domain.Name}}{{sanitizeName $domain.Metadata.dnscontrol_tag}}", {
+      domainName: "{{$domain.Name}}",
+      {{ with $registrars }}registrar: registrar{{sanitizeName $domain.RegistrarName}},{{ end }}
+      domainProviderPropsList: [
+        {{ range $providerName, $nameserverCount := $domain.DNSProviderNames}}
+        {
+          domainProviderName: provider{{sanitizeName $providerName}}.providerName,
+          nameserverCount: {{$nameserverCount}},
+        },
+        {{ end }}
+      ],
+      {{ with $domain.AutoDNSSEC }}
+      isEnabledAutoDnssec: {{if eq $domain.AutoDNSSEC "on" }}true{{ else if eq $domain.AutoDNSSEC "off" }}false{{ else }}undefined{{ end }},
+      {{end}}
+      {{ with $domain.UnmanagedUnsafe }}
+      isDisabledIgnoreSafetyCheck: {{$domain.UnmanagedUnsafe}},
+      {{end}}
+      {{ with $domain.KeepUnknown}}
+      shouldKeepExistingRecord: {{$domain.KeepUnknown}},
+      {{end}}
+      {{ with $domain.Nameservers }}
+      parentNameservers: [
+        {{range $nameserver := $domain.Nameservers}}
+        "{{$nameserver.Name}}",
+        {{ end }}
+      ],
+      {{ end }}
+      {{ range $metaKey, $metaValue := $domain.Metadata }}
+        {{ if eq $metaKey "dnscontrol_tag" }}
+      tag: "{{$metaValue}}",
+        {{ else if eq $metaKey "zone_id" }}
+      route53ZoneId: "{{$domain.Metadata.zone_id}}",
+        {{ else if eq $metaKey "ns_ttl" }}
+      parentNameserverTtl: new Duration({{$domain.Metadata.ns_ttl}}),
+        {{ end }}
+      {{ end }}
+    });
+    {{ end }}
+  }
+}
+
+{{ range $index, $domain := $dnsConfig.Domains }}
+
+interface Migration{{sanitizeDomainName $domain.Name}}{{sanitizeName $domain.Metadata.dnscontrol_tag}}DomainProps extends DnscontrolDomainProps {
+  readonly domainName: string;
+  readonly registrar?: DnscontrolRegistrar;
+  readonly domainProviderPropsList: DnscontrolDomainProviderProps[];
+}
+
+export class Migration{{sanitizeDomainName $domain.Name}}{{sanitizeName $domain.Metadata.dnscontrol_tag}}Domain extends DnscontrolDomain {
+  constructor(scope: DnscontrolStack, id: string, props: Migration{{sanitizeDomainName $domain.Name}}{{sanitizeName $domain.Metadata.dnscontrol_tag}}DomainProps) {
+    super(scope, id, props);
+    {{ range $record := $domain.Records }}
+      {{ if eq $record.Type "A" }}
+    recordFunction.A(this, "{{$record.Name}}", "{{$record.GetTargetIP}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "AAAA" }}
+    recordFunction.AAAA(this, "{{$record.Name}}", "{{$record.GetTargetIP}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "AKAMAI_CDN" }}
+    recordFunction.AKAMAI_CDN(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "ALIAS" }}
+    recordFunction.ALIAS(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "AZURE_ALIAS" }}
+    recordFunction.AZURE_ALIAS(this, "{{$record.Name}}", "{{$record.AzureAlias.type}}","{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "BUNNY_DNS_RDR" }}
+    recordFunction.BUNNY_DNS_RDR(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "CAA" }}
+    recordFunction.CAA(this, "{{$record.Name}}", "{{$record.CaaTag}}", "{{$record.GetTargetField}}", {{$record.CaaFlag}}, {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "CF_REDIRECT" }}
+    recordFunction.CF_REDIRECT(this, "{{ index (splitByComma $record.GetTargetField) 0}}", "{{ index (splitByComma $record.GetTargetField) 1}}",{{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "CF_TEMP_REDIRECT" }}
+    recordFunction.CF_TEMP_REDIRECT(this, "{{ index (splitByComma $record.GetTargetField) 0}}", "{{ index (splitByComma $record.GetTargetField) 1}}",{{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "CF_WORKER_ROUTE" }}
+    recordFunction.CF_WORKER_ROUTE(this, "{{ index (splitByComma $record.GetTargetField) 0}}", "{{ index (splitByComma $record.GetTargetField) 1}}",{{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "CLOUDNS_WR" }}
+    recordFunction.CLOUDNS_WR(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "CNAME" }}
+    recordFunction.CNAME(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "DHCID" }}
+    recordFunction.DHCID(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "DNAME" }}
+    recordFunction.DNAME(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "DNSKEY" }}
+    recordFunction.DNSKEY(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.DnskeyFlags}}, {{$record.DnskeyProtocol}}, {{$record.DnskeyAlgorithm}}, "{{$record.DnskeyPublicKey}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}} 
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "DS" }}
+    recordFunction.DS(this, "{{$record.Name}}", {{$record.DsKeyTag}}, {{$record.DsAlgorithm}}, {{$record.DsDigestType}}, "{{$record.DsDigest}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "FRAME" }}
+    recordFunction.FRAME(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "HTTPS" }}
+    recordFunction.HTTPS(this, "{{$record.Name}}", {{$record.SvcPriority}}, "{{$record.GetTargetField}}", "{{escapeString $record.SvcParams}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "MX" }}
+    recordFunction.MX(this, "{{$record.Name}}", {{$record.MxPreference}}, "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "NAPTR" }}
+    recordFunction.NAPTR(this, "{{$record.Name}}", {{$record.NaptrOrder}}, {{$record.NaptrPreference}}, "{{$record.NaptrFlags}}", "{{$record.NaptrService}}", "{{$record.NaptrRegexp}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "NS" }}
+    recordFunction.NS(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "PORKBUN_URLFWD" }}
+    recordFunction.PORKBUN_URLFWD(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "PTR" }}
+    recordFunction.PTR(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "R53_ALIAS" }}
+    recordFunction.R53_ALIAS(this, "{{$record.Name}}", "{{$record.GetTargetField}}", "{{$record.R53Alias.type}}", {
+      {{with $record.R53Alias.zone_id}}zoneId: "{{$record.R53Alias.zone_id}}",{{end}}
+      {{with $record.R53Alias.evaluate_target_health}}isEnabledEvaluateTargetHealth: {{$record.R53Alias.evaluate_target_health}},{{end}}
+    }, {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "SOA" }}
+    recordFunction.SOA(this, "{{$record.Name}}", "{{$record.GetTargetField}}", "{{$record.SoaMbox}}", {{$record.SoaRefresh}}, {{$record.SoaRetry}}, {{$record.SoaExpire}}, {{$record.SoaMinttl}}, {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "SRV" }}
+    recordFunction.SRV(this, "{{$record.Name}}", {{$record.SrvPriority}}, {{$record.SrvWeight}}, {{$record.SrvPort}}, "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "SSHFP" }}
+    recordFunction.SSHFP(this, "{{$record.Name}}", {{$record.SshfpAlgorithm}}, {{$record.SshfpFingerprint}}, "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "SVCB" }} 
+    recordFunction.SVCB(this, "{{$record.Name}}", {{$record.SvcPriority}}, "{{$record.GetTargetField}}", "{{escapeString $record.SvcParams}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "TLSA" }}
+    recordFunction.TLSA(this, "{{$record.Name}}", {{$record.TlsaUsage}}, {{$record.TlsaSelector}}, {{$record.TlsaMatchingType}}, "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "TXT" }}
+    recordFunction.TXT(this, "{{$record.Name}}", [{{encloseInQuotes $record.GetTargetTXTSegmented}}], {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "URL" }}
+    recordFunction.URL(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $record.Type "URL301" }}
+    recordFunction.URL301(this, "{{$record.Name}}", "{{$record.GetTargetField}}", {{$record.TTL}}, false, {{ with $record.Metadata }} {
+        {{range $key, $value := $record.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ end }}
+    {{ end }}
+
+    {{ range $index, $ignore := $domain.Unmanaged}}
+    recordFunction.IGNORE(this, "{{ escapeString $ignore.LabelPattern}}", "{{ escapeString $ignore.RTypePattern}}", "{{ escapeString $ignore.TargetPattern}}");
+    {{ end }}
+
+    {{ range $absentRecord := $domain.EnsureAbsent }}
+      {{ if eq $absentRecord.Type "A" }}
+    recordFunction.A(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetIP}}", {{$absentRecord.TTL}}, true, {{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "AAAA" }}
+    recordFunction.AAAA(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetIP}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "AKAMAI_CDN" }}
+    recordFunction.AKAMAI_CDN(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "ALIAS" }}
+    recordFunction.ALIAS(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "AZURE_ALIAS" }}
+    recordFunction.AZURE_ALIAS(this, "{{$absentRecord.Name}}", "{{$absentRecord.AzureAlias.type}}","{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "BUNNY_DNS_RDR" }}
+    recordFunction.BUNNY_DNS_RDR(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "CAA" }}
+    recordFunction.CAA(this, "{{$absentRecord.Name}}", "{{$absentRecord.CaaTag}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.CaaFlag}}, {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "CF_REDIRECT" }}
+    recordFunction.CF_REDIRECT(this, "{{ index (splitByComma $absentRecord.GetTargetField) 0}}", "{{ index (splitByComma $absentRecord.GetTargetField) 1}}",{{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "CF_TEMP_REDIRECT" }}
+    recordFunction.CF_TEMP_REDIRECT(this, "{{ index (splitByComma $absentRecord.GetTargetField) 0}}", "{{ index (splitByComma $absentRecord.GetTargetField) 1}}",{{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "CF_WORKER_ROUTE" }}
+    recordFunction.CF_WORKER_ROUTE(this, "{{ index (splitByComma $absentRecord.GetTargetField) 0}}", "{{ index (splitByComma $absentRecord.GetTargetField) 1}}",{{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "CLOUDNS_WR" }}
+    recordFunction.CLOUDNS_WR(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "CNAME" }}
+    recordFunction.CNAME(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "DHCID" }}
+    recordFunction.DHCID(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "DNAME" }}
+    recordFunction.DNAME(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "DNSKEY" }}
+    recordFunction.DNSKEY(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.DnskeyFlags}}, {{$absentRecord.DnskeyProtocol}}, {{$absentRecord.DnskeyAlgorithm}}, "{{$absentRecord.DnskeyPublicKey}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}} 
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "DS" }}
+    recordFunction.DS(this, "{{$absentRecord.Name}}", {{$absentRecord.DsKeyTag}}, {{$absentRecord.DsAlgorithm}}, {{$absentRecord.DsDigestType}}, "{{$absentRecord.DsDigest}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "FRAME" }}
+    recordFunction.FRAME(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "HTTPS" }}
+    recordFunction.HTTPS(this, "{{$absentRecord.Name}}", {{$absentRecord.SvcPriority}}, "{{$absentRecord.GetTargetField}}", "{{escapeString $absentRecord.SvcParams}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "MX" }}
+    recordFunction.MX(this, "{{$absentRecord.Name}}", {{$absentRecord.MxPreference}}, "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "NAPTR" }}
+    recordFunction.NAPTR(this, "{{$absentRecord.Name}}", {{$absentRecord.NaptrOrder}}, {{$absentRecord.NaptrPreference}}, "{{$absentRecord.NaptrFlags}}", "{{$absentRecord.NaptrService}}", "{{$absentRecord.NaptrRegexp}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "NS" }}
+    recordFunction.NS(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "PORKBUN_URLFWD" }}
+    recordFunction.PORKBUN_URLFWD(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "PTR" }}
+    recordFunction.PTR(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "R53_ALIAS" }}
+    recordFunction.R53_ALIAS(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", "{{$absentRecord.R53Alias.type}}", {
+      {{with $absentRecord.R53Alias.zone_id}}zoneId: "{{$absentRecord.R53Alias.zone_id}}",{{end}}
+      {{with $absentRecord.R53Alias.evaluate_target_health}}isEnabledEvaluateTargetHealth: {{$absentRecord.R53Alias.evaluate_target_health}},{{end}}
+    }, {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "SOA" }}
+    recordFunction.SOA(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", "{{$absentRecord.SoaMbox}}", {{$absentRecord.SoaRefresh}}, {{$absentRecord.SoaRetry}}, {{$absentRecord.SoaExpire}}, {{$absentRecord.SoaMinttl}}, {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "SRV" }}
+    recordFunction.SRV(this, "{{$absentRecord.Name}}", {{$absentRecord.SrvPriority}}, {{$absentRecord.SrvWeight}}, {{$absentRecord.SrvPort}}, "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "SSHFP" }}
+    recordFunction.SSHFP(this, "{{$absentRecord.Name}}", {{$absentRecord.SshfpAlgorithm}}, {{$absentRecord.SshfpFingerprint}}, "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "SVCB" }} 
+    recordFunction.SVCB(this, "{{$absentRecord.Name}}", {{$absentRecord.SvcPriority}}, "{{$absentRecord.GetTargetField}}", "{{escapeString $absentRecord.SvcParams}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "TLSA" }}
+    recordFunction.TLSA(this, "{{$absentRecord.Name}}", {{$absentRecord.TlsaUsage}}, {{$absentRecord.TlsaSelector}}, {{$absentRecord.TlsaMatchingType}}, "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "TXT" }}
+    recordFunction.TXT(this, "{{$absentRecord.Name}}", [{{encloseInQuotes $absentRecord.GetTargetTXTSegmented}}], {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "URL" }}
+    recordFunction.URL(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ else if eq $absentRecord.Type "URL301" }}
+    recordFunction.URL301(this, "{{$absentRecord.Name}}", "{{$absentRecord.GetTargetField}}", {{$absentRecord.TTL}}, true,{{ with $absentRecord.Metadata }} {
+        {{range $key, $value := $absentRecord.Metadata}}
+      "{{$key}}": "{{$value}}",
+        {{ end }}
+    }{{ end }});
+      {{ end }}
+    {{ end }}
+
+    {{ range $index, $rawrecord := $domain.RawRecords }}
+      {{ if eq $rawrecord.Type "CLOUDFLAREAPI_SINGLE_REDIRECT" }}
+    recordFunction.CF_SINGLE_REDIRECT(this, "{{index $rawrecord.Args 0}}", {{index $rawrecord.Args 1}}, "{{index $rawrecord.Args 2}}", "{{index $rawrecord.Args 3}}", 
+      {{ if eq $rawrecord.TTL 0}}undefined{{ else }}{{$rawrecord.TTL}}{{ end }}, 
+      {{ with $rawrecord.Metas }} {
+        {{range $key, $value := $rawrecord.Metas}}
+        {{getFormattedValue $value}},
+        {{ end }}
+      }{{ end }});
+      {{ end }}
+    {{ end }}
+  }
+}
+{{ end }}
+
+const app = new App();
+
+new MigrationStack(app, "MigrationStack");
+app.synth();

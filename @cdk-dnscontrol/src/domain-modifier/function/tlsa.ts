@@ -10,6 +10,7 @@ export function TLSA(
   matchingType: number,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolTlsaRecord {
   return new DnscontrolTlsaRecord(
@@ -19,6 +20,7 @@ export function TLSA(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       usage: usage,
       selector: selector,

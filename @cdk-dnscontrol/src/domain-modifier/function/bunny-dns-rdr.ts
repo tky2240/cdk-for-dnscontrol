@@ -7,6 +7,7 @@ export function BUNNY_DNS_RDR(
   label: string,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolBunnyDnsRdrRecord {
   return new DnscontrolBunnyDnsRdrRecord(
@@ -16,6 +17,7 @@ export function BUNNY_DNS_RDR(
       target: target,
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );

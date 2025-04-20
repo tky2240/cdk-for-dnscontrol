@@ -11,6 +11,7 @@ export interface DnscontrolCfWorkerRouteRecordProps {
   readonly pattern: string;
   readonly script: string;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -27,6 +28,7 @@ export class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {
       label: "@",
       target: `${props.pattern},${props.script}`,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     if (props.pattern.includes(",")) {

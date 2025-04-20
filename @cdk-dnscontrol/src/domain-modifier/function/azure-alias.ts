@@ -11,6 +11,7 @@ export function AZURE_ALIAS(
   azureAliasType: AzureAliasType,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolAzureAliasRecord {
   return new DnscontrolAzureAliasRecord(
@@ -20,6 +21,7 @@ export function AZURE_ALIAS(
       target: target,
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       azureAliasType: azureAliasType,
     },

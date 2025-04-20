@@ -11,6 +11,8 @@ export interface DnscontrolR53AliasRecordProps {
     readonly zoneId?: string | undefined;
     readonly isEnabledEvaluateTargetHealth?: boolean | undefined;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
+    readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolR53AliasRecord extends DnscontrolRecord {
     readonly r53AliasType: R53AliasType;

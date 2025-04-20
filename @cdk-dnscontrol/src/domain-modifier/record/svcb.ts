@@ -11,6 +11,7 @@ export interface DnscontrolSvcbRecordProps {
   readonly priority: number;
   readonly params: string;
   readonly ttl?: Duration | undefined;
+  readonly isEnsuredAbsent?: boolean | undefined;
   readonly meta?: Record<string, string> | undefined;
 }
 
@@ -23,6 +24,7 @@ export class DnscontrolSvcbRecord extends DnscontrolRecord {
       label: props.label,
       target: props.target,
       ttl: props.ttl,
+      isEnsuredAbsent: props.isEnsuredAbsent,
       meta: props.meta,
     });
     this.priority = props.priority;

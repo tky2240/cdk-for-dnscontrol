@@ -1,0 +1,26 @@
+{
+  "dns_providers": [],
+  "domains": [
+    {
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "foo.com"
+      },
+      "name": "foo.com",
+      "records": [
+        {
+          "name": "_443._tcp",
+          "target": "mdfiytq3mtljodbinmzlotexyja5mwe3yza1mti0yjy0zwvly2u5njrlmdljmdu4zwy4zjk4mdvkywnhntq2yiaglqo=",
+          "tlsamatchingtype": 1,
+          "tlsaselector": 1,
+          "tlsausage": 3,
+          "ttl": 300,
+          "type": "TLSA"
+        }
+      ],
+      "registrar": "none"
+    }
+  ],
+  "registrars": []
+}

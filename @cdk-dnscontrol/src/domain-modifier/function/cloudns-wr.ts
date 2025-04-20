@@ -7,12 +7,14 @@ export function CLOUDNS_WR(
   label: string,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolCloudnsWrRecord {
   return new DnscontrolCloudnsWrRecord(scope, `CloudnsWr:${label}:${target}`, {
     target: target,
     label: label,
     ttl: ttl != null ? new Duration(ttl) : undefined,
+    isEnsuredAbsent: isEnsuredAbsent,
     meta: meta,
   });
 }

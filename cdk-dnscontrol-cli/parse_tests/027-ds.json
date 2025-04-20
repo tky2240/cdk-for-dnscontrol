@@ -1,0 +1,37 @@
+{
+  "dns_providers": [],
+  "domains": [
+    {
+      "dnsProviders": {},
+      "meta": {
+        "dnscontrol_tag": "",
+        "dnscontrol_uniquename": "foo.com"
+      },
+      "name": "foo.com",
+      "records": [
+        {
+          "dsalgorithm": 1,
+          "dsdigest": "FFFF",
+          "dsdigesttype": 1,
+          "dskeytag": 1,
+          "name": "@",
+          "target": "",
+          "ttl": 300,
+          "type": "DS"
+        },
+        {
+          "dsalgorithm": 13,
+          "dsdigest": "AABBCCDDEEFF",
+          "dsdigesttype": 2,
+          "dskeytag": 1000,
+          "name": "@",
+          "target": "",
+          "ttl": 300,
+          "type": "DS"
+        }
+      ],
+      "registrar": "none"
+    }
+  ],
+  "registrars": []
+}

@@ -3,8 +3,7 @@ export interface DnscontrolRawRecordConfig {
   // eslint-disable-next-line
   readonly args?: any[] | undefined;
   readonly ttl?: number | undefined;
-  // eslint-disable-next-line
-  readonly metas?: Record<string, any> | undefined;
+  readonly metas?: Record<string, string | number>[] | undefined;
 }
 
 export interface DnscontrolCfSingleRedirectRawRecordConfig

@@ -7,6 +7,7 @@ export function PORKBUN_URLFWD(
   label: string,
   target: string,
   ttl?: number | string,
+  isEnsuredAbsent?: boolean,
   meta?: Record<string, string>,
 ): DnscontrolPorkbunUrlfwdRecord {
   return new DnscontrolPorkbunUrlfwdRecord(
@@ -16,6 +17,7 @@ export function PORKBUN_URLFWD(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );
