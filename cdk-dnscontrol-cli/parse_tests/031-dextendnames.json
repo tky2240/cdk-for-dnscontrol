@@ -54,42 +54,36 @@
         },
         {
           "name": "ssub",
-          "subdomain": "ssub",
           "target": "127.0.0.7",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "j.ssub",
-          "subdomain": "ssub",
           "target": "127.0.0.8",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "k.ssub",
-          "subdomain": "ssub",
           "target": "l.ssub.domain.tld.",
           "ttl": 300,
           "type": "CNAME"
         },
         {
           "name": "ub",
-          "subdomain": "ub",
           "target": "127.0.0.5",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "g.ub",
-          "subdomain": "ub",
           "target": "127.0.0.6",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "h.ub",
-          "subdomain": "ub",
           "target": "i.ub.domain.tld.",
           "ttl": 300,
           "type": "CNAME"

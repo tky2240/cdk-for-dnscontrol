@@ -45,21 +45,18 @@
         },
         {
           "name": "test1.foo.com.sub",
-          "subdomain": "sub",
           "target": "10.2.3.1",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "test2.foo.com.sub",
-          "subdomain": "sub",
           "target": "10.2.3.2",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "test3.foo.com.sub",
-          "subdomain": "sub",
           "target": "10.2.3.3",
           "ttl": 300,
           "type": "A"

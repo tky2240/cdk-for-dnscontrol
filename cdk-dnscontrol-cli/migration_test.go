@@ -30,13 +30,6 @@ func TestMigraion(t *testing.T) {
 			"007-importTransformTTL",
 			"008-import",
 			"020-complexRequire",
-			"029-dextendsub",
-			"030-dextenddoc",
-			"031-dextendnames",
-			"032-reverseip.js",
-			"033-revextend.js",
-			"036-dextendcf.js",
-			"037-splithor.js",
 			"039-include",
 			"045-loc", // not implemented yet
 			"049-json5-require",
@@ -82,6 +75,25 @@ func TestMigraion(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
+			errs := normalize.ValidateAndNormalizeConfig(&synthedConf)
+			if len(errs) != 0 {
+				commands.PrintValidationErrors(errs)
+				t.Fatal(errors.New("failed to validate config"))
+			}
+
+			errs = normalize.ValidateAndNormalizeConfig(&expectedConf)
+			if len(errs) != 0 {
+				commands.PrintValidationErrors(errs)
+				t.Fatal(errors.New("failed to validate config"))
+			}
+
+			for _, dc := range synthedConf.Domains {
+				dc.UpdateSplitHorizonNames()
+			}
+
+			for _, dc := range expectedConf.Domains {
+				dc.UpdateSplitHorizonNames()
+			}
 
 			for _, dc := range synthedConf.Domains {
 				ps := prettyzone.PrettySort(dc.Records, dc.Name, 0, nil)
@@ -120,12 +132,6 @@ func TestMigraion(t *testing.T) {
 				if err != nil {
 					t.Fatal(err)
 				}
-			}
-
-			errs := normalize.ValidateAndNormalizeConfig(&synthedConf)
-			if len(errs) != 0 {
-				commands.PrintValidationErrors(errs)
-				t.Fatal(errors.New("failed to validate config"))
 			}
 
 			synthedJSON, err = json.Marshal(synthedConf)

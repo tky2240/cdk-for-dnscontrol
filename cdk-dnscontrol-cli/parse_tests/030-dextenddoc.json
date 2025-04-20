@@ -42,49 +42,42 @@
         },
         {
           "name": "sub",
-          "subdomain": "sub",
           "target": "127.0.0.7",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "bbb.sub",
-          "subdomain": "sub",
           "target": "127.0.0.4",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "ccc.sub",
-          "subdomain": "sub",
           "target": "127.0.0.5",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "e.sub",
-          "subdomain": "sub",
           "target": "f.sub.domain.tld.",
           "ttl": 300,
           "type": "CNAME"
         },
         {
           "name": "i.sub",
-          "subdomain": "sub",
           "target": "j.sub.domain.tld.",
           "ttl": 300,
           "type": "CNAME"
         },
         {
           "name": "ddd.sub.sub",
-          "subdomain": "sub.sub",
           "target": "127.0.0.6",
           "ttl": 300,
           "type": "A"
         },
         {
           "name": "g.sub.sub",
-          "subdomain": "sub.sub",
           "target": "h.sub.sub.domain.tld.",
           "ttl": 300,
           "type": "CNAME"
