@@ -57,7 +57,7 @@ class DnscontrolStack extends constructs_1.Construct {
     synth(outdir) {
         const dnsConfig = renderDnsConfig(this);
         const renamedDnsConfig = renameKeys(dnsConfig);
-        const jsonContent = JSON.stringify(sortObjectKeys(renamedDnsConfig));
+        const jsonContent = JSON.stringify(renamedDnsConfig);
         const filePath = path_1.default.join(outdir, this.stackMetadataPath);
         const dirPath = path_1.default.dirname(filePath);
         if (!fs.existsSync(dirPath)) {
@@ -117,16 +117,16 @@ function renameKeys(obj) {
             return ["dnsProviders", renameKeys(value)];
         }
         if (key == "nameServers") {
-            return ["nameserver", value];
+            return ["nameserver", renameKeys(value)];
         }
         if (key == "recordAbsent") {
-            return ["recordsabsent", value];
+            return ["recordsabsent", renameKeys(value)];
         }
         if (key == "keepUnknown") {
-            return ["keepunknown", value];
+            return ["keepunknown", renameKeys(value)];
         }
         if (key == "rawRecords") {
-            return ["rawrecords", value];
+            return ["rawrecords", renameKeys(value)];
         }
         if (key == "recordType") {
             return ["type", renameKeys(value)];
@@ -257,14 +257,16 @@ function renameKeys(obj) {
         return [key, renameKeys(value)];
     }));
 }
-function sortObjectKeys(obj) {
-    if (typeof obj !== "object" || obj == null) {
-        return obj;
-    }
-    if (Array.isArray(obj)) {
-        return obj.map((item) => sortObjectKeys(item));
-    }
-    return Object.fromEntries(Object.entries(obj)
-        .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
-        .map(([key, value]) => [key, sortObjectKeys(value)]));
-}
+// function sortObjectKeys(obj: object): object {
+//   if (typeof obj !== "object" || obj == null) {
+//     return obj;
+//   }
+//   if (Array.isArray(obj)) {
+//     return obj.map((item) => sortObjectKeys(item));
+//   }
+//   return Object.fromEntries(
+//     Object.entries(obj)
+//       .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+//       .map(([key, value]) => [key, sortObjectKeys(value)]),
+//   );
+// }

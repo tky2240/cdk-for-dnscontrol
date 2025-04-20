@@ -23,8 +23,8 @@ class Duration {
     unit;
     constructor(value) {
         if (typeof value === "number") {
-            if (!isPositiveInteger(value)) {
-                throw new Error("Duration must be a positive integer, but got " + value);
+            if (!isNonNegativeInteger(value)) {
+                throw new Error("Duration must be a non-negative integer, but got " + value);
             }
             this.value = value;
             this.unit = exports.second;
@@ -37,8 +37,8 @@ class Duration {
         if (durationValueAndUnit.length !== 3) {
             throw new Error("Invalid duration format: " + value);
         }
-        if (!isPositiveInteger(Number(durationValueAndUnit[1]))) {
-            throw new Error("Duration must be a positive integer, but got " +
+        if (!isNonNegativeInteger(Number(durationValueAndUnit[1]))) {
+            throw new Error("Duration must be a non-negative integer, but got " +
                 durationValueAndUnit[1]);
         }
         this.value = Number(durationValueAndUnit[1]);
@@ -74,14 +74,14 @@ class Duration {
     }
 }
 exports.Duration = Duration;
-function isPositiveInteger(value) {
+function isNonNegativeInteger(value) {
     if (typeof value !== "number") {
         return false;
     }
     if (!Number.isInteger(value)) {
         return false;
     }
-    if (value <= 0) {
+    if (value < 0) {
         return false;
     }
     return true;

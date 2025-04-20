@@ -22,7 +22,7 @@ export function R53_ALIAS(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       r53AliasType: r53AliasType,
       zoneId: r53Params.zoneId,

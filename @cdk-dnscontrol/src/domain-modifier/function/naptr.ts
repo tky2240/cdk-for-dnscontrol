@@ -22,7 +22,7 @@ export function NAPTR(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       order: order,
       preference: preference,

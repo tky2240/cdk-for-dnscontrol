@@ -21,7 +21,7 @@ export function AZURE_ALIAS(
       target: target,
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       azureAliasType: azureAliasType,
     },

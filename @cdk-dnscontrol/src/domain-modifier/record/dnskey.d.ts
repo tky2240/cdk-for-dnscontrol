@@ -43,6 +43,7 @@ export interface DnscontrolDnskeyRecordProps {
     readonly algorithm: DnskeyAlgorithm;
     readonly publickey: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
     readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolDnskeyRecord extends DnscontrolRecord {

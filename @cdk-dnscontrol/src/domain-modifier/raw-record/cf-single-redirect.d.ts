@@ -10,7 +10,7 @@ export interface DnscontrolCfSingleRedirectRecordProps {
     readonly when: string;
     readonly then: string;
     readonly ttl?: Duration | undefined;
-    readonly metas?: Record<string, string> | undefined;
+    readonly metas?: Record<string, string | number> | undefined;
 }
 export declare class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
     readonly name: string;

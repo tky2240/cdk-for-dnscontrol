@@ -28,7 +28,7 @@ export function DNSKEY(
     {
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       flag: (() => {
         if (typeof flag === "number") {

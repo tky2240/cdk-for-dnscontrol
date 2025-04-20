@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.URL301 = exports.URL = exports.TXT = exports.TLSA = exports.SVCB = exports.SSHFP = exports.SRV = exports.SOA = exports.R53_ALIAS = exports.PTR = exports.PORKBUN_URLFWD = exports.NS = exports.NAPTR = exports.MX = exports.LOC = exports.HTTPS = exports.FRAME = exports.DS = exports.DNSKEY = exports.DNAME = exports.DHCID = exports.CNAME = exports.CF_WORKER_ROUTE = exports.CF_TEMP_REDIRECT = exports.CF_SINGLE_REDIRECT = exports.CF_REDIRECT = exports.CAA = exports.BUNNY_DNS_RDR = exports.AZURE_ALIAS = exports.ALIAS = exports.AKAMAI_CDN = exports.AAAA = exports.A = void 0;
+exports.IGNORE = exports.URL301 = exports.URL = exports.TXT = exports.TLSA = exports.SVCB = exports.SSHFP = exports.SRV = exports.SOA = exports.R53_ALIAS = exports.PTR = exports.PORKBUN_URLFWD = exports.NS = exports.NAPTR = exports.MX = exports.LOC = exports.HTTPS = exports.FRAME = exports.DS = exports.DNSKEY = exports.DNAME = exports.DHCID = exports.CNAME = exports.CF_WORKER_ROUTE = exports.CF_TEMP_REDIRECT = exports.CF_SINGLE_REDIRECT = exports.CF_REDIRECT = exports.CAA = exports.BUNNY_DNS_RDR = exports.AZURE_ALIAS = exports.ALIAS = exports.AKAMAI_CDN = exports.AAAA = exports.A = void 0;
 var a_1 = require("./a");
 Object.defineProperty(exports, "A", { enumerable: true, get: function () { return a_1.A; } });
 var aaaa_1 = require("./aaaa");
@@ -67,3 +67,5 @@ var url_1 = require("./url");
 Object.defineProperty(exports, "URL", { enumerable: true, get: function () { return url_1.URL; } });
 var url301_1 = require("./url301");
 Object.defineProperty(exports, "URL301", { enumerable: true, get: function () { return url301_1.URL301; } });
+var ignore_1 = require("./ignore");
+Object.defineProperty(exports, "IGNORE", { enumerable: true, get: function () { return ignore_1.IGNORE; } });

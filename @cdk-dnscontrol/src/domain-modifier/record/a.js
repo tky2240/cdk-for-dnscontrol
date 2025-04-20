@@ -11,6 +11,7 @@ class DnscontrolARecord extends dnscontrol_record_1.DnscontrolRecord {
             label: props.label,
             target: props.ip,
             ttl: props.ttl,
+            isEnsuredAbsent: props.isEnsuredAbsent,
             meta: props.meta,
         });
         this.ip = props.ip;

@@ -10,10 +10,11 @@ class DnscontrolRecord extends dnscontrol_domain_modifier_1.DnscontrolDomainModi
     name;
     ttl;
     target;
+    isEnsuredAbsent;
+    meta;
     constructor(scope, id, props) {
         super(scope, id, {
             modiferType: props.recordType,
-            meta: props.meta,
         });
         Object.defineProperty(this, DNS_CONTROL_RECORD_SYMBOL, { value: true });
         this.recordType = props.recordType;
@@ -22,6 +23,8 @@ class DnscontrolRecord extends dnscontrol_domain_modifier_1.DnscontrolDomainModi
         this.ttl = props.ttl;
         this.target = props.target;
         this.name = props.label;
+        this.isEnsuredAbsent = props.isEnsuredAbsent;
+        this.meta = props.meta;
     }
     static isDnscontrolRecord(x) {
         return x != null && typeof x === "object" && DNS_CONTROL_RECORD_SYMBOL in x;

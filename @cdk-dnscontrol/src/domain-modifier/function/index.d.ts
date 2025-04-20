@@ -31,3 +31,4 @@ export { TLSA } from "./tlsa";
 export { TXT } from "./txt";
 export { URL } from "./url";
 export { URL301 } from "./url301";
+export { IGNORE } from "./ignore";

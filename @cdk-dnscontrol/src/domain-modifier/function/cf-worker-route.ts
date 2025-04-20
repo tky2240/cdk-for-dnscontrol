@@ -17,7 +17,7 @@ export function CF_WORKER_ROUTE(
       pattern: pattern,
       script: script,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );

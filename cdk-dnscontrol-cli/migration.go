@@ -1,19 +1,28 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 	"text/template"
 
+	"github.com/StackExchange/dnscontrol/v4/models"
 	"github.com/StackExchange/dnscontrol/v4/pkg/js"
 	"github.com/StackExchange/dnscontrol/v4/pkg/normalize"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
+
+type MigrationTemplateParams struct {
+	DnsConfig *models.DNSConfig
+	IsTest    bool
+}
 
 func migration(c *cli.Context) error {
 	outputDir := c.String("outputDir")
@@ -24,10 +33,10 @@ func migration(c *cli.Context) error {
 	if dnsconfig == "" {
 		return errors.New("dnsconfig is required")
 	}
-	return _migration(outputDir, dnsconfig)
+	return _migration(outputDir, dnsconfig, false)
 }
 
-func _migration(outputDir string, dnsconfig string) error {
+func _migration(outputDir string, dnsconfig string, isTest bool) error {
 	conf, err := js.ExecuteJavaScript(dnsconfig, false, nil)
 	if err != nil {
 		return err
@@ -40,7 +49,7 @@ func _migration(outputDir string, dnsconfig string) error {
 
 	tmpl := template.Must(template.New("stack.ts.tmpl").Funcs(template.FuncMap{
 		"sanitizeDomainName": func(domain string) string {
-			regexp := regexp.MustCompile(`[^a-zA-Z0-9]`)
+			regexp := regexp.MustCompile(`[^a-zA-Z0-9.]`)
 			domain = regexp.ReplaceAllString(domain, "")
 			labels := strings.Split(domain, ".")
 			for i, label := range labels {
@@ -56,11 +65,30 @@ func _migration(outputDir string, dnsconfig string) error {
 		"splitByComma": func(s string) []string {
 			return strings.Split(s, ",")
 		},
-		"encloseInQuotes": func(strings []string) []string {
-			for i, s := range strings {
-				strings[i] = "\"" + s + "\""
+		"encloseInQuotes": func(txts []string) string {
+			for i, s := range txts {
+				s = strings.ReplaceAll(s, "\\", "\\\\")
+				s = strings.ReplaceAll(s, "\"", "\\\"")
+				s = strings.ReplaceAll(s, "'", "\\'")
+				s = strings.ReplaceAll(s, "`", "\\`")
+				txts[i] = "\"" + s + "\""
 			}
-			return strings
+			return strings.Join(txts, ",")
+		},
+		"escapeString": func(s string) string {
+			s = strings.ReplaceAll(s, "\\", "\\\\")
+			s = strings.ReplaceAll(s, "\"", "\\\"")
+			s = strings.ReplaceAll(s, "'", "\\'")
+			s = strings.ReplaceAll(s, "`", "\\`")
+			return s
+		},
+		"marshalRawMessage": func(raw json.RawMessage) map[string]string {
+			metadata := make(map[string]string)
+			json.Unmarshal(raw, &metadata)
+			return metadata
+		},
+		"getFormattedValue": func(m map[string]any) (string, error) {
+			return formatMap(m)
 		},
 	}).ParseFiles("templates/stack.ts.tmpl"))
 
@@ -80,35 +108,46 @@ func _migration(outputDir string, dnsconfig string) error {
 			return err
 		}
 	}
-
 	file, err := os.Create(stackFilePath)
 	if err != nil {
 		return err
 	}
 	defer file.Close()
-	err = tmpl.ExecuteTemplate(file, "stack.ts.tmpl", conf)
+	tmplParams := MigrationTemplateParams{
+		DnsConfig: conf,
+		IsTest:    isTest,
+	}
+	err = tmpl.ExecuteTemplate(file, "stack.ts.tmpl", tmplParams)
 	if err != nil {
 		return err
 	}
-	// for _, domainConfig := range conf.Domains {
-	// 	for _, record := range domainConfig.Records {
-	// 		if record.Type == "A" || record.Type == "AAAA" {
-	// 			record.Type = "A"
-	// 		}
-	// 		if record.Type == "CNAME" {
-	// 			record.Type = "CNAME"
-	// 		}
-	// 		if record.Type == "MX" {
-	// 			record.Type = "MX"
-	// 		}
-	// 		if record.Type == "TXT" {
-	// 			record.Type = "TXT"
-	// 		}
-	// 		if record.Type == "NS" {
-	// 			record.Type = "NS"
-	// 		}
-	// 	}
-	// }
 
 	return nil
+}
+
+func formatMap(m map[string]any) (string, error) {
+	var sb strings.Builder
+	for k, v := range m {
+		var formattedValue string
+		switch v := v.(type) {
+		case string:
+			formattedValue = "\"" + v + "\""
+		case int:
+			formattedValue = strconv.Itoa(v)
+		case float64:
+			formattedValue = strconv.FormatFloat(v, 'f', -1, 64)
+		case bool:
+			formattedValue = strconv.FormatBool(v)
+		case map[string]any:
+			fv, err := formatMap(v)
+			if err != nil {
+				return "", err
+			}
+			formattedValue = fv
+		default:
+			return "", errors.New("unsupported type: " + fmt.Sprint(v))
+		}
+		sb.WriteString(fmt.Sprintf("%s: %s", k, formattedValue))
+	}
+	return sb.String(), nil
 }

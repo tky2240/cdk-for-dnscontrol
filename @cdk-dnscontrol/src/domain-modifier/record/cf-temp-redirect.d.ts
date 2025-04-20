@@ -6,6 +6,7 @@ export interface DnscontrolCfTempRedirectRecordProps {
     readonly source: string;
     readonly destination: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
     readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolCfTempRedirectRecord extends DnscontrolRecord {

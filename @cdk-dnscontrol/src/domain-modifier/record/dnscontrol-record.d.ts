@@ -9,6 +9,7 @@ export interface DnscontrolRecordProps {
     subDomain?: string | undefined;
     ttl?: Duration | undefined;
     target: string;
+    isEnsuredAbsent?: boolean | undefined;
     meta?: Record<string, string> | undefined;
 }
 export declare abstract class DnscontrolRecord extends DnscontrolDomainModifier {
@@ -18,6 +19,8 @@ export declare abstract class DnscontrolRecord extends DnscontrolDomainModifier 
     readonly name: string;
     readonly ttl?: Duration | undefined;
     readonly target: string;
+    readonly isEnsuredAbsent?: boolean | undefined;
+    readonly meta?: Record<string, string> | undefined;
     constructor(scope: Construct, id: string, props: DnscontrolRecordProps);
     static isDnscontrolRecord(x: unknown): x is DnscontrolRecord;
     abstract renderRecordConfig(): DnscontrolRecordConfig;

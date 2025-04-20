@@ -12,6 +12,7 @@ class DnscontrolCfRedirectRecord extends dnscontrol_record_1.DnscontrolRecord {
             label: "@",
             target: `${props.source},${props.destination}`,
             ttl: props.ttl,
+            isEnsuredAbsent: props.isEnsuredAbsent,
             meta: props.meta,
         });
         if (props.source.includes(",")) {

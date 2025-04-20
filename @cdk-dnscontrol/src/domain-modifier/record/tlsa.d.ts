@@ -9,6 +9,7 @@ export interface DnscontrolTlsaRecordProps {
     readonly selector: number;
     readonly matchingType: number;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
     readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolTlsaRecord extends DnscontrolRecord {

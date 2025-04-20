@@ -17,7 +17,7 @@ export function CF_TEMP_REDIRECT(
       source: source,
       destination: destination,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );

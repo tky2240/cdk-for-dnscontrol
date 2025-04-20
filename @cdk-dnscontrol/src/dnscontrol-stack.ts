@@ -25,7 +25,7 @@ export abstract class DnscontrolStack extends Construct {
   public synth(outdir: string) {
     const dnsConfig = renderDnsConfig(this);
     const renamedDnsConfig = renameKeys(dnsConfig);
-    const jsonContent = JSON.stringify(sortObjectKeys(renamedDnsConfig));
+    const jsonContent = JSON.stringify(renamedDnsConfig);
     const filePath = path.join(outdir, this.stackMetadataPath);
     const dirPath = path.dirname(filePath);
     if (!fs.existsSync(dirPath)) {
@@ -92,16 +92,16 @@ function renameKeys(obj: object): object {
         return ["dnsProviders", renameKeys(value)];
       }
       if (key == "nameServers") {
-        return ["nameserver", value];
+        return ["nameserver", renameKeys(value)];
       }
       if (key == "recordAbsent") {
-        return ["recordsabsent", value];
+        return ["recordsabsent", renameKeys(value)];
       }
       if (key == "keepUnknown") {
-        return ["keepunknown", value];
+        return ["keepunknown", renameKeys(value)];
       }
       if (key == "rawRecords") {
-        return ["rawrecords", value];
+        return ["rawrecords", renameKeys(value)];
       }
       if (key == "recordType") {
         return ["type", renameKeys(value)];
@@ -133,7 +133,7 @@ function renameKeys(obj: object): object {
       if (key == "targetPattern") {
         return ["target_pattern", renameKeys(value)];
       }
-      if (key =="mxPreference") {
+      if (key == "mxPreference") {
         return ["mxpreference", renameKeys(value)];
       }
       if (key == "tlsaMatchingType") {
@@ -234,18 +234,18 @@ function renameKeys(obj: object): object {
   );
 }
 
-function sortObjectKeys(obj: object): object {
-  if (typeof obj !== "object" || obj == null) {
-    return obj;
-  }
+// function sortObjectKeys(obj: object): object {
+//   if (typeof obj !== "object" || obj == null) {
+//     return obj;
+//   }
 
-  if (Array.isArray(obj)) {
-    return obj.map((item) => sortObjectKeys(item));
-  }
+//   if (Array.isArray(obj)) {
+//     return obj.map((item) => sortObjectKeys(item));
+//   }
 
-  return Object.fromEntries(
-    Object.entries(obj)
-      .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
-      .map(([key, value]) => [key, sortObjectKeys(value)]),
-  );
-}
+//   return Object.fromEntries(
+//     Object.entries(obj)
+//       .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+//       .map(([key, value]) => [key, sortObjectKeys(value)]),
+//   );
+// }

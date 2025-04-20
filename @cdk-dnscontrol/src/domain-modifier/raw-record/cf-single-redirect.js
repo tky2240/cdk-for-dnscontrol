@@ -31,10 +31,9 @@ class DnscontrolCfSingleRedirectRawRecord extends dnscontrol_raw_record_1.Dnscon
             recordType: this.rawRecordType,
             ttl: this.ttl?.toSeconds(),
             args: [this.name, this.code, this.when, this.then],
-            metas: {
-                ...this.metas,
-                orig_custom_type: "CLOUDFLAREAPI_SINGLE_REDIRECT",
-            },
+            metas: this.metas == null
+                ? undefined
+                : Object.entries(this.metas).map(([key, value]) => ({ [key]: value })),
         };
     }
 }

@@ -11,6 +11,7 @@ class DnscontrolIgnore extends dnscontrol_domain_modifier_1.DnscontrolDomainModi
         super(scope, id, {
             modiferType: "IGNORE",
         });
+        Object.defineProperty(this, DNS_CONTROL_IGNORE_SYMBOL, { value: true });
         this.labelPattern = props.labelPattern;
         this.typePattern = props.typePattern;
         this.targetPattern = props.targetPattern;

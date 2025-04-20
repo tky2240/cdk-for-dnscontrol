@@ -6,6 +6,7 @@ export interface DnscontrolCfWorkerRouteRecordProps {
     readonly pattern: string;
     readonly script: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
     readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolCfWorkerRouteRecord extends DnscontrolRecord {

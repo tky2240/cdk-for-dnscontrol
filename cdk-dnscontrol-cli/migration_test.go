@@ -13,6 +13,7 @@ import (
 	"github.com/StackExchange/dnscontrol/v4/models"
 	"github.com/StackExchange/dnscontrol/v4/pkg/normalize"
 	"github.com/StackExchange/dnscontrol/v4/pkg/prettyzone"
+	"github.com/StackExchange/dnscontrol/v4/providers"
 	testifyrequire "github.com/stretchr/testify/require"
 )
 
@@ -28,8 +29,20 @@ func TestMigraion(t *testing.T) {
 			"006-transforms",
 			"007-importTransformTTL",
 			"008-import",
+			"020-complexRequire",
+			"029-dextendsub",
+			"030-dextenddoc",
+			"031-dextendnames",
+			"032-reverseip.js",
+			"033-revextend.js",
+			"036-dextendcf.js",
+			"037-splithor.js",
+			"039-include",
+			"045-loc", // not implemented yet
+			"049-json5-require",
+			"051-HASH",
 		}
-		// run all js files that start with a number. Skip others.
+
 		if filepath.Ext(name) != ".js" || !unicode.IsNumber(rune(name[0])) {
 			continue
 		}
@@ -40,7 +53,7 @@ func TestMigraion(t *testing.T) {
 					t.Skipf("skipping test %q", name)
 				}
 			}
-			err := _migration("./tmp", filepath.Join(testDir, name))
+			err := _migration("./tmp", filepath.Join(testDir, name), true)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -78,6 +91,37 @@ func TestMigraion(t *testing.T) {
 				}
 			}
 
+			for _, dc := range expectedConf.Domains {
+				ps := prettyzone.PrettySort(dc.Records, dc.Name, 0, nil)
+				dc.Records = ps.Records
+				if len(dc.Records) == 0 {
+					dc.Records = models.Records{}
+				}
+			}
+
+			// copy from dnscontrol
+			// Initialize any DNS providers mentioned.
+			for _, dProv := range synthedConf.DNSProviders {
+				pcfg := map[string]string{}
+
+				if dProv.Type == "-" {
+					// Pretend any "look up provider type in creds.json" results
+					// in a provider type that actually exists.
+					dProv.Type = "CLOUDFLAREAPI"
+				}
+
+				// Fake out any provider's validation tests.
+				switch dProv.Type {
+				case "CLOUDFLAREAPI":
+					pcfg["apitoken"] = "fake"
+				default:
+				}
+				_, err := providers.CreateDNSProvider(dProv.Type, pcfg, nil)
+				if err != nil {
+					t.Fatal(err)
+				}
+			}
+
 			errs := normalize.ValidateAndNormalizeConfig(&synthedConf)
 			if len(errs) != 0 {
 				commands.PrintValidationErrors(errs)
@@ -89,9 +133,11 @@ func TestMigraion(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			// if !reflect.DeepEqual(synthedConf, expectedConf) {
-			// 	t.Fatal("synthed and expected configs are not equal")
-			// }
+			expectedJSON, err = json.Marshal(expectedConf)
+			if err != nil {
+				t.Fatal(err)
+			}
+
 			testifyrequire.JSONEq(t, string(expectedJSON), string(synthedJSON))
 		})
 	}

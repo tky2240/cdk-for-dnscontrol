@@ -22,7 +22,7 @@ export function SOA(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       mbox: mbox,
       refresh: refresh,

@@ -25,7 +25,7 @@ export function SSHFP(
       label: label,
       value: value,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       algorithm: (() => {
         if (typeof algorithm === "number") {

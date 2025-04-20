@@ -12,6 +12,7 @@ class DnscontrolHttpsRecord extends dnscontrol_record_1.DnscontrolRecord {
             label: props.label,
             target: props.target,
             ttl: props.ttl,
+            isEnsuredAbsent: props.isEnsuredAbsent,
             meta: props.meta,
         });
         this.priority = props.priority;

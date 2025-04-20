@@ -6,8 +6,8 @@ const DNS_CONTROL_IGNORE_SYMBOL = Symbol.for("DnscontrolIgnore");
 
 export interface DnscontrolIgnoreProps {
   readonly labelPattern: string;
-  readonly typePattern?: string;
-  readonly targetPattern?: string;
+  readonly typePattern?: string | undefined;
+  readonly targetPattern?: string | undefined;
 }
 
 export class DnscontrolIgnore extends DnscontrolDomainModifier {
@@ -18,6 +18,7 @@ export class DnscontrolIgnore extends DnscontrolDomainModifier {
     super(scope, id, {
       modiferType: "IGNORE",
     });
+    Object.defineProperty(this, DNS_CONTROL_IGNORE_SYMBOL, { value: true });
     this.labelPattern = props.labelPattern;
     this.typePattern = props.typePattern;
     this.targetPattern = props.targetPattern;

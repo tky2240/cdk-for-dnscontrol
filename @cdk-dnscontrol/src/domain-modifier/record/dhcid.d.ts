@@ -6,6 +6,7 @@ export interface DnscontrolDhcidRecordProps {
     readonly label: string;
     readonly target: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
     readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolDhcidRecord extends DnscontrolRecord {

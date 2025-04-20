@@ -17,7 +17,7 @@ export function BUNNY_DNS_RDR(
       target: target,
       label: label,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );

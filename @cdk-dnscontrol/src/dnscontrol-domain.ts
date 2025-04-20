@@ -100,18 +100,27 @@ export abstract class DnscontrolDomain extends Construct {
         name: nameserver,
       })),
       meta: (() => {
-        const meta = { 
-          dnscontrol_tag: this.tag ?? "" ,
-          dnscontrol_uniquename: this.tag == null ? this.domainName : `${this.domainName}!${this.tag}`,
-        }
-        const ttlAddedMeta = this.parentNameserverTtl != null ? {
-          ...meta, 
-          ns_ttl: this.parentNameserverTtl.toSeconds().toString() 
-        } : meta;
-        const zoneIdAddedMeta = this.route53ZoneId != null ? {
-          ...ttlAddedMeta,
-          zone_id: this.route53ZoneId,
-        } : ttlAddedMeta;
+        const meta = {
+          dnscontrol_tag: this.tag ?? "",
+          dnscontrol_uniquename:
+            this.tag == null
+              ? this.domainName
+              : `${this.domainName}!${this.tag}`,
+        };
+        const ttlAddedMeta =
+          this.parentNameserverTtl != null
+            ? {
+                ...meta,
+                ns_ttl: this.parentNameserverTtl.toSeconds().toString(),
+              }
+            : meta;
+        const zoneIdAddedMeta =
+          this.route53ZoneId != null
+            ? {
+                ...ttlAddedMeta,
+                zone_id: this.route53ZoneId,
+              }
+            : ttlAddedMeta;
         return zoneIdAddedMeta;
       })(),
     } satisfies DnscontrolDomainConfig;
@@ -126,12 +135,25 @@ export abstract class DnscontrolDomain extends Construct {
       throw new Error("renderDomainConfig: unmanaged is null");
     }
 
+    if (domainConfig.recordsAbsent == null) {
+      throw new Error("renderDomainConfig: recordsAbsent is null");
+    }
+
     return {
       ...domainConfig,
-      rawRecords: domainConfig.rawRecords.length === 0 ? undefined : domainConfig.rawRecords,
-      unmanaged: domainConfig.unmanaged.length === 0 ? undefined : domainConfig.unmanaged,
-    }
-    
+      rawRecords:
+        domainConfig.rawRecords.length === 0
+          ? undefined
+          : domainConfig.rawRecords,
+      unmanaged:
+        domainConfig.unmanaged.length === 0
+          ? undefined
+          : domainConfig.unmanaged,
+      recordsAbsent:
+        domainConfig.recordsAbsent.length === 0
+          ? undefined
+          : domainConfig.recordsAbsent,
+    };
   }
   private _renderDomainConfig(
     node: IConstruct,
@@ -143,19 +165,19 @@ export abstract class DnscontrolDomain extends Construct {
     }
     if (DnscontrolRecord.isDnscontrolRecord(node)) {
       const recordConfig = node.renderRecordConfig();
-      if( node.isEnsuredAbsent) {
-        domainConfig.records.push({
-          ...recordConfig,
-          ttl: recordConfig?.ttl ?? this.defaultTtl.toSeconds(),
-        }); 
-      } else {
+      if (node.isEnsuredAbsent) {
         if (domainConfig.recordsAbsent == null) {
           throw new Error("something went wrong");
         }
         domainConfig.recordsAbsent.push({
           ...recordConfig,
           ttl: recordConfig?.ttl ?? this.defaultTtl.toSeconds(),
-        }); 
+        });
+      } else {
+        domainConfig.records.push({
+          ...recordConfig,
+          ttl: recordConfig?.ttl ?? this.defaultTtl.toSeconds(),
+        });
       }
     }
     if (DnscontrolRawRecord.isDnscontrolRawRecord(node)) {
@@ -170,7 +192,7 @@ export abstract class DnscontrolDomain extends Construct {
       if (domainConfig.unmanaged == null) {
         throw new Error("something went wrong");
       }
-      domainConfig.unmanaged.push(unmanagedConfig);      
+      domainConfig.unmanaged.push(unmanagedConfig);
     }
     for (const child of node.node.children) {
       this._renderDomainConfig(child, domainConfig);

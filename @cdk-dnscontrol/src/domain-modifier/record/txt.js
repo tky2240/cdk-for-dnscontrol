@@ -10,6 +10,7 @@ class DnscontrolTxtRecord extends dnscontrol_record_1.DnscontrolRecord {
             label: props.label,
             target: props.txtStrings.join(""),
             ttl: props.ttl,
+            isEnsuredAbsent: props.isEnsuredAbsent,
             meta: props.meta,
         });
     }

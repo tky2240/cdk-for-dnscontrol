@@ -6,12 +6,10 @@ const DNS_CONTROL_DOMAIN_MODIFIER_SYMBOL = Symbol.for(
 
 export interface DnscontrolDomainModifierProps {
   readonly modiferType: string;
-  readonly meta?: Record<string, string> | undefined;
 }
 
 export abstract class DnscontrolDomainModifier extends Construct {
   public readonly modiferType: string;
-  public readonly meta?: Record<string, string> | undefined;
   constructor(
     scope: Construct,
     id: string,
@@ -22,7 +20,6 @@ export abstract class DnscontrolDomainModifier extends Construct {
       value: true,
     });
     this.modiferType = props.modiferType;
-    this.meta = props.meta;
   }
   public static isDnscontrolDomainModifier(
     x: unknown,

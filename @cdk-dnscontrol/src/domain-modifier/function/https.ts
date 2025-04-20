@@ -19,7 +19,7 @@ export function HTTPS(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
       priority: priority,
       params: params,

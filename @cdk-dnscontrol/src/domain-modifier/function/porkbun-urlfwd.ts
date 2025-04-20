@@ -17,7 +17,7 @@ export function PORKBUN_URLFWD(
       label: label,
       target: target,
       ttl: ttl != null ? new Duration(ttl) : undefined,
-    isEnsuredAbsent: isEnsuredAbsent,
+      isEnsuredAbsent: isEnsuredAbsent,
       meta: meta,
     },
   );

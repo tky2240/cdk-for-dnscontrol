@@ -50,6 +50,7 @@ class DnscontrolSshfpRecord extends dnscontrol_record_1.DnscontrolRecord {
             label: props.label,
             target: props.value,
             ttl: props.ttl,
+            isEnsuredAbsent: props.isEnsuredAbsent,
             meta: props.meta,
         });
         this.algorithm = props.algorithm;

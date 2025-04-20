@@ -42,6 +42,7 @@ export interface DnscontrolDsRecordProps {
     readonly digestType: DsDigestType;
     readonly digest: string;
     readonly ttl?: Duration | undefined;
+    readonly isEnsuredAbsent?: boolean | undefined;
     readonly meta?: Record<string, string> | undefined;
 }
 export declare class DnscontrolDsRecord extends DnscontrolRecord {

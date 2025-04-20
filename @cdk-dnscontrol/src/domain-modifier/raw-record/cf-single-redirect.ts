@@ -8,7 +8,7 @@ const DNS_CONTROL_CF_SINGLE_REDIRECT_RAW_RECORD_SYMBOL = Symbol.for(
 );
 
 // eslint-disable-next-line
-const redirectCodes = [301, 302] as const;
+const redirectCodes = [301, 302, 303, 307, 308] as const;
 export type RedirectCode = (typeof redirectCodes)[number];
 
 export interface DnscontrolCfSingleRedirectRecordProps {
@@ -17,7 +17,7 @@ export interface DnscontrolCfSingleRedirectRecordProps {
   readonly when: string;
   readonly then: string;
   readonly ttl?: Duration | undefined;
-  readonly metas?: Record<string, string> | undefined;
+  readonly metas?: Record<string, string | number> | undefined;
 }
 
 export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
@@ -54,10 +54,10 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
       recordType: this.rawRecordType,
       ttl: this.ttl?.toSeconds(),
       args: [this.name, this.code, this.when, this.then],
-      metas: {
-        ...this.metas,
-        orig_custom_type: "CLOUDFLAREAPI_SINGLE_REDIRECT",
-      },
+      metas:
+        this.metas == null
+          ? undefined
+          : Object.entries(this.metas).map(([key, value]) => ({ [key]: value })),
     };
   }
 }

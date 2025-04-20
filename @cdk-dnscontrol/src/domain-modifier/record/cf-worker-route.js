@@ -12,6 +12,7 @@ class DnscontrolCfWorkerRouteRecord extends dnscontrol_record_1.DnscontrolRecord
             label: "@",
             target: `${props.pattern},${props.script}`,
             ttl: props.ttl,
+            isEnsuredAbsent: props.isEnsuredAbsent,
             meta: props.meta,
         });
         if (props.pattern.includes(",")) {
