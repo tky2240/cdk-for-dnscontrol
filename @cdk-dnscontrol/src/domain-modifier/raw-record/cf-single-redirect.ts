@@ -57,7 +57,9 @@ export class DnscontrolCfSingleRedirectRawRecord extends DnscontrolRawRecord {
       metas:
         this.metas == null
           ? undefined
-          : Object.entries(this.metas).map(([key, value]) => ({ [key]: value })),
+          : Object.entries(this.metas).map(([key, value]) => ({
+              [key]: value,
+            })),
     };
   }
 }
