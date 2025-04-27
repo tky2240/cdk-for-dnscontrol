@@ -42,9 +42,9 @@ import {
   asIPv4Address,
 } from "@tky2240/cdk-for-dnscontrol";
 
-import { DnscontrolARecord } from "@cdk-dnscontrol/lib/domain-modifier/record";
+import { DnscontrolARecord } from "@tky2240/cdk-for-dnscontrol/domain-modifier/record";
 
-import { A } from "@cdk-dnscontrol/lib/domain-modifier/function"
+import * as recordFunction from "@tky2240/cdk-for-dnscontrol/domain-modifier/function"
 
 export class ExampleStack extends DnscontrolStack {
   constructor(scope: Construct, id: string) {
@@ -84,7 +84,7 @@ export class ExampleDomain extends DnscontrolDomain {
       ip: asIPv4Address("1.2.3.4"),
     });
     // or you can use dnscontrol style
-    A(this, "@", "2.3.4.5");
+    recordFunction.A(this, "@", "2.3.4.5");
   }
 }
 ```
