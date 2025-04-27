@@ -260,6 +260,7 @@ Contributions are welcome! Please open an issue or submit a pull request.
     - [ ] Migration guide
     - [ ] Tutorial
     - [ ] FAQ
+  - [ ] Add CI/CD
 - **CDK**
   - [ ] Add Aspects
   - [ ] Add CDK constructs
