@@ -5,7 +5,7 @@ const JSII_RTTI_SYMBOL_1 = Symbol.for("jsii.rtti");
 const constructs_1 = require("constructs");
 const DNS_CONTROL_DOMAIN_MODIFIER_SYMBOL = Symbol.for("DnscontrolDomainModifier");
 class DnscontrolDomainModifier extends constructs_1.Construct {
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifier", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolDomainModifier", version: "0.1.0" };
     modiferType;
     constructor(scope, id, props) {
         super(scope, id);

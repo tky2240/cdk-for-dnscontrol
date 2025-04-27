@@ -5,7 +5,7 @@ const JSII_RTTI_SYMBOL_1 = Symbol.for("jsii.rtti");
 const constructs_1 = require("constructs");
 const DNS_CONTROL_REGISTRAR_SYMBOL = Symbol.for("DnscontrolRegistrar");
 class DnscontrolRegistrar extends constructs_1.Construct {
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrar", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolRegistrar", version: "0.1.0" };
     registrarName;
     registrarType;
     registrarMetadata;

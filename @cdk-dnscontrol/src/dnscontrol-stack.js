@@ -46,7 +46,7 @@ const dnscontrol_provider_1 = require("./dnscontrol-provider");
 const dnscontrol_registrar_1 = require("./dnscontrol-registrar");
 const DNS_CONTROL_STACK_SYMBOL = Symbol.for("DnscontrolStack");
 class DnscontrolStack extends constructs_1.Construct {
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolStack", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolStack", version: "0.1.0" };
     stackMetadataPath;
     constructor(scope, id, props) {
         super(scope, id);

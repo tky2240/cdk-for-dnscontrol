@@ -6,7 +6,7 @@ const JSII_RTTI_SYMBOL_1 = Symbol.for("jsii.rtti");
 class DurationUnit {
     value;
     name;
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DurationUnit", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DurationUnit", version: "0.1.0" };
     constructor(value, name) {
         this.value = value;
         this.name = name;
@@ -21,7 +21,7 @@ exports.week = new DurationUnit(7 * exports.day.value, "w");
 exports.nonth = new DurationUnit(30 * exports.day.value, "n");
 exports.year = new DurationUnit(365 * exports.day.value, "y");
 class Duration {
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.Duration", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.Duration", version: "0.1.0" };
     value;
     unit;
     constructor(value) {

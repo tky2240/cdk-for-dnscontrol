@@ -5,7 +5,7 @@ const JSII_RTTI_SYMBOL_1 = Symbol.for("jsii.rtti");
 const constructs_1 = require("constructs");
 const dnscontrol_stack_1 = require("./dnscontrol-stack");
 class App extends constructs_1.Construct {
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.App", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.App", version: "0.1.0" };
     outDir;
     constructor(config = {}) {
         // eslint-disable-next-line
