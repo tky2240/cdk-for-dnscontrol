@@ -5,7 +5,7 @@ const JSII_RTTI_SYMBOL_1 = Symbol.for("jsii.rtti");
 const dnscontrol_domain_modifier_1 = require("../dnscontrol-domain-modifier");
 const DNS_CONTROL_IGNORE_SYMBOL = Symbol.for("DnscontrolIgnore");
 class DnscontrolIgnore extends dnscontrol_domain_modifier_1.DnscontrolDomainModifier {
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolIgnore", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolIgnore", version: "0.1.0" };
     labelPattern;
     typePattern;
     targetPattern;

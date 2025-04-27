@@ -10,7 +10,7 @@ const dnscontrol_record_1 = require("./domain-modifier/record/dnscontrol-record"
 const duration_1 = require("./types/duration");
 const DNS_CONTROL_DOMAIN_SYMBOL = Symbol.for("DnscontrolDomain");
 class DnscontrolDomain extends constructs_1.Construct {
-    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolDomain", version: "0.0.5" };
+    static [JSII_RTTI_SYMBOL_1] = { fqn: "@tky2240/cdk-for-dnscontrol.DnscontrolDomain", version: "0.1.0" };
     domainName;
     tag;
     registrarName;
