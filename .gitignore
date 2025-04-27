@@ -175,5 +175,6 @@ dist/
 
 # cdk for dnscontol
 cdk-dnscontrol-cli/cdk-dnscontrol-cli
+cdk-dnscontrol-cli/lib
 /bin
 tmp/

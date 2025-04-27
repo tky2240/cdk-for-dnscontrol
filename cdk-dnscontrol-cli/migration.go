@@ -5,10 +5,13 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"os/exec"
+	"os/signal"
 	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
+	"syscall"
 	"text/template"
 
 	"github.com/StackExchange/dnscontrol/v4/models"
@@ -33,7 +36,17 @@ func migration(c *cli.Context) error {
 	if dnsconfig == "" {
 		return errors.New("dnsconfig is required")
 	}
-	return _migration(outputDir, dnsconfig, false)
+
+	err := _migration(outputDir, dnsconfig, false)
+	if err != nil {
+		return err
+	}
+	err = formatOutputCode(filepath.Join(outputDir, "stack.ts"))
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func _migration(outputDir string, dnsconfig string, isTest bool) error {
@@ -157,4 +170,31 @@ func formatMap(m map[string]any) (string, error) {
 		sb.WriteString(fmt.Sprintf("%s: %s", k, formattedValue))
 	}
 	return sb.String(), nil
+}
+
+func formatOutputCode(codeFilePath string) error {
+	cmd := exec.Command("npx", "prettier", codeFilePath, "--write")
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Start()
+	if err != nil {
+		return err
+	}
+
+	done := make(chan error)
+	go func() {
+		done <- cmd.Wait()
+		close(done)
+	}()
+
+	s := make(chan os.Signal, 1)
+	signal.Notify(s, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM)
+	select {
+	case <-s:
+		err = syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
+		return fmt.Errorf("interrupted: %s", err)
+	case err := <-done:
+		return err
+	}
 }
