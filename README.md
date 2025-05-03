@@ -266,4 +266,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
   - [ ] Add CDK constructs
 - **CLI**
   - [ ] Support other languages
-  - [ ] Add options for `creds.json`
+  - [x] Add options for `creds.json`
