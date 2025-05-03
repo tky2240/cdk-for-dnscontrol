@@ -38,6 +38,13 @@ func main() {
 
 						Aliases: []string{"i"},
 					},
+					&cli.StringFlag{
+						Name:  "credentials-json",
+						Value: "./creds.json",
+						Usage: "Path to credentials file",
+
+						Aliases: []string{"c"},
+					},
 				},
 			},
 			{
@@ -53,6 +60,13 @@ func main() {
 						Usage: "CDK entry point, default is ./bin/index.ts",
 
 						Aliases: []string{"i"},
+					},
+					&cli.StringFlag{
+						Name:  "credentials-json",
+						Value: "./creds.json",
+						Usage: "Path to credentials file",
+
+						Aliases: []string{"c"},
 					},
 				},
 			},
@@ -96,7 +110,7 @@ func diff(c *cli.Context) error {
 			JSONFile: "./cdk.out/meta.json",
 		},
 		GetCredentialsArgs: commands.GetCredentialsArgs{
-			CredsFile: "./creds.json",
+			CredsFile: c.String("creds"),
 		},
 	})
 	if err != nil {
@@ -117,7 +131,7 @@ func deploy(c *cli.Context) error {
 				JSONFile: "./cdk.out/meta.json",
 			},
 			GetCredentialsArgs: commands.GetCredentialsArgs{
-				CredsFile: "./creds.json",
+				CredsFile: c.String("creds"),
 			},
 		},
 		Interactive: false,
