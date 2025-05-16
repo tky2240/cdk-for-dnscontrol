@@ -2,13 +2,6 @@ FROM mcr.microsoft.com/devcontainers/base:bookworm
 
 ARG MISE_VERSION=v2025.5.5
 
-# RUN apt-get update && apt-get install -y \
-#   curl \
-#   git \
-#   zsh \
-#   && apt-get clean \
-#   && rm -rf /var/lib/apt/lists/*
-
 RUN curl -L https://github.com/jdx/mise/releases/download/${MISE_VERSION}/mise-${MISE_VERSION}-linux-x64 > /usr/local/bin/mise
 RUN chmod +x /usr/local/bin/mise
 
