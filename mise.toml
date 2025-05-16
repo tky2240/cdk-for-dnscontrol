@@ -1,0 +1,8 @@
+[tools]
+dotnet = "8"
+go = "1.23"
+"go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint" = "v2.1.6"
+java = "21"
+maven = "3.9.9"
+node = "22"
+python = "3.11"

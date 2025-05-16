@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#MISE description="format all"
+#MISE depends=["ts:format", "go:format"]

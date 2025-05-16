@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#MISE description="test all"
+#MISE depends=["ts:test", "go:test"]

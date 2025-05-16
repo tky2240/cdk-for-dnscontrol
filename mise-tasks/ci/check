@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#MISE description="check all codes"
+#MISE depends=["ts:check", "go:check"]

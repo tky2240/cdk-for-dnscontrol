@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#MISE description="lint all"
+#MISE depends=["ts:lint", "go:lint"]

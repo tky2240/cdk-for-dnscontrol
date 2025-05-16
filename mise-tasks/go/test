@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE dir="{{cwd}}/cdk-dnscontrol-cli"
+#MISE description="run go test"
+
+go test
