@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE dir="{{cwd}}/cdk-dnscontrol-cli"
+#MISE description="for CI, if gofmt return formatted files, exit 1"
+
+if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi

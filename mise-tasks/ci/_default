@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#MISE description="run ci"
+#MISE depends=["ci:check", "ci:lint", "ci:test"]

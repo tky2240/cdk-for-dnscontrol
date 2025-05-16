@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE dir="{{cwd}}/@cdk-dnscontrol"
+#MISE description="run prettier formatter in @dns-control directory"
+
+npm run format
