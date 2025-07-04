@@ -2,6 +2,9 @@
   "name": "cdk-for-dnscontrol devcontainer",
   "dockerFile": "Dockerfile",
   "onCreateCommand": "mise settings experimental=true && mise trust -a && mise i -y",
+  "mounts": [
+    "src=cdk-for-dnscontrol,target=/home/vscode,type=volume"
+  ],
   "customizations": {
     "vscode": {
       "settings": {
