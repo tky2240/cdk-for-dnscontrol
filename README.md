@@ -138,13 +138,13 @@ After applying, the zone file will be generated in the output directory.
 
 - Cannot use `IMPORT` and `TRANSFORM`.
 - The following functions are not supported:
-  - `FETCH`
-  - `HASH`
-  - `PANIC`
-  - `getConfiguredDomains`
+    - `FETCH`
+    - `HASH`
+    - `PANIC`
+    - `getConfiguredDomains`
 - Cannot use `require` and `require_glob`.
 - If you use `D_EXTEND`, records are flattened in the CDK code.
-  - It is recommended to split records into constructs instead of using `D_EXTEND`.
+    - It is recommended to split records into constructs instead of using `D_EXTEND`.
 
 #### 1. Migrate from dnsconfig.js
 
@@ -253,17 +253,17 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## Roadmap
 
 - **General**
-  - [ ] Publish jsii packages
-  - [ ] Write documentation:
-    - [ ] Examples
-    - [ ] API docs
-    - [ ] Migration guide
-    - [ ] Tutorial
-    - [ ] FAQ
-  - [ ] Add CI/CD
+    - [ ] Publish jsii packages
+    - [ ] Write documentation:
+        - [ ] Examples
+        - [ ] API docs
+        - [ ] Migration guide
+        - [ ] Tutorial
+        - [ ] FAQ
+    - [ ] Add CI/CD
 - **CDK**
-  - [ ] Add Aspects
-  - [ ] Add CDK constructs
+    - [ ] Add Aspects
+    - [ ] Add CDK constructs
 - **CLI**
-  - [ ] Support other languages
-  - [x] Add options for `creds.json`
+    - [ ] Support other languages
+    - [x] Add options for `creds.json`
