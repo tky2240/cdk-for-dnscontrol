@@ -25,7 +25,7 @@ jobs:
           log_level: debug
 
       - name: Install mkdocs
-        run: mise run install-mkdocs
+        run: mise run mkdocs:install
 
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        run: mise run mkdocs:deploy
