@@ -2,6 +2,8 @@
 
 CDK for [dnscontrol](https://github.com/StackExchange/dnscontrol) simplifies DNS management using the Cloud Development Kit (CDK).
 
+The document is here: [https://tky2240.github.io/cdk-for-dnscontrol/](https://tky2240.github.io/cdk-for-dnscontrol/).
+
 ## Requirements
 
 - Node.js >= 22
