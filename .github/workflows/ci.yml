@@ -11,7 +11,7 @@ jobs:
 
       - uses: jdx/mise-action@v2
         with:
-          version: v2025.5.5
+          version: v2025.8.13
           install: true
           cache: true
           experimental: true
