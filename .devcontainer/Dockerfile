@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/base:bookworm
 
-ARG MISE_VERSION=v2025.5.5
+ARG MISE_VERSION=v2025.8.13
 
 RUN curl -L https://github.com/jdx/mise/releases/download/${MISE_VERSION}/mise-${MISE_VERSION}-linux-x64 > /usr/local/bin/mise
 RUN chmod +x /usr/local/bin/mise
